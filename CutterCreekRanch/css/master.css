@@ -1,0 +1,152 @@
+﻿/*xs*/
+@media(max-width: 767px){
+    
+}
+/*sm*/
+@media(min-width:768px) and (max-width:992px){
+    
+}
+/*md*/
+@media(min-width:993px) and (max-width:1199px){
+    
+}
+/*lg*/
+@media(min-width:1200px){
+    
+    body{   
+        width:90%;
+        margin:auto;
+        padding:0 0 50px 0;
+    }
+    a{
+        color:#333;
+    }
+    .logo{
+        max-width:200px;
+        float:left;
+    }
+    .top-border{
+        position:relative;
+        top:65px;        
+    }
+    .raised{
+        position:relative;
+        top:-20px;
+    }
+    header h1{
+        position:relative;
+        top:60px;
+        left:20px;
+        font-size:5em;
+        padding-bottom:50px;
+        text-shadow:2px 2px 2px #aaa;
+    }
+    header nav{
+        cursor:pointer;
+    }
+    header p{
+        color: #999;
+        font-size:23px;
+        position:relative;
+        left:50px;
+        font-weight:lighter;
+        /*top:-15px;*/
+        /*font-style:italic;*/
+        /*font-family:'Brush Script Std';*/
+    }
+    header nav li{
+        font-size:large;
+        display:inline;
+        float:right;
+        padding:0;
+        margin:0;
+        cursor:pointer;
+    }
+    header nav li.active a{
+        color: #333;
+        font-weight:bold;
+        text-shadow: 0 0 2px #181855;
+    }
+    header nav li a:hover, header nav li a:active{
+        background-color:#ddd;
+        background: linear-gradient(to top, #eee, #ddd);
+        border:solid thin black;
+        box-shadow: 0 1px 5px;
+        text-decoration:none;
+    }
+    header nav li a:active{
+        color:red;
+    }
+    header nav li a{
+        color:#333;
+        padding:4px 20px 4px 20px;
+        border: solid thin #eee;
+        text-decoration:none;
+    }    
+    header nav li:first-child{
+        margin-right:60px;
+    }
+    footer{
+        width:65%;
+        margin-left:200px;
+        color:gray;
+    }
+    footer nav li{
+        display:inline;
+        padding: 0 20px 0 0;
+    }
+    footer nav li a{
+        color: #222;
+    }
+    .social-media-bar{
+        font-size:2em;
+        padding-top:10px;
+        padding-bottom:10px;
+    }
+    .social-media-bar span{
+        border:solid thin black;
+        border-radius:5px;
+        padding:5px;
+    }
+    #main-content{
+        margin: 20px 100px 20px 200px;
+        width:70%;
+    }
+
+    /*Consider splitting off into a seperate css just for default*/
+    #carousel-photography{
+        height:300px;
+        border:solid thin black;         
+    }
+    #main-menu li a{
+        color:#333;
+        font-size: 1.25em;        
+    }
+    #main-menu li{
+        padding:9px;
+        list-style-type:none;
+    }
+    .main-menu-pics{
+        width:175px;
+        border:solid thin  black;
+        float:right;
+        margin:10px;
+        position:relative;
+        left:-20px;
+        top:-25px;
+        border-radius:10px;
+    }
+    .floatRight{
+        float:right;
+        margin-left:30px;
+        margin-right:20px;
+    }
+    .roundBorder{
+        border:solid thin black;
+        border-radius:10px;
+        box-shadow:2px 2px 5px black;
+    }
+}
+@media screen and (orientation:portrait){
+    
+}

@@ -1,0 +1,45 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="CutterCreekRanch.Site" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Cutter Creek Ranch - <%: Page.Title %></title>
+    <link rel="stylesheet" href="~/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/master.css" />
+    <asp:ContentPlaceHolder ID="head" runat="server"/>    
+</head>
+<body>
+    <header>
+        <img src="img/logo.png" class="logo" />
+        <hr class="top-border" />
+        <h1>Cutter Creek Ranch</h1>
+        <hr/>
+        <CCR:NavLinks runat="server"/>
+        <p>Passionate about border collies</p>
+    </header>
+    <form id="form1" runat="server">
+    <div class="container" id="main-content" >
+        <asp:ContentPlaceHolder ID="MainContent" runat="server"/>        
+    </div>
+    </form>
+    <footer>
+        <hr />
+        <div style="float:right;">
+            <CCR:SocialMediaBar runat="server" />
+        </div>
+        Copyright &copy; <%: DateTime.Now.Year %> - Cutter Creek Ranch, LLC. - All Rights Reserved
+        <nav>
+            <ul>
+                <li><a href="~/">Home</a></li>
+                <li><a href="~/About">About</a></li>
+                <li><a href="~/Offerings">Offerings</a></li>
+                <li><a href="~/Photos">Photos</a></li>
+                <li><a href="~/Contact">Contact</a></li>
+            </ul>
+        </nav>
+        <script src="~/js/jquery-2.1.1.js"></script>
+        <script src="~/js/jquery-ui.1.10.4.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>
+        <asp:ContentPlaceHolder ID="footerScripts" runat="server" />
+    </footer>
+</body>
+</html>
