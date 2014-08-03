@@ -5,6 +5,7 @@
     <title>Cutter Creek Ranch - <%: Page.Title %></title>
     <link rel="stylesheet" href="~/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/master.css" />
+    <link href="http://fonts.googleapis.com/css?family=Glegoo|Open+Sans:300" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder ID="head" runat="server"/>    
 </head>
 <body>

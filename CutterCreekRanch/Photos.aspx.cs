@@ -10,6 +10,7 @@ namespace CutterCreekRanch
         public string Name { get; set; }
         public string ImageURL { get; set; }
         public string ThumbURL { get; set; }
+        public string Caption { get; set; }
         public DateTime Date { get; set; }
     }
 
@@ -52,7 +53,7 @@ namespace CutterCreekRanch
                     _imgThumb.Add(new Tuple<string, string> (thumbFile, imageFile));                    
                 }
                 else
-                {//file does not contain 'thumb', maybe its a big file
+                {//file does not contain 'thumb', maybe its an original size image file
                     try
                     {//look for an associated thumbFile
                         thumbFile = dir.First(x => x.Contains("thumb") && x.Contains(file));                        
@@ -81,7 +82,8 @@ namespace CutterCreekRanch
                     ThumbURL = "img/photos/" + entry.Item1,
                     ImageURL = "img/photos/" + entry.Item2,
                     Name = name,
-                    Date = date
+                    Date = date,
+                    Caption = String.Format("{0}, {1}", name, date.ToShortDateString())
                 });
             }   
         }
@@ -91,12 +93,6 @@ namespace CutterCreekRanch
             foreach (var name in _names)
                 yield return name;
         }
-
-        //public IEnumerable<Thumbs> GetThumbs()
-        //{
-        //    foreach (var item in _thumbs)
-        //        yield return item;
-        //}
 
         public IEnumerable<Thumbs> GetThumbsByDogName(string dogName)
         {
