@@ -4,16 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CutterCreekRanch.Models;
+using CutterCreekRanch.Models.Repository;
 
 namespace CutterCreekRanch.controls
 {
     public partial class DogListing : System.Web.UI.UserControl
     {
-        
+        private Repository repo = new Repository();
 
-        protected void Page_Load(object sender, EventArgs e)
+        public IEnumerable<Dog> GetDogs()
         {
-
+            return repo.Dogs.Where(x=> x.ForSale != ForSaleStatusCode.NotForSale);
         }
     }
 }

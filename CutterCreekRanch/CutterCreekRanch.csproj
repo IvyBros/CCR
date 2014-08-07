@@ -38,6 +38,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -147,8 +153,10 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="models\Dog.cs" />
-    <Compile Include="models\PhotoAlbum.cs" />
+    <Compile Include="Models\Dog.cs" />
+    <Compile Include="Models\PhotoAlbum.cs" />
+    <Compile Include="Models\Repository\EFDbContext.cs" />
+    <Compile Include="Models\Repository\Repository.cs" />
     <Compile Include="Photos.aspx.cs">
       <DependentUpon>Photos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -176,6 +184,8 @@
     <Content Include="Site.Master" />
     <Content Include="js\jquery-2.1.1.min.map" />
     <Content Include="js\jquery.mobile-1.4.2.min.map" />
+    <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\SmarterASP.net.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

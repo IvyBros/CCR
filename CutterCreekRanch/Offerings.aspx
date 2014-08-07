@@ -3,6 +3,7 @@
     <style>
         .dog{
             padding:2px;
+            min-height:300px;
         }
         .profilePic{
             width:250px;
