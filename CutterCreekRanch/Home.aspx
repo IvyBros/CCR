@@ -68,10 +68,10 @@
         We love sharing pictures and videos of border collies and its a great way to hear about upcoming offerings.        
         
     </p>
-    <h2 style="margin-top:35px;">Learn More</h2>
-    <img src="img/square1.jpg" class="main-menu-pics" title="Champion Dogs" />
-    <img src="img/square2.jpg" class="main-menu-pics" title="Ancient Bloodlines" />
-    <img src="img/square3.jpg" class="main-menu-pics" title="Knowledgable Breeders"/>
+    <h2 style="margin-top:30px;">Learn More</h2>
+    <img src="img/square1.jpg" class="main-menu-pics roundBorder" title="Champion Dogs" />
+    <img src="img/square2.jpg" class="main-menu-pics roundBorder" title="Ancient Bloodlines" />
+    <img src="img/square3.jpg" class="main-menu-pics roundBorder" title="Knowledgable Breeders"/>
     <nav id="main-menu" style="margin-top:10px;">
         <ul>
             <li><a href="About">About</a></li>
@@ -80,7 +80,7 @@
             <li><a href="Contact">Contact</a></li>
         </ul>
     </nav>
-    <p style="margin-top:75px;">
+    <p style="margin-top:30px;">
         Thank you for your interest in our website.  At Cutter Creek, we are passionate about border collies and we look 
         forward to sharing that passion with you.  Whether you're looking for a new best friend or just have a question about
         puppy care, we are happy to help, so please don't hesitate to contact us. We wish you and your herd all the joy 

@@ -15,7 +15,13 @@ namespace CutterCreekRanch.controls
 
         public IEnumerable<Dog> GetDogs()
         {
-            return repo.Dogs.Where(x=> x.ForSale != ForSaleStatusCode.NotForSale);
+            return repo.Dogs.Where(x=>x.DogId != 7 && x.ForSale != ForSaleStatusCode.NotForSale).OrderBy(x=>x.ForSale);
+        }
+
+        public string GetDogNameById(int id)
+        {
+            var dog = repo.GetDogByID(id);
+            return dog == null ? "Unknown" : dog.Name;
         }
     }
 }

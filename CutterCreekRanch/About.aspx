@@ -1,4 +1,13 @@
 ﻿<%@ Page Title="About Us" MasterPageFile="~/Site.Master" Language="C#" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="CutterCreekRanch.About" %>
+<asp:Content runat="server" ContentPlaceHolderID="head">
+    <style>
+        .about-photo{
+            width:150px;
+            margin:15px 20px 20px 20px;
+            float:left;
+        }
+    </style>
+</asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <h2>About Us</h2>
     
@@ -11,12 +20,17 @@
         All our puppies are vaccinated at age appropriate times and they stay with their mother until at least 10 weeks of age.
     </p>
     <p>
-        The border collie breed is intelligent and has a strong appetite for learning.  These delightful dogs are 
-        instantly ready and willing to take on any task with eagerness and a strong desire to please.  
-        They are faithful, loyal companions, bred for obedience and discipline. With their instinctive herding ability
-        and tireless work ethic, the Border Collie is the best and hardest working breed of all herding dogs.
+        The border collie is argubaly the most intelligent breed of dog on the planet.  Their appetite for learning
+        is undeniable. These delightful dogs are instantly ready and willing to take on any task with eagerness 
+        and a strong desire to please.  They are faithful, loyal companions, bred for obedience and discipline. They have
+        an instinctive herding ability and a tireless work ethic.
     </p>    
     <div style="margin:auto;">
         <h4>Happy, healthy, well-adjusted canine companions</h4>
+    </div>
+    <div>
+        <img src="img/photos/pic.jpg" class="roundBorder img-responsive about-photo" />
+        <img src="img/photos/pic.jpg" class="roundBorder img-responsive about-photo" />
+        <img src="img/photos/pic.jpg" class="roundBorder img-responsive about-photo" />
     </div>
 </asp:Content>

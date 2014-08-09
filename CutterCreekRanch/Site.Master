@@ -36,9 +36,9 @@
                 <li><a href="~/Contact">Contact</a></li>
             </ul>
         </nav>
-        <script src="~/js/jquery-2.1.1.js"></script>
-        <script src="~/js/jquery-ui.1.10.4.js"></script>
-        <script src="~/js/bootstrap.min.js"></script>
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="js/jquery-ui.1.10.4.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <asp:ContentPlaceHolder ID="footerScripts" runat="server" />
     </footer>
 </body>

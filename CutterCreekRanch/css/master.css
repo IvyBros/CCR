@@ -51,9 +51,6 @@
         position:relative;
         left:50px;
         font-weight:lighter;
-        /*top:-15px;*/
-        /*font-style:italic;*/
-        /*font-family:'Brush Script Std';*/
     }
     header nav li{
         font-size:large;
@@ -113,6 +110,16 @@
         margin: 20px 100px 20px 200px;
         width:70%;
     }
+    .floatRight{
+        float:right;
+        margin-left:30px;
+        margin-right:20px;
+    }
+    .roundBorder{
+        border:solid thin black;
+        border-radius:10px;
+        box-shadow:2px 2px 5px black;
+    }
 
     /*Consider splitting off into a seperate css just for default*/
     #carousel-photography{
@@ -129,23 +136,11 @@
     }
     .main-menu-pics{
         width:175px;
-        border:solid thin  black;
         float:right;
         margin:10px;
         position:relative;
         left:-20px;
         top:-25px;
-        border-radius:10px;
-    }
-    .floatRight{
-        float:right;
-        margin-left:30px;
-        margin-right:20px;
-    }
-    .roundBorder{
-        border:solid thin black;
-        border-radius:10px;
-        box-shadow:2px 2px 5px black;
     }
 }
 @media screen and (orientation:portrait){
