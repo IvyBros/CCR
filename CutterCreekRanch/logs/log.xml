@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Event Type="Mail Delivery Failure" Date="12/12/2015T23:05:59">
+  <Detail>
+    <Recipients>
+      <Recipient>
+        <EmailAdress></EmailAdress>
+        <Name></Name>
+      </Recipient>
+    </Recipients>
+    <Exception>
+      <Type></Type>
+      <Message></Message>
+    </Exception>
+  </Detail>
+</Event>

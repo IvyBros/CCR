@@ -65,6 +65,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Admin\Default.aspx" />
+    <Content Include="Apply.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="controls\DogListing.ascx" />
     <Content Include="controls\NavLinks.ascx" />
@@ -95,6 +96,7 @@
     <Content Include="js\jquery.validate.min.js" />
     <Content Include="js\modernizr-2.6.2.js" />
     <None Include="js\_references.js" />
+    <Content Include="logs\log.xml" />
     <Content Include="Photos.aspx" />
     <Content Include="Offerings.aspx" />
     <Content Include="Web.config" />
@@ -113,6 +115,13 @@
     </Compile>
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Apply.aspx.cs">
+      <DependentUpon>Apply.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Apply.aspx.designer.cs">
+      <DependentUpon>Apply.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Contact.aspx.cs">
@@ -154,6 +163,7 @@
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\Dog.cs" />
+    <Compile Include="Models\People.cs" />
     <Compile Include="Models\PhotoAlbum.cs" />
     <Compile Include="Models\Repository\EFDbContext.cs" />
     <Compile Include="Models\Repository\Repository.cs" />

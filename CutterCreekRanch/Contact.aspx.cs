@@ -11,7 +11,8 @@ namespace CutterCreekRanch
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (IsPostBack && Request.Form["apply"] != null)
+                Response.Redirect("Apply.aspx");
         }
     }
 }

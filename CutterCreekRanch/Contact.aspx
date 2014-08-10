@@ -53,17 +53,16 @@
             <li><a href="1">Fort Worth Stock Yards</a>, (80 miles)</li>
         </ul>
         <label>Submit Application:</label>
-        <p style="max-width:350px; padding-top:10px;">
+        <%--<p style="max-width:350px; padding-top:10px;">
             There is no charge to apply.  Supply is limited.  Application does not guarantee approval.
-        </p>
-        <button class="btn btn-default" style="color:blue; background-color:#ddd;">Apply Online Now</button>
-        
+        </p>--%><br />
+        <button class="btn btn-default" name="apply" style="color:blue; background-color:#ddd;margin:10px;" type="submit">Apply Online Now</button>
     </div>
-    <div class="panel panel-default contact-panel">        
+    <div class="panel panel-default contact-panel">
         <table class="contact-table">
             <tr>
-                <td><label>Phone 1:</label></td>
-                <td> ( 555 )  555 - 5555</td>
+                <td style="border-top-left-radius:4px"><label>Phone 1:</label></td>
+                <td style="border-top-right-radius:4px"> ( 555 )  555 - 5555</td>
             </tr>
             <tr>
                 <td><label>Phone 2:</label></td>
@@ -86,8 +85,8 @@
                 <td>#ranch.cc</td>
             </tr>
             <tr>
-                <td><label>Address:</label></td>
-                <td>
+                <td  style="border-bottom-left-radius:4px"><label>Address:</label></td>
+                <td  style="border-bottom-right-radius:4px">
                     Cutter Creek Ranch<br>
                     5950 County Road 128<br />
                     Wills Point, TX 75169

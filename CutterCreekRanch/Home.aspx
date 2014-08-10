@@ -80,7 +80,7 @@
             <li><a href="Contact">Contact</a></li>
         </ul>
     </nav>
-    <p style="margin-top:30px;">
+    <p style="margin-top:40px;">
         Thank you for your interest in our website.  At Cutter Creek, we are passionate about border collies and we look 
         forward to sharing that passion with you.  Whether you're looking for a new best friend or just have a question about
         puppy care, we are happy to help, so please don't hesitate to contact us. We wish you and your herd all the joy 

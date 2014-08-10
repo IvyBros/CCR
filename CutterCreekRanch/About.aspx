@@ -16,7 +16,7 @@
         At Cutter Creek Ranch, every dog here is a family member and gets treated
         with love and respect.  Our dogs are happy and healthy and enjoy the fresh country air.  They get plenty
         of excericse every day chasing frisbees, squirrels and the occasional loose chicken.  Along with regular veterinary 
-        checkups and closely monitored diets, a steady dose of geniuene affection keeps our dogs looking and feeling great.
+        checkups and closely monitored diets, a steady dose of genuine affection keeps our dogs looking and feeling great.
         All our puppies are vaccinated at age appropriate times and they stay with their mother until at least 10 weeks of age.
     </p>
     <p>
@@ -33,4 +33,11 @@
         <img src="img/photos/pic.jpg" class="roundBorder img-responsive about-photo" />
         <img src="img/photos/pic.jpg" class="roundBorder img-responsive about-photo" />
     </div>
+    <p style="padding:20px 0 0 0;">
+        The early developmental stages of a puppy's life can have a dramatic and lasting impact on their personality.
+        Thats why we take great care to provide structure, kindness and affection to each and every puppy here at Cutter
+        Creek Ranch.  You can rest assured that we've given them the best start possible in life.     
+    </p>
+    <hr />
+    <img src="img/pic1.jpg" class="roundBorder img-responsive" style="margin:40px 40px 20px 40px; width:90%; height:250px;" />
 </asp:Content>
