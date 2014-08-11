@@ -7,51 +7,7 @@
           implement sorting/filtering results?
     -->
     <style>
-        .dog{
-            padding:2px;
-            min-height:300px;
-        }
-        .profilePic{
-            width:250px;
-            height:250px;
-            margin:20px;
-            float:left;
-        }
-        .profileInfo{
-            position:relative;
-            top:20px;
-        }
-        .profileInfo ul{
-            list-style-type:none;
-        }
-        .profileInfo ul label{
-            width:100px;
-            text-align:right;
-            padding-right:10px;
-        }
-        .morePhotos{
-            width:75px;
-            float:right;
-            margin-top:20px;
-            margin-right:20px;
-            /*border-radius:5px;
-            border:solid thin black;
-            box-shadow:5px 5px 5px #000;*/
-        }
-        .Sold, .Discounted{
-            text-decoration:line-through;
-            color:#444;
-        }
-        .discountPrice{
-            color:red;
-            font-size:larger;
-        }
-        ul li a{
-            color:blue;
-        }
-        .FreeToGoodHome{
-            color:red;
-        }
+        
     </style>
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
@@ -65,14 +21,6 @@
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="footerScripts">
     <script>
-        $(document).ready(function () {
-            var existing = $('.Sold').text();
-            $('.Sold').after(" SOLD");
-            $('.NotForSale').parent().css('display', 'none');
-            var price = parseFloat( $('.Discounted').text().trim().substr(1) );
-            var markedDownFrom = (price * .25) + price;            
-            $('.Discounted').text(" $" + markedDownFrom.toFixed(2));
-            $('.Discounted').after("<span class='discountPrice'> $" + price.toFixed(2) + "</span>");
-        });
+       
     </script>
 </asp:Content>

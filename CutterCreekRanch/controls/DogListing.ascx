@@ -2,7 +2,7 @@
 <asp:Repeater runat="server" SelectMethod="GetDogs" ItemType="CutterCreekRanch.Models.Dog">
     <ItemTemplate>
         <div class="dog">
-            <a href="Dogs/<%# Item.DogId %>" />
+            <a href="/Dogs/<%# Item.DogId %>" />
                 <img src="<%# Item.ProfilePic ?? "~/img/photos/defaultProfilePic.jpg"
                         %>" title="<%# Item.Name %>" class="profilePic roundBorder" />
             </a>
@@ -30,11 +30,11 @@
                             ? " FREE" 
                             : Item.Price.ToString("c") %></span> </li>
                     <li><label>Dame:</label> <%#Item.Mother == 0 ? String.Empty : 
-                                                String.Format("<a href=\"dogs/{0}\">", Item.Mother)
+                                                String.Format("<a href=\"/Dogs/{0}\">", Item.Mother)
                                              %><%# GetDogNameById(Item.Mother) %>
                                             <%# Item.Mother == 0 ? String.Empty :"</a>" %></li>
                     <li><label>Sire:</label> <%#Item.Father == 0 ? String.Empty : 
-                                                String.Format("<a href=\"dogs/{0}\">", Item.Father)
+                                                String.Format("<a href=\"/Dogs/{0}\">", Item.Father)
                                              %><%# GetDogNameById(Item.Father) %>
                                             <%# Item.Father == 0 ? String.Empty :"</a>" %></li>
                 </ul>            

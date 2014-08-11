@@ -11,10 +11,12 @@ namespace CutterCreekRanch.controls
 {
     public partial class DogListing : System.Web.UI.UserControl
     {
+        public bool Unfiltered { get; set; }
         private Repository repo = new Repository();
 
         public IEnumerable<Dog> GetDogs()
         {
+            if (Unfiltered) return repo.Dogs.OrderBy(x => x.DogId);
             return repo.Dogs.Where(x=>x.DogId != 7 && x.ForSale != ForSaleStatusCode.NotForSale).OrderBy(x=>x.ForSale);
         }
 

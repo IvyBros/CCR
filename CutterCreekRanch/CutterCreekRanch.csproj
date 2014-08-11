@@ -65,6 +65,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Admin\Default.aspx" />
+    <Content Include="AllDogs.aspx" />
     <Content Include="Apply.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="controls\DogListing.ascx" />
@@ -73,6 +74,7 @@
     <Content Include="css\bootstrap.css" />
     <Content Include="css\master.css" />
     <Content Include="css\trey.css" />
+    <Content Include="Dogs.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
@@ -94,6 +96,7 @@
     <None Include="js\jquery.validate-vsdoc.js" />
     <Content Include="js\jquery.validate.js" />
     <Content Include="js\jquery.validate.min.js" />
+    <Content Include="js\master.js" />
     <Content Include="js\modernizr-2.6.2.js" />
     <None Include="js\_references.js" />
     <Content Include="logs\log.xml" />
@@ -115,6 +118,13 @@
     </Compile>
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AllDogs.aspx.cs">
+      <DependentUpon>AllDogs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AllDogs.aspx.designer.cs">
+      <DependentUpon>AllDogs.aspx</DependentUpon>
     </Compile>
     <Compile Include="Apply.aspx.cs">
       <DependentUpon>Apply.aspx</DependentUpon>
@@ -151,6 +161,13 @@
     </Compile>
     <Compile Include="controls\SocialMediaBar.ascx.designer.cs">
       <DependentUpon>SocialMediaBar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Dogs.aspx.cs">
+      <DependentUpon>Dogs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dogs.aspx.designer.cs">
+      <DependentUpon>Dogs.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
