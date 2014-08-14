@@ -69,7 +69,8 @@
                             <th>Description</th>
                             <th>Coloring</th>
                             <th>For Sale?</th>
-                            <th>Price</th>                
+                            <th>Price</th>
+                            <th>Profile Pic</th>
                             <th>Actions</th>
                         </tr>        
                         <tr runat="server" id="itemPlaceHolder" />
@@ -87,6 +88,7 @@
                         <td><%# Item.Color %></td>
                         <td><%# Item.ForSale %></td>
                         <td style="text-align:right;"><%# Item.Price.ToString("c") %></td>
+                        <td><%# Item.ProfilePic == null ? "null" : "gots"  %></td>
                         <td style="white-space:nowrap; text-align:center;">
                             <asp:Button CommandName="edit" Text="Edit" runat="server" />
                             <asp:Button CommandName="delete" Text="Delete" runat="server"/>
@@ -136,6 +138,11 @@
                             </select>
                         </td>
                         <td><input  class="price" name="price" type="number" value="<%# Item.Price %>" /></td>
+                        <td>
+                            <input type="file" name="ProfilePic" runat="server" />
+                            <%--<input type="file" name="ProfilePic" multiple="multiple"  />--%>
+                            <%--<input type="submit" name="button" value="Upload" />--%>
+                        </td>
                         <td style="white-space:nowrap;">
                             <asp:Button CommandName="Update" Text="Update" runat="server" />
                             <asp:Button CommandName="Cancel" Text="Cancel" runat="server" />

@@ -22,6 +22,7 @@ namespace CutterCreekRanch.Routes
 
             routes.MapPageRoute("AllDogs", "Dogs", "~/AllDogs.aspx");
             routes.MapPageRoute("Dogs", "Dogs/{id}", "~/Dogs.aspx", false, defaults, constraints);
+            routes.MapPageRoute("Image", "Image/{id}", "~/img/image.aspx", false, defaults, constraints);
         }
     }
 }

@@ -78,8 +78,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
+    <Content Include="img\image.aspx" />
     <Content Include="img\logo.png" />
     <Content Include="img\paw-print.png" />
+    <Content Include="img\profile-long.jpg" />
     <Content Include="index.html" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
@@ -179,9 +181,16 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="img\image.aspx.cs">
+      <DependentUpon>image.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="img\image.aspx.designer.cs">
+      <DependentUpon>image.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dog.cs" />
     <Compile Include="Models\People.cs" />
-    <Compile Include="Models\PhotoAlbum.cs" />
+    <Compile Include="Models\Photos.cs" />
     <Compile Include="Models\Repository\EFDbContext.cs" />
     <Compile Include="Models\Repository\Repository.cs" />
     <Compile Include="Photos.aspx.cs">
