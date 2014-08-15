@@ -16,6 +16,7 @@ namespace CutterCreekRanch
         public Dog Dog;
         public Dog Mother;
         public Dog Father;
+        public int count;
         private int id;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -28,6 +29,11 @@ namespace CutterCreekRanch
                 Father = repo.GetDogByID(Dog.Father);
             }
             else Response.Redirect("~/Dogs");
+        }
+
+        public IEnumerable<Photo> GetPicturesByDogId()
+        {
+            return repo.Photos.Where(x => x.DogId == id && x.Id != Dog.ProfilePic);
         }
     }
 }

@@ -69,6 +69,7 @@
     <Content Include="Apply.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="controls\DogListing.ascx" />
+    <Content Include="controls\DogNav.ascx" />
     <Content Include="controls\NavLinks.ascx" />
     <Content Include="controls\SocialMediaBar.ascx" />
     <Content Include="css\bootstrap.css" />
@@ -149,6 +150,13 @@
     </Compile>
     <Compile Include="controls\DogListing.ascx.designer.cs">
       <DependentUpon>DogListing.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\DogNav.ascx.cs">
+      <DependentUpon>DogNav.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\DogNav.ascx.designer.cs">
+      <DependentUpon>DogNav.ascx</DependentUpon>
     </Compile>
     <Compile Include="controls\NavLinks.ascx.cs">
       <DependentUpon>NavLinks.ascx</DependentUpon>

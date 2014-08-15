@@ -187,6 +187,21 @@
     .FreeToGoodHome{
         color:red;
     }
+
+    #dogNav{
+        float:right;
+        font-size:12px;
+        
+    }
+    #dogNav span.prev{
+        padding-right:15px;
+        color:blue;
+    }
+    #dogNav span.next{
+        padding-left:15px;
+        color:blue;
+    }
+
 }
 @media screen and (orientation:portrait){
     

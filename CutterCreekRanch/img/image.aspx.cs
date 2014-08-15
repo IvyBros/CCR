@@ -20,20 +20,13 @@ namespace CutterCreekRanch.img
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            //var path = Path.Combine(Server.MapPath("~/img/profile-long.jpg"));
-            if (RouteData.Values["id"] == null)
-            {
-
-                throw new Exception("nope");
-            }
+            if (RouteData.Values["id"] == null) throw new Exception("An error occured. You must provide an image id.");
 
             var photoId = RouteData.Values["id"] == null ? 1 : int.Parse(RouteData.Values["id"].ToString());
-            //var find the path to the picture associated with this id:
-            var photoPath = Path.Combine("~/img/", repo.GetPhotoUrlById(photoId));
-            
+            var photoPath = Path.Combine("~/img/", repo.GetPhotoUrlById(photoId));            
             var path = Server.MapPath( photoPath == null ? "~/img/paw-pring.png" : photoPath );
             var objImage = new Bitmap(path);
+
             objImage.Save(Response.OutputStream, ImageFormat.Jpeg);
             objImage.Dispose();
         }

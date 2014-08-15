@@ -3,22 +3,24 @@
 <!DOCTYPE html>
 <!--
     TODO:
-    create /Apply.aspx
-    create /Dogs.aspx, add path processing information so you can display one dog if desired.
-    add ability to search and sort
-    Add ability to upload profile pic
+    style and theme for phone, table, large displays, etc.
+
+    prettify Dogs.aspx, enchance navigation functionality (i.e. back to all dogs, back to for sale dogs, next dog, previous dog)
+    consider allowing additional text or content on Dogs.aspx
+
+    add ability to search and sort?
+    Add ability to upload pictures, choose a profile picture, associate pictures with a particular dog, etc.
     add ability to upload photos
     add data validation rules
     FIX birthdate.  currently broken.  research storing date times of varying lengths in TSQL/MSSQL w/entity framework,
     maybe using a string for date(not ideal), etc.
     
-    decide how to store photos on the site (in the database or on the server as part of the file system)
+    add video link functionality
     create more complex types for photos?
     add functions to optimize photos, auto thumbnailing, cropping, etc.
     additional property of "papers" or certificate?
     consider implementing color as an enum type to allow searching and sorting
     Add pagination to results? 
-    split into 2 rows per dog?
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">

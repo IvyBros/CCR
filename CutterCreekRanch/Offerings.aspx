@@ -5,6 +5,7 @@
     TODO: implement paging?
           create a search
           implement sorting/filtering results?
+          Add button to "View All Dogs"
     -->
     <style>
         

@@ -1,12 +1,7 @@
-﻿using System;
+﻿using CutterCreekRanch.Models;
+using CutterCreekRanch.Models.Repository;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.ComponentModel;
-using CutterCreekRanch.Models;
-using CutterCreekRanch.Models.Repository;
 
 namespace CutterCreekRanch.controls
 {
