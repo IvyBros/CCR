@@ -1,11 +1,8 @@
-﻿using System;
+﻿using CutterCreekRanch.Models;
+using CutterCreekRanch.Models.Repository;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using CutterCreekRanch.Models;
-using CutterCreekRanch.Models.Repository;
+using System;
 using System.Web.ModelBinding;
 
 namespace CutterCreekRanch.Admin
@@ -13,6 +10,11 @@ namespace CutterCreekRanch.Admin
     public partial class Default : System.Web.UI.Page
     {
         private Repository repo = new Repository();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Page.MaintainScrollPositionOnPostBack = true;
+        }
 
         public IEnumerable<Dog> GetDogs()
         {

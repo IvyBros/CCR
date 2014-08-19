@@ -16,11 +16,9 @@
         <CCR:NavLinks runat="server"/>
         <p>Passionate about border collies</p>
     </header>
-    <form id="form1" runat="server">
     <div class="container" id="main-content" >
         <asp:ContentPlaceHolder ID="MainContent" runat="server"/>        
     </div>
-    </form>
     <footer>
         <hr />
         <div style="float:right;">
@@ -36,11 +34,13 @@
                 <li><a href="/Contact">Contact</a></li>
             </ul>
         </nav>
-        <script src="/js/jquery-2.1.1.min.js"></script>
-        <script src="/js/jquery-ui.1.10.4.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/master.js"></script>
-        <asp:ContentPlaceHolder ID="footerScripts" runat="server" />
     </footer>
+    <asp:ContentPlaceHolder ID="modals" runat="server" />
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <%--<script src="/js/jquery-2.0.3.min.js"></script>--%>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery-ui-1.10.4.min.js"></script>
+    <script src="/js/master.js"></script>
+    <asp:ContentPlaceHolder ID="footerScripts" runat="server" />
 </body>
 </html>

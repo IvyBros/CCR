@@ -2,107 +2,42 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CutterCreekRanch.Models;
+using CutterCreekRanch.Models.Repository;
 
 namespace CutterCreekRanch
 {
-    public class Thumbs
-    {
-        public string Name { get; set; }
-        public string ImageURL { get; set; }
-        public string ThumbURL { get; set; }
-        public string Caption { get; set; }
-        public DateTime Date { get; set; }
-    }
-
     public partial class Photos : System.Web.UI.Page
     {
-        public List<Thumbs> _thumbs = new List<Thumbs>();
-        private HashSet<Tuple<string, string>> _imgThumb;
-        private HashSet<string> _names;
+        protected int id;
+        private Repository repo = new Repository();
+        public IEnumerable<Dog> dogs;
+        public IEnumerable<Photo> photos;
+        public int count = 0;
 
         protected void Page_Load(object sender, EventArgs e)
-        {
-            bool debug = false;
-            string imageFile;
-            string thumbFile;
-            var dir = Directory.GetFiles(MapPath("img/photos"));
-            _imgThumb = new HashSet<Tuple<string, string>>();
-            _names = new HashSet<string>();
-
-            foreach (var fullPath in dir)
-            {
-                var file = fullPath.Substring(fullPath.LastIndexOf('\\') + 1);
-                
-                if (file.Contains("thumb"))
-                {
-                    
-                    var chopped = file.Substring(6);
-
-                    try
-                    {//look for a matching larger file
-                        imageFile = dir.First(x => x.Contains(chopped) && !x.Contains("thumb"));
-                    }
-                    catch
-                    {
-                        if (debug == true)
-                            Response.Write(String.Format("<br>Found a thumb but no matching larger file for:{0}", file));
-                        continue;
-                    }
-                    thumbFile = file;
-                    imageFile = imageFile.Substring(imageFile.LastIndexOf('\\') + 1);
-                    _imgThumb.Add(new Tuple<string, string> (thumbFile, imageFile));                    
-                }
-                else
-                {//file does not contain 'thumb', maybe its an original size image file
-                    try
-                    {//look for an associated thumbFile
-                        thumbFile = dir.First(x => x.Contains("thumb") && x.Contains(file));                        
-                    }
-                    catch
-                    {//no associated thumbnail was found
-                        if(debug == true)
-                            Response.Write(String.Format("<br>no associated thumbnail image found for: {0}", file));
-                        //TODO: Add additional processing to create a thumbnail image
-                        continue;
-                    }
-                    thumbFile = thumbFile.Substring(thumbFile.LastIndexOf('\\') + 1);
-                    imageFile = file;
-                    _imgThumb.Add(new Tuple<string, string>(thumbFile, imageFile));
-                    
-                }
+        {//get photos for all dogs or just 1 specific dog
+            id = RouteData.Values["id"] == null ? 0 : int.Parse(RouteData.Values["id"].ToString());
+            if (id == 0)
+            {//ignore this case for now
+                dogs = repo.Dogs;
+                photos = repo.Photos;
             }
-
-            foreach (var entry in _imgThumb)
+            else
             {
-                var name = entry.Item2.Split('.')[0];
-                _names.Add(name);
-                var date = File.GetCreationTime(MapPath("img/photos/" + entry.Item2));
-                _thumbs.Add(new Thumbs
-                {
-                    ThumbURL = "img/photos/" + entry.Item1,
-                    ImageURL = "img/photos/" + entry.Item2,
-                    Name = name,
-                    Date = date,
-                    Caption = String.Format("{0}, {1}", name, date.ToShortDateString())
-                });
-            }   
+                dogs = repo.Dogs.Where(x => x.DogId == id);
+                photos = repo.Photos.Where(x => x.DogId == id);
+            }
         }
 
-        public IEnumerable<string> GetDogs()
+        public IEnumerable<Dog> GetDogs()
         {
-            foreach (var name in _names)
-                yield return name;
+            return dogs;
         }
 
-        public IEnumerable<Thumbs> GetThumbsByDogName(string dogName)
+        public IEnumerable<Photo> GetPhotos()
         {
-            foreach (var item in _thumbs)
-            {
-                if (item.Name == dogName)
-                {
-                    yield return item;
-                }
-            }
+            return photos;
         }
     }
 }

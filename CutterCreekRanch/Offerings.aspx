@@ -18,7 +18,9 @@
     parents, profile picture, additional picture(s), a short description of their personality, etc. See an example below:
     <hr />
     <h1>Future Best Friends</h1>
-    <CCR:DogListing runat="server" />
+    <form id="form1" runat="server">
+        <CCR:DogListing runat="server" />
+    </form>
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="footerScripts">
     <script>

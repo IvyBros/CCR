@@ -12,9 +12,10 @@ namespace CutterCreekRanch
     {
         protected string adminEmail = "contact@ranch.cc";
         protected string applicantEmail;
+        protected bool debug = true;
+        protected int id;
         protected SmtpClient mail = new SmtpClient();
         private Repository repo = new Repository();
-        protected bool debug = true;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,6 +32,11 @@ namespace CutterCreekRanch
                     this.validationMessage.InnerText = string.Format( "We were unable to deliver to the e-mail address you provided. ({0}) Please try again", Request.Form["email"]);
                     validationMessage.Style.Add("display", "normal");
                 }
+            }
+            if (RouteData.Values["id"] != null)
+            {
+                //Response.Write(RouteData.Values["id"]);
+                id = int.Parse(RouteData.Values["id"].ToString());
             }
         }
 
@@ -72,6 +78,8 @@ namespace CutterCreekRanch
 
             catch
             {//TODO:add item to log
+
+                #region XML log (future feature)
                 //var log = File.AppendText("~/logs/log.xml");
                 ////create xml and event
                 ////var logDoc = new XDocument();
@@ -91,7 +99,8 @@ namespace CutterCreekRanch
                 //detail.Add(recipient);
                 //var ex = new XElement("Exception");
                 //logDoc.Add(logEvent);
-                
+                #endregion
+
                 throw;
             }
 
@@ -148,9 +157,9 @@ namespace CutterCreekRanch
         {
             //add this person our mailing list
         }
-        public IEnumerable<string> GetForSaleDogNames()
+        public IEnumerable<Dog> GetForSaleDogs()
         {
-            return repo.Dogs.Where(x => x.ForSale != ForSaleStatusCode.Sold && x.ForSale != ForSaleStatusCode.NotForSale).Select(x => x.Name);
+            return repo.Dogs.Where(x => x.ForSale != ForSaleStatusCode.Sold && x.ForSale != ForSaleStatusCode.NotForSale);
         }
     }
 }

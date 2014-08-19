@@ -23,12 +23,14 @@ namespace CutterCreekRanch.img
             if (RouteData.Values["id"] == null) throw new Exception("An error occured. You must provide an image id.");
 
             var photoId = RouteData.Values["id"] == null ? 1 : int.Parse(RouteData.Values["id"].ToString());
-            var photoPath = Path.Combine("~/img/", repo.GetPhotoUrlById(photoId));            
-            var path = Server.MapPath( photoPath == null ? "~/img/paw-pring.png" : photoPath );
-            var objImage = new Bitmap(path);
-
-            objImage.Save(Response.OutputStream, ImageFormat.Jpeg);
-            objImage.Dispose();
+            var photoPath = Path.Combine("~/img/photos/", repo.GetPhotoUrlById(photoId));            
+            var path = Server.MapPath( photoPath == null ? "~/img/paw-print.png" : photoPath );
+            if (File.Exists(path))
+            {
+                var objImage = new Bitmap(path);
+                objImage.Save(Response.OutputStream, ImageFormat.Jpeg);
+                objImage.Dispose();
+            }
         }
     }
 }

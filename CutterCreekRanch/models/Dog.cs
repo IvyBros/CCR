@@ -14,13 +14,12 @@ namespace CutterCreekRanch.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string Color { get; set; }
+        public string VideoUrl { get; set; }
         public int? ProfilePic { get; set; }
         public decimal Price { get; set; }
         public Gender Sex { get; set; }
         public ForSaleStatusCode ForSale { get; set; }
         public DateTime Birthdate { get; set; }
-        public List<int> PhotoIds { get; set; }
-        //public List<Photo> Photos { get; set; }
     }
     
     public enum Gender { Male = 0, Female = 1 }

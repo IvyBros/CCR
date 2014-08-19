@@ -143,14 +143,15 @@
         top:-25px;
     }
     .dog{
-        padding:2px;
-        min-height:300px;
+        padding:2px 10px 2px 10px;
+        min-height:350px;
     }
     .profilePic{
         width:250px;
         height:250px;
-        margin:20px;
         float:left;
+        /*cursor:pointer;*/
+        margin:40px 20px 20px 20px; 
     }
     .profileInfo{
         position:relative;
@@ -164,14 +165,20 @@
         text-align:right;
         padding-right:10px;
     }
-    .morePhotos{
+    .dog-list-btn{
         width:75px;
+        height:75px;
+        max-width:75px;
+        max-height:75px;
         float:right;
         margin-top:20px;
         margin-right:20px;
         /*border-radius:5px;
         border:solid thin black;
         box-shadow:5px 5px 5px #000;*/
+    }
+    .dog-list-btn span{
+        font-size:xx-large;
     }
     .Sold, .Discounted{
         text-decoration:line-through;
@@ -191,17 +198,12 @@
     #dogNav{
         float:right;
         font-size:12px;
-        
     }
-    #dogNav span.prev{
-        padding-right:15px;
+    #dogNav span.prev, #dogNav span.view-all, #dogNav span.next{
+        padding:5px 13px 5px 13px;
         color:blue;
+        border:solid thin #ddd;
     }
-    #dogNav span.next{
-        padding-left:15px;
-        color:blue;
-    }
-
 }
 @media screen and (orientation:portrait){
     

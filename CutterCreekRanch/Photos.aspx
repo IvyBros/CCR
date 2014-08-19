@@ -27,32 +27,30 @@
     </style>
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    <h2>Photos</h2>
+    <h1>Photos</h1>
     <p>A picture is worth a thousand words.</p>
-    <asp:Repeater ID="dog" runat="server" SelectMethod="GetDogs" ItemType="System.String">
+    <h1><% if (id != 0) Response.Write(dogs.First().Name); else Response.Write("Select A Dog"); %></h1>
+    <hr />
+    <asp:Repeater runat="server" SelectMethod="GetDogs" ItemType="CutterCreekRanch.Models.Dog">
         <ItemTemplate>
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="5">
-                            <%# Item %>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <asp:Repeater ID="photoAlbums" runat="server" ItemType="CutterCreekRanch.Thumbs" DataSource="<%# GetThumbsByDogName(Item) %>" >
-                        <ItemTemplate>
-                            <tr>
-                                <td>
-                                    <a href="<%#Item.ImageURL %>">
-                                        <img src="<%#Item.ThumbURL %>" title="<%#Item.Name %>,<%#Item.Date.ToShortDateString() %>" class="thumbPhoto img-responsive img-rounded" />
-                                    </a>
-                                </td>                                
-                            </tr>  
-                        </ItemTemplate>
-                    </asp:Repeater>    
-                </tbody>
-            </table>
+            <button class="btn btn-default">
+                <img src="Image/<%#Item.ProfilePic %>" class="roundBorder" />
+            </button>
         </ItemTemplate>
     </asp:Repeater>
+    <table>
+        <tr>
+            <asp:Repeater runat="server" SelectMethod="GetPhotos" ItemType="CutterCreekRanch.Models.Photo">
+                <ItemTemplate>
+                    <td>
+                        <figure>
+                            <img src="/img/photos/<%# Item.URL %>" class="roundBorder" />
+                            <figcaption><%# Item.Caption %></figcaption>
+                        </figure>
+                    </td>
+                    <% count++; if (count % 4 == 0) { Response.Write("</tr><tr>"); }%>
+                </ItemTemplate>
+            </asp:Repeater>
+        </tr>
+    </table>
 </asp:Content>

@@ -81,7 +81,7 @@ namespace CutterCreekRanch.Models.Repository
                     dbDog.Price = dog.Price;
                     dbDog.Sex = dog.Sex;
                     dbDog.ProfilePic = dog.ProfilePic;
-                    //dbDog.Photos = dog.Photos;
+                    dbDog.VideoUrl = dog.VideoUrl;
                 }
             }
             context.SaveChanges();

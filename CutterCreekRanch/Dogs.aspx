@@ -2,34 +2,38 @@
 <asp:Content ContentPlaceHolderID="head" runat="server">
     <style>
         table{
-            margin:auto;
+            /*margin:auto;*/
             /*margin-top:20px;
             margin-bottom:50px;*/
         }
         table, td {
-            border: solid thin black;
+            border: solid thin #ddd;
             border-collapse: collapse;
         }
         td {
             padding: 20px;
         }
         #carousel-dog-details{
-            width:500px;
+            width:580px;
             height:350px;
             float:right;
-            margin-left:30px;
+            margin-left:20px;
             /*margin-top:30px;*/
         }
         .carousel-pics{    
-            max-height:350px;
-            height:350px;
+            max-height:345px;
+            max-width:576px;
+            height:345px;
             display:block;
+            margin-top:2px;
             margin-left:auto;
             margin-right:auto;
+            border-radius:10px;
         }
         .desc-p{
-            padding-bottom:30px;
-            padding-top:10px;
+            /*padding-bottom:30px;
+            padding-top:10px;*/
+            max-width:300px;
         }
         .small-pics{
             float:right;
@@ -40,21 +44,39 @@
         }
         #dog-demo-wrapper{
             display:block;
-            margin:auto;
+            /*margin:auto;*/
             min-height:350px;
             max-height:350px;
             height:350px;
+        }
+        .desc-buttons button{
+            width:100px;
+            height:100px;
+            margin-left:20px;
+            border:solid thin black;
+            border-radius:10px;
+            float:right;
+        }
+        .desc-buttons button span{
+            font-size:50px;
+        }
+        .tree-modal-content,
+        .documents-modal-content,
+        .video-modal-content{
+            border:solid thin black;
+            max-height:300px;
+            min-height:300px;
         }
     </style>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <h1><%= Dog.Name %></h1>
-    <CCR:DogNav runat="server" DogId="<% Dog.DogId %>"/>
+    <CCR:DogNav runat="server" />
     <hr />
     <!--carousel-->
     <div id="carousel-dog-details" class="carousel slide roundBorder" data-ride="carousel">
         <ol class="carousel-indicators">
-            <%  for (int i = 0; i < repo.Photos.Where(x => x.DogId == Dog.DogId).Count(); ++i )
+            <%  for (int i = 0; i < numberOfPhotos; ++i )
                 { %>
                     <li data-target="#carousel-dog-details" data-slide-to="<% this.Response.Write(i.ToString()); %>" <%
                         if(i == 0) { %> class="active" <% } %>></li>
@@ -63,8 +85,8 @@
         <div class="carousel-inner">
             <asp:Repeater runat="server" SelectMethod="GetPicturesByDogId" ItemType="CutterCreekRanch.Models.Photo">
                 <ItemTemplate>
-                    <div class="item <%if(count==0){ count++; %>active<%}%>">
-                        <img src="<%#Item.URL %>" class="img-responsive carousel-pics" title="<%# Item.Caption %>" />
+                    <div class="item <%if(count == 0){ count++; %>active<%}%>">
+                        <img src="/img/photos/<%#Item.URL %>" class="img-responsive carousel-pics" title="<%# Item.Caption %>" />
                     </div>
                 </ItemTemplate>
             </asp:Repeater>            
@@ -107,15 +129,97 @@
                { %> 
                     <tr>
                         <td>Price:</td>
-                        <td><span class="<%: Dog.ForSale.ToString() %>"><%= Dog.Price %></span></td>
+                        <td><span class="<%: Dog.ForSale.ToString() %>"><%= Dog.Price.ToString("c") %></span></td>
                     </tr>
             <% } %>
         </table>
+        
+    </div>
+    <hr />
+    <div class="desc-buttons">
+        <button id="tree-modal-btn" class="btn btn-default" title="Family Tree" data-toggle="modal" data-target="#tree-modal">
+            <span class="glyphicon glyphicon-leaf"></span><br />Family Tree
+        </button>
+        <button id="documents-modal-btn" class="btn btn-default" title="ABCA Registration" data-toggle="modal" data-target="#documents-modal">
+            <span class="glyphicon glyphicon-certificate"></span><br />ABCA
+        </button>
+        <button id="video-modal-btn" class="btn btn-default" title="Watch Video" data-toggle="modal" data-target="#video-modal">
+            <span class="glyphicon glyphicon-play-circle"></span><br />Play Video
+        </button>
+        <% if (Dog.ForSale != CutterCreekRanch.Models.ForSaleStatusCode.NotForSale && 
+               Dog.ForSale != CutterCreekRanch.Models.ForSaleStatusCode.Sold) 
+           { %>
+                <form id="form1" runat="server">
+                    <button id="apply-modal-btn" class="btn btn-default" title="Apply" type="submit" name="apply" value="<%=Dog.DogId %>">
+                        <span class="glyphicon glyphicon-check"></span><br />Apply Now!
+                    </button>
+                </form>
+        <% } %>
     </div>
     <p class="desc-p"><%= Dog.Description %></p>
 </asp:Content>
+<asp:Content ContentPlaceHolderID="modals" runat="server">
+    <!--begin modals-->
+    <div id="video-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="video-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Watch Video of <%=Dog.Name %></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="video-modal-content">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="documents-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="video-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">ABCA Registration for <%=Dog.Name %></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="documents-modal-content">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="tree-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="tree-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Family Tree for <%=Dog.Name %></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="tree-modal-content">
+                        this feature coming soon!
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--//end modals-->
+</asp:Content>
 <asp:Content ContentPlaceHolderID="footerScripts" runat="server">
     <script>
-        //
+        $(document).ready(function () {
+            $('#dogNav').css('margin-top', '-12px');
+        });
     </script>
 </asp:Content>

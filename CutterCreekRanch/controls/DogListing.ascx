@@ -3,27 +3,26 @@
 <asp:Repeater runat="server" SelectMethod="GetDogs" ItemType="CutterCreekRanch.Models.Dog">
     <ItemTemplate>
         <div class="dog">
-            <a href="/Dogs/<%# Item.DogId %>" />
-                <img src="Image/<%#Item.ProfilePic %>" class="profilePic roundBorder" title="<%# Item.Name %>" />
-            </a>
+            <img src="/Image/<%#Item.ProfilePic %>" class="profilePic roundBorder" title="<%# Item.Name %>" />
             <div class="profileInfo">
-                <h3><%#Item.Name %></h3>
+                <h3><a href="/Dogs/<%# Item.DogId %>"><%#Item.Name %></a></h3>
                 <p><%# Item.Description %></p>
-                <img src="<%# //Item.Photos != null 
-                            //? Item.Photos.ElementAt(0) 
-                            //?? "/img/photos/default-thumb-0.jpg" 
-                            //:
-                              "/img/photos/default-thumb-0.jpg" %>" class="morePhotos roundBorder" />
-                <img src="<%# //Item.Photos != null
-                            //? Item.Photos.ElementAt(1)
-                            //?? "/img/photos/default-thumb-1.jpg"
-                            //:  
-                            "/img/photos/default-thumb-1.jpg" %>" class="morePhotos roundBorder" />
-                <img src="<%# //Item.Photos != null
-                            //? Item.Photos.ElementAt(1)
-                            //?? "/img/photos/default-thumb-2.jpg"
-                            //:
-                            "/img/photos/default-thumb-2.jpg" %>" class="morePhotos roundBorder" />
+                <button class="btn btn-default dog-list-btn roundBorder" type="submit" name="apply" value="<%# 
+                    Item.ForSale == CutterCreekRanch.Models.ForSaleStatusCode.NotForSale || 
+                    Item.ForSale == CutterCreekRanch.Models.ForSaleStatusCode.Sold 
+                    ? 0 
+                    : Item.DogId %>" id="apply-btn">
+                    <span class="glyphicon glyphicon-check"></span><br />
+                    Apply
+                </button>
+                <button class="btn btn-default dog-list-btn roundBorder" type="submit" name="photos" value="<%# Item.DogId %>" id="photos-btn">
+                    <span class="glyphicon glyphicon-picture"></span><br />
+                    Photos
+                </button>
+                <button class="btn btn-default dog-list-btn roundBorder" type="submit" name="details" value="<%# Item.DogId %>" id="details-btn">
+                    <span class="glyphicon glyphicon-eye-open"></span><br />
+                    Details
+                </button>
                 <ul>
                     <li><label>Birthday:</label> <%# Item.Birthdate.ToShortDateString() %></li>
                     <li><label>Gender:</label> <%# Item.Sex.ToString() %></li>

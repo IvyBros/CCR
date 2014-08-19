@@ -1,12 +1,8 @@
-﻿using System;
+﻿using CutterCreekRanch.Models;
+using CutterCreekRanch.Models.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.ModelBinding;
-using CutterCreekRanch.Models;
-using CutterCreekRanch.Models.Repository;
 
 namespace CutterCreekRanch
 {
@@ -17,23 +13,36 @@ namespace CutterCreekRanch
         public Dog Mother;
         public Dog Father;
         public int count;
+        public int numberOfPhotos;
         private int id;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (IsPostBack)
+            {
+                if(Request.Form["apply"] != null)
+                {
+                    var applyId = Request.Form["apply"];
+                    Response.Redirect(String.Format("~/Apply/{0}", applyId));
+                }
+            }
+
             id = RouteData.Values["id"] == null ? 1 : int.Parse(RouteData.Values["id"].ToString());
             Dog = repo.GetDogByID(id);
             if (Dog != null)
             {
                 Mother = repo.GetDogByID(Dog.Mother);
                 Father = repo.GetDogByID(Dog.Father);
+                numberOfPhotos = repo.Photos.Where(x => x.DogId == Dog.DogId 
+                    && x.TypeOfPhoto == PhotoType.FullSize).Count();
             }
             else Response.Redirect("~/Dogs");
         }
 
         public IEnumerable<Photo> GetPicturesByDogId()
         {
-            return repo.Photos.Where(x => x.DogId == id && x.Id != Dog.ProfilePic);
+            var photos = repo.Photos.Where(x => x.DogId == id && x.TypeOfPhoto == PhotoType.FullSize);
+            return photos.Count() > 0 ? photos : repo.Photos.Where(x=>x.URL == "default.png");
         }
     }
 }
