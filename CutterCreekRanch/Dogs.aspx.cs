@@ -33,15 +33,14 @@ namespace CutterCreekRanch
             {
                 Mother = repo.GetDogByID(Dog.Mother);
                 Father = repo.GetDogByID(Dog.Father);
-                numberOfPhotos = repo.Photos.Where(x => x.DogId == Dog.DogId 
-                    && x.TypeOfPhoto == PhotoType.FullSize).Count();
+                numberOfPhotos = repo.Photos.Where(x => x.DogId == Dog.DogId).Count();
             }
             else Response.Redirect("~/Dogs");
         }
 
         public IEnumerable<Photo> GetPicturesByDogId()
         {
-            var photos = repo.Photos.Where(x => x.DogId == id && x.TypeOfPhoto == PhotoType.FullSize);
+            var photos = repo.Photos.Where(x => x.DogId == id);
             return photos.Count() > 0 ? photos : repo.Photos.Where(x=>x.URL == "default.png");
         }
     }

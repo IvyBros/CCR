@@ -11,7 +11,7 @@ namespace CutterCreekRanch.Admin
 {
 
 
-    public partial class Manage_People
+    public partial class ManagePeople
     {
 
         /// <summary>

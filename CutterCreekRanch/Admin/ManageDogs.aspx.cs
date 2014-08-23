@@ -24,9 +24,16 @@ namespace CutterCreekRanch.Admin
         public void UpdateDog(int DogId)
         {
             var myDog = repo.Dogs.FirstOrDefault(x => x.DogId == DogId);
-            if (myDog != null && TryUpdateModel(myDog, new FormValueProvider(ModelBindingExecutionContext)))
+            if (myDog != null)
             {
-                repo.SaveDog(myDog);
+                if(TryUpdateModel(myDog, new FormValueProvider(ModelBindingExecutionContext)))
+                {
+                    repo.SaveDog(myDog);
+                    var photoID = myDog.ProfilePic;
+                    var myPhoto = repo.GetPhotoById((int)photoID);
+                    myPhoto.DogId = myDog.DogId;
+                    repo.SavePhoto(myPhoto);
+                }
             }
         }
 
@@ -42,11 +49,58 @@ namespace CutterCreekRanch.Admin
         public void InsertDog()
         {
             var myDog = new Dog();
+
             if (TryUpdateModel(myDog, new FormValueProvider(ModelBindingExecutionContext)))
             {
-                //myDog.Birthdate = DateTime.Parse(myDog.Birthdate);
                 repo.SaveDog(myDog);
+                return;
             }
+            
+            var Name = Request.Form["Name"];
+            var Sex = Request.Form["Sex"];
+
+            if (String.IsNullOrEmpty(Name))
+            {
+                DisplayAddError("Name"); 
+                return;
+            }
+            if (String.IsNullOrEmpty(Sex))
+            {
+                DisplayAddError("Sex"); 
+                return;
+            }
+
+            var ForSale = Request.Form["ForSale"];
+            var Mother = !String.IsNullOrEmpty(Request.Form["Mother"])
+                ? int.Parse(Request.Form["Mother"]) : 0;
+            var Father = !String.IsNullOrEmpty(Request.Form["Father"])
+                ? int.Parse(Request.Form["Father"]) : 0;
+            var Description = !String.IsNullOrEmpty(Request.Form["Description"])
+                ? Request.Form["Description"] : "Please add a description for this dog.";
+            var Color = !String.IsNullOrEmpty(Request.Form["Color"])
+                ? Request.Form["Color"] : "Please add color information for this dog";
+            var Price = !String.IsNullOrEmpty(Request.Form["Price"])
+                ? Decimal.Parse(Request.Form["Price"]) : 0m;
+            var BirthDate = !String.IsNullOrEmpty(Request.Form["BirthDate"])
+                ? DateTime.Parse(Request.Form["BirthDate"]) : DateTime.Parse("01/01/2001");
+            var ProfilePic = !String.IsNullOrEmpty(Request.Form["ProfilePic"])
+                ? int.Parse(Request.Form["ProfilePic"]) : 0;
+
+            myDog.Name = Name;
+            myDog.Mother = Mother;
+            myDog.Father = Father;
+            myDog.Description = Description;
+            myDog.Color = Color;
+            myDog.Price = Price;
+            myDog.Birthdate = BirthDate;
+            myDog.ProfilePic = ProfilePic;
+
+            repo.SaveDog(myDog);
+        }
+        public void DisplayAddError(string missingRequiredField)
+        {
+            Response.Write(String.Format("Cannot add dog to database.  Missing required field: {0}<br>", missingRequiredField));
+            return;
         }
     }
 }

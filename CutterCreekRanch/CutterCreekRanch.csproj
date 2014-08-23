@@ -65,7 +65,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Admin\ManageDogs.aspx" />
-    <Content Include="Admin\Manage People.aspx" />
+    <Content Include="Admin\ManagePeople.aspx" />
     <Content Include="Admin\ManagePhotos.aspx" />
     <Content Include="AllDogs.aspx" />
     <Content Include="Apply.aspx" />
@@ -74,6 +74,7 @@
     <Content Include="controls\DogNav.ascx" />
     <Content Include="controls\NavLinks.ascx" />
     <Content Include="controls\SocialMediaBar.ascx" />
+    <Content Include="css\admin.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\master.css" />
     <Content Include="css\trey.css" />
@@ -86,11 +87,13 @@
     <Content Include="img\paw-print.png" />
     <Content Include="img\profile-long.jpg" />
     <Content Include="index.html" />
+    <Content Include="js\admin.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Admin\Admin.Master" />
     <None Include="js\jquery-2.1.1.intellisense.js" />
     <Content Include="js\bootstrap.x.min.js" />
     <Content Include="js\jquery-2.0.3.min.js" />
@@ -126,6 +129,13 @@
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ManageDogs.aspx.cs">
       <DependentUpon>ManageDogs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -133,12 +143,12 @@
     <Compile Include="Admin\ManageDogs.aspx.designer.cs">
       <DependentUpon>ManageDogs.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Manage People.aspx.cs">
-      <DependentUpon>Manage People.aspx</DependentUpon>
+    <Compile Include="Admin\ManagePeople.aspx.cs">
+      <DependentUpon>ManagePeople.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Manage People.aspx.designer.cs">
-      <DependentUpon>Manage People.aspx</DependentUpon>
+    <Compile Include="Admin\ManagePeople.aspx.designer.cs">
+      <DependentUpon>ManagePeople.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ManagePhotos.aspx.cs">
       <DependentUpon>ManagePhotos.aspx</DependentUpon>
@@ -222,7 +232,8 @@
       <DependentUpon>image.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\Dog.cs" />
-    <Compile Include="Models\People.cs" />
+    <Compile Include="Models\Owner.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Photos.cs" />
     <Compile Include="Models\Repository\EFDbContext.cs" />
     <Compile Include="Models\Repository\Repository.cs" />

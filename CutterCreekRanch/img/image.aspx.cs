@@ -1,16 +1,9 @@
-﻿using System.Drawing;
-using System.Drawing.Imaging;
-using System.Drawing.Drawing2D;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.IO;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using CutterCreekRanch.Models;
 using CutterCreekRanch.Models.Repository;
-using CutterCreekRanch.Models;
+using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 
 namespace CutterCreekRanch.img
 {
@@ -20,14 +13,30 @@ namespace CutterCreekRanch.img
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (RouteData.Values["id"] == null) throw new Exception("An error occured. You must provide an image id.");
+            if (RouteData.Values["id"] == null) 
+                throw new Exception("You must provide an image id.");
 
-            var photoId = RouteData.Values["id"] == null ? 1 : int.Parse(RouteData.Values["id"].ToString());
-            var photoPath = Path.Combine("~/img/photos/", repo.GetPhotoUrlById(photoId));            
-            var path = Server.MapPath( photoPath == null ? "~/img/paw-print.png" : photoPath );
-            if (File.Exists(path))
+            var photoId = RouteData.Values["id"] != null ? int.Parse((string)RouteData.Values["id"]) : 1;
+            var photo = repo.GetPhotoById(photoId);
+
+            if (photo == null)
+                photo = repo.GetPhotoById(7);
+
+            var img = RouteData.Values["img"] != null ? (PhotoType)int.Parse((string)RouteData.Values["img"]) : PhotoType.FullSize;
+            string fullPath, fileName;
+            
+            switch (img)
             {
-                var objImage = new Bitmap(path);
+                case PhotoType.Carousel   : fileName = photo.CarouselURL ?? photo.URL ?? "default.png"; break;
+                case PhotoType.ProfilePic : fileName = photo.ProfileURL  ?? photo.CarouselURL ?? photo.URL         ?? photo.ThumbURL ?? "default.png"; break;
+                case PhotoType.Thumbnail  : fileName = photo.ThumbURL    ?? photo.ProfileURL  ?? photo.CarouselURL ?? photo.URL      ?? "default.png"; break;
+                default                   : fileName = photo.URL         ?? photo.CarouselURL ?? photo.ProfileURL  ?? photo.ThumbURL ?? "default.png"; break;
+            }
+            
+            fullPath = Server.MapPath(Path.Combine("~/img/photos/", fileName));
+            if (File.Exists(fullPath))
+            {
+                var objImage = new Bitmap(fullPath);
                 objImage.Save(Response.OutputStream, ImageFormat.Jpeg);
                 objImage.Dispose();
             }

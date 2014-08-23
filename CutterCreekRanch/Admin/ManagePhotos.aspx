@@ -38,7 +38,7 @@
     </style>
 </head>
 <body>
-    <h1><a href="ManageDogs.aspx">Manage Dogs</a> | Manage Photos | <a href="Manage People.aspx">Manage People</a></h1>
+    <h1><a href="ManageDogs.aspx">Manage Dogs</a> | Manage Photos | <a href="ManagePeople.aspx">Manage People</a></h1>
     <form id="form1" runat="server" method="post" enctype="multipart/form-data">
         <h3>Add Photo:</h3>
         <table>
@@ -76,6 +76,11 @@
                         <th>Dog</th>
                         <th>URL</th>
                         <th>Caption</th>
+                        <th>
+                            File Size<br />
+                            <span style="font-weight:normal">Full/Carousel/Thumb</span>
+                        </th>
+                        <th>Profile Pic?</th>
                         <th colspan="2">Actions</th>
                     </tr>
                     <tr runat="server" id="itemPlaceHolder" />
@@ -83,18 +88,23 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <tr>
-                    <td><img src="/img/photos/<%# Item.URL %>" class="imageThumb" /></td>
+                    <td><img src="/img/photos/<%# Item.ThumbURL %>" class="imageThumb" /></td>
                     <td><%# Item.Id %></td>
                     <td><%# DogNamesAndIds.Keys.Contains(Item.DogId) ? DogNamesAndIds[Item.DogId] ?? "None" : "None" %></td>
                     <td><%# Item.URL %></td>
                     <td><%# Item.Caption %></td>
+                    <td style="text-align:center"><a href="/img/photos/<%# Item.URL %>"><%# GetFileSize(Item.URL) %></a>/
+                        <a href="/img/photos/<%# Item.CarouselURL %>"><%# GetFileSize(Item.CarouselURL) %></a> /
+                        <a href="/img/photos/<%# Item.ThumbURL %>"><%# GetFileSize(Item.ThumbURL) %></a>
+                    </td>
+                    <td><%# IsProfilePic(Item.Id, Item.DogId) ? "Yes" : "No" %></td>
                     <td><asp:Button CommandName="edit" Text="Edit" runat="server" ID="edit"/></td>
-                    <td><asp:Button CommandName="delete" Text="Delete" runat="server" ID="delete"/></td>
+                    <td><asp:Button CommandName="delete" Text="Delete" runat="server" ID="delete"/></td>                    
                 </tr>
             </ItemTemplate>
             <EditItemTemplate>
                 <tr>
-                    <td><img src="/img/photos/<%# Item.URL %>" class="imageThumb" /></td>
+                    <td><a href="/img/photos/<%# Item.URL %>"><img src="/img/photos/<%# Item.ThumbURL %>" class="imageThumb" /></a></td>
                     <td><%# Item.Id %></td>
                     <td><input type="hidden" name="id" value="<%#Item.Id %>" />
                         <select name="DogId">
@@ -108,10 +118,14 @@
                             <%} %>
                         </select>
                     </td>
-                    <td>
-                        <input name="URL" value="<%#Item.URL %>" title="Change at your own risk!" />
-                    </td>
+                    <td><input name="URL"     value="<%# Item.URL %>" title="Change at your own risk!" /></td>
                     <td><input name="caption" value="<%# Item.Caption %>" /></td>
+                    <td style="text-align:center"><a href="/img/photos/<%# Item.URL %>"><%# GetFileSize(Item.URL) %></a>/
+                        <a href="/img/photos/<%# Item.CarouselURL %>"><%# GetFileSize(Item.CarouselURL) %></a> /
+                        <a href="/img/photos/<%# Item.ThumbURL %>"><%# GetFileSize(Item.ThumbURL) %></a>
+                    </td>
+                    </td>
+                    <td><%# IsProfilePic(Item.Id, Item.DogId) ? "Yes" : "No" %></td>
                     <td>
                         <asp:Button ID="update" CommandName="update" Text="Update" runat="server" /> 
                     </td>

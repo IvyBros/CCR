@@ -1,77 +1,19 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageDogs.aspx.cs" Inherits="CutterCreekRanch.Admin.Default" %>
+﻿<%@ Page Language="C#" Title="Manage People" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="ManagePeople.aspx.cs" Inherits="CutterCreekRanch.Admin.ManagePeople" %>
 
-<!DOCTYPE html>
-<!--
-    TODO:
-    style and theme for phone, table, large displays, etc.
-
-    prettify Dogs.aspx, enchance navigation functionality (i.e. back to all dogs, back to for sale dogs, next dog, previous dog)
-    consider allowing additional text or content on Dogs.aspx
-
-    add ability to search and sort?
-    Add ability to choose a profile picture, crop, resize, zoom, etc.
-    add data validation rules
-    FIX birthdate.  currently broken.  research storing date times of varying lengths in TSQL/MSSQL w/entity framework,
-    maybe using a string for date(not ideal), etc.
-    
-    add video link functionality
-    create more complex types for photos?
-    add functions to optimize photos, auto thumbnailing, cropping, etc.
-    additional property of "papers" or certificate?
-    consider implementing color as an enum type to allow searching and sorting
-    Add pagination to results? 
--->
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Manage Dogs</title>
-    <style>
-        table, td, th{
-            border:solid thin black; 
-            border-collapse:collapse;
-        }
-        td, th{
-            padding:10px;
-        }
-        .bday{
-            width:70px;
-        }
-        .name{
-            width:70px;
-        }
-        .parent{
-            width:20px;
-        }
-        .price{
-            max-width:60px; 
-            text-align:right;
-        }
-        .color{
-            width:60px;
-            max-width:60px;
-        }
-    </style>
-</head>
-<body>
+<asp:Content ContentPlaceHolderID="main" runat="server">
     <form id="form1" runat="server">
-        <h1>Manage Dogs | <a href="ManagePhotos.aspx">Manage Photos</a> | <a href="ManagePeople.aspx">Manage People</a></h1>
-        <asp:ListView ItemType="CutterCreekRanch.Models.Dog" DataKeyNames="DogId" SelectMethod="GetDogs" 
-            UpdateMethod="UpdateDog" DeleteMethod="DeleteDog" InsertMethod="InsertDog" 
+        <h1><a href="ManageDogs.aspx">Manage Dogs</a> | <a href="ManagePhotos.aspx">Manage Photos</a> | Manage People</h1>
+
+        <asp:ListView ItemType="CutterCreekRanch.Models.Person" DataKeyNames="PersonId" SelectMethod="GetPeople" 
+            UpdateMethod="UpdatePeople" DeleteMethod="DeletePeople" InsertMethod="InsertPeople" 
             InsertItemPosition="LastItem" EnableViewState="false" runat="server" >
             <LayoutTemplate>
                 <table>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Birthday</th>
-                        <th>Mom</th>
-                        <th>Dad</th>
-                        <th>Sex</th>
-                        <th>Description</th>
-                        <th>Coloring</th>
-                        <th>Sale Status</th>
-                        <th>Price</th>
-                        <th>Profile Pic</th>
+                        <th>Email</th>
+                        <th>Phone</th>
                         <th>Actions</th>
                     </tr>        
                     <tr runat="server" id="itemPlaceHolder" />
@@ -182,13 +124,5 @@
                 </tr>
             </InsertItemTemplate>
         </asp:ListView>
-    </form>
-    <script src="../js/jquery-2.1.1.min.js"></script>
-    <script src="../js/jquery-ui-1.10.4.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.bday').datepicker();
-        });
-    </script>
-</body>
-</html>
+    </form>    
+</asp:Content>

@@ -24,6 +24,15 @@
             border: solid thin black;
             padding:5px;
         }
+        .profile-btn{
+
+        }
+        .profile-btn image{
+            max-height:50px;
+            max-height:50px;
+            height:50px;
+            width:50px;
+        }
     </style>
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
@@ -33,8 +42,8 @@
     <hr />
     <asp:Repeater runat="server" SelectMethod="GetDogs" ItemType="CutterCreekRanch.Models.Dog">
         <ItemTemplate>
-            <button class="btn btn-default">
-                <img src="Image/<%#Item.ProfilePic %>" class="roundBorder" />
+            <button class="btn btn-default profile-btn">
+                <img src="Image/<%#Item.ProfilePic %>/1" class="roundBorder" />
             </button>
         </ItemTemplate>
     </asp:Repeater>
@@ -44,7 +53,7 @@
                 <ItemTemplate>
                     <td>
                         <figure>
-                            <img src="/img/photos/<%# Item.URL %>" class="roundBorder" />
+                            <a href="/img/photos/<%# Item.URL %>"><img src="/img/photos/<%# Item.ThumbURL%>" class="roundBorder" /></a>
                             <figcaption><%# Item.Caption %></figcaption>
                         </figure>
                     </td>

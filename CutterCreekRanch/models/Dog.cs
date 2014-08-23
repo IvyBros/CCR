@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CutterCreekRanch.Models
 {
@@ -17,8 +13,8 @@ namespace CutterCreekRanch.Models
         public string VideoUrl { get; set; }
         public int? ProfilePic { get; set; }
         public decimal Price { get; set; }
-        public Gender Sex { get; set; }
-        public ForSaleStatusCode ForSale { get; set; }
+        public Gender? Sex { get; set; }
+        public ForSaleStatusCode? ForSale { get; set; }
         public DateTime Birthdate { get; set; }
     }
     

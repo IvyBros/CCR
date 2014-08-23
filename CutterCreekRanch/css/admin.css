@@ -1,0 +1,24 @@
+﻿table, td, th{
+    border:solid thin black; 
+    border-collapse:collapse;
+}
+td, th{
+    padding:10px;
+}
+.bday{
+    width:70px;
+}
+.name{
+    width:70px;
+}
+.parent{
+    width:20px;
+}
+.price{
+    max-width:60px; 
+    text-align:right;
+}
+.color{
+    width:60px;
+    max-width:60px;
+}

@@ -6,5 +6,7 @@ namespace CutterCreekRanch.Models.Repository
     {
         public DbSet<Dog> Dogs { get; set; }
         public DbSet<Photo> Photos { get; set; }
+        public DbSet<Person> Persons { get; set; }
+        public DbSet<Owner> Owners { get; set; }
     }
 }

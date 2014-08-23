@@ -3,7 +3,7 @@
 <asp:Repeater runat="server" SelectMethod="GetDogs" ItemType="CutterCreekRanch.Models.Dog">
     <ItemTemplate>
         <div class="dog">
-            <img src="/Image/<%#Item.ProfilePic %>" class="profilePic roundBorder" title="<%# Item.Name %>" />
+            <img src="/Image/<%#Item.ProfilePic %>/1" class="profilePic roundBorder" title="<%# Item.Name %>" />
             <div class="profileInfo">
                 <h3><a href="/Dogs/<%# Item.DogId %>"><%#Item.Name %></a></h3>
                 <p><%# Item.Description %></p>

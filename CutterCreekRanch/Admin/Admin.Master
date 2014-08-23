@@ -1,0 +1,18 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.Master.cs" Inherits="CutterCreekRanch.Admin.AdminMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Admin:</title>
+    <link rel="stylesheet" href="../css/admin.css" />
+    <asp:ContentPlaceHolder ID="head" runat="server"/>
+</head>
+<body>
+    <asp:ContentPlaceHolder ID="main" runat="server"/>    
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/jquery-ui-1.10.4.min.js"></script>
+    <script src="/js/admin.js"></script>
+    <asp:ContentPlaceHolder ID="footer" runat="server"/>
+</body>
+</html>

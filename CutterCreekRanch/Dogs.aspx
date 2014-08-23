@@ -86,7 +86,7 @@
             <asp:Repeater runat="server" SelectMethod="GetPicturesByDogId" ItemType="CutterCreekRanch.Models.Photo">
                 <ItemTemplate>
                     <div class="item <%if(count == 0){ count++; %>active<%}%>">
-                        <img src="/img/photos/<%#Item.URL %>" class="img-responsive carousel-pics" title="<%# Item.Caption %>" />
+                        <a href="/img/photos/<%#Item.URL %>"><img src="/img/photos/<%#Item.CarouselURL %>" class="img-responsive carousel-pics" title="<%# Item.Caption %>" /></a>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>            

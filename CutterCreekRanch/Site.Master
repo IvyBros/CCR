@@ -37,9 +37,9 @@
     </footer>
     <asp:ContentPlaceHolder ID="modals" runat="server" />
     <script src="/js/jquery-2.1.1.min.js"></script>
-    <%--<script src="/js/jquery-2.0.3.min.js"></script>--%>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery-ui-1.10.4.min.js"></script>
+    <script src="/js/modernizr-2.6.2.js"></script>
     <script src="/js/master.js"></script>
     <asp:ContentPlaceHolder ID="footerScripts" runat="server" />
 </body>

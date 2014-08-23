@@ -33,7 +33,7 @@ namespace CutterCreekRanch.controls
 
         public IEnumerable<Photo> GetThumbnailPhotosByDogId(int dogId)
         {
-            return repo.Photos.Where(x=>x.TypeOfPhoto == PhotoType.Thumbnail && x.DogId == dogId);
+            return repo.Photos.Where(x => x.DogId == dogId);
         }
 
         public string GetDogNameById(int id)

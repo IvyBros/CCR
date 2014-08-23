@@ -42,18 +42,19 @@ namespace CutterCreekRanch.Models.Repository
         public void SavePhoto(Photo photo)
         {
             if (photo.Id == 0)
-            {
                 context.Photos.Add(photo);
-            }
+            
             else
             {
                 var dbPhoto = context.Photos.Find(photo.Id);
                 if (dbPhoto != null)
                 {
+                    dbPhoto.URL = photo.URL;
                     dbPhoto.DogId = photo.DogId;
                     dbPhoto.Caption = photo.Caption;
-                    dbPhoto.TypeOfPhoto = photo.TypeOfPhoto;
-                    dbPhoto.URL = photo.URL;
+                    dbPhoto.ThumbURL = photo.ThumbURL;
+                    dbPhoto.CarouselURL = photo.CarouselURL;
+                    dbPhoto.ProfileURL = photo.ProfileURL;
                 }
             }
             context.SaveChanges();
@@ -62,10 +63,8 @@ namespace CutterCreekRanch.Models.Repository
         public void SaveDog(Dog dog)
         {
             if (dog.DogId == 0)
-            {
-                //dog.Birthdate = (System.DateTime)dog.Birthdate;
                 context.Dogs.Add(dog);
-            }
+            
             else
             {
                 var dbDog = context.Dogs.Find(dog.DogId);
