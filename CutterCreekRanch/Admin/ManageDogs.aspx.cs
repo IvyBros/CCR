@@ -29,8 +29,11 @@ namespace CutterCreekRanch.Admin
                 if(TryUpdateModel(myDog, new FormValueProvider(ModelBindingExecutionContext)))
                 {
                     repo.SaveDog(myDog);
+
                     var photoID = myDog.ProfilePic;
+                    if (photoID == null || photoID == 0) return;
                     var myPhoto = repo.GetPhotoById((int)photoID);
+                    if (myPhoto == null) return;
                     myPhoto.DogId = myDog.DogId;
                     repo.SavePhoto(myPhoto);
                 }

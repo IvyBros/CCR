@@ -20,11 +20,10 @@ namespace CutterCreekRanch.Admin
 
             photoId = int.Parse((string)RouteData.Values["id"]);
             currentPhoto = repo.GetPhotoById(photoId);
-            var path = Path.Combine("~/img/photos/", currentPhoto.CarouselURL);
-            preview.ImageUrl = path;
-            target.ImageUrl = path;
-            target.AlternateText = currentPhoto.Caption;
-            
+            var carPath = Path.Combine("~/img/photos/", currentPhoto.CarouselURL);
+            preview.ImageUrl = carPath;
+            target.ImageUrl = carPath;
+            target.AlternateText = currentPhoto.Caption;            
         }
 
         public void btnCrop_Click(object src, EventArgs args)
@@ -44,19 +43,19 @@ namespace CutterCreekRanch.Admin
             int x = Convert.ToInt32(X.Value); 
             int y = Convert.ToInt32(Y.Value);
 
-            //set filenames
-            var profilePictureFileName = String.Format("profile-{0}", currentPhoto.URL);
-            var relativePath = Path.Combine("~/img/photos/", profilePictureFileName);
-            var fullPath = Path.Combine(Server.MapPath("~/img/photos/"), currentPhoto.CarouselURL);
+            var fullCarPath = Path.Combine(Server.MapPath("~/img/photos/"), currentPhoto.CarouselURL);
 
-            var CropImage = Crop(fullPath, w, h, x, y); 
+            var CropImage = Crop(fullCarPath, w, h, x, y); 
             using (var ms = new MemoryStream(CropImage, 0, CropImage.Length)) 
             { 
+                var profilePictureFileName = String.Format("profile-{0}", currentPhoto.URL);
+                var relativePath = Path.Combine("~/img/photos/", profilePictureFileName);
+                var fullProfilePath = Server.MapPath(relativePath);
                 ms.Write(CropImage, 0, CropImage.Length); 
                 using (var CroppedImage = System.Drawing.Image.FromStream(ms, true)) 
                 {
                     //save to file system
-                    CroppedImage.Save(fullPath, CroppedImage.RawFormat); 
+                    CroppedImage.Save(fullProfilePath, CroppedImage.RawFormat); 
                     //update image obj in database
                     currentPhoto.ProfileURL = profilePictureFileName;
                     repo.SavePhoto(currentPhoto);

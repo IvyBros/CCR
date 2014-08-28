@@ -24,37 +24,28 @@
           height: 250px;
           overflow: hidden;
         }
-        .pre-crop-img{
-            /*opacity:.6;*/                       
-        }
-        .pre-crop-img image {
-            border:solid thin black;
-        }
-        .region-to-keep{
-            opacity:1;
-            width:100px;
-            height:100px;
-            border:solid thin yellow;
-            position:relative;
-            top:100px;
-            z-index:5;
+        .crop-btn{
+            margin:20px;
+            padding:5px;
         }
     </style>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="main" runat="server">
-    <h1>Choose Crop Region</h1>
-    <hr />
+    
     <form runat="server" id="form1">
+    <h1><a href="/Admin/ManageDogs.aspx">Manage Dogs</a> | <a href="/Admin/ManagePhotos.aspx">Manage Photos</a> | <a href="/Admin/ManagePeople.aspx">Manage People</a></h1>
     <div>
         <asp:Panel ID="pnlCrop" runat="server"> 
+            <h2>Choose Crop Region</h2>
+            <hr />
             <h3>Source Image</h3>
             <asp:Image ID="target" runat="server"  ClientIDMode="Static" /> 
             <asp:HiddenField ID="X" runat="server" ClientIDMode="Static" /> 
             <asp:HiddenField ID="Y" runat="server" ClientIDMode="Static" /> 
             <asp:HiddenField ID="W" runat="server" ClientIDMode="Static" /> 
             <asp:HiddenField ID="H" runat="server" ClientIDMode="Static" /> 
-            <asp:Button ID="btnCrop" runat="server" Text="Crop" OnClick="btnCrop_Click" />
-            <div id="preview-pane">
+            <asp:Button ID="btnCrop" runat="server" Text="Crop" OnClick="btnCrop_Click" CssClass="crop-btn" />
+            <div id="preview-pane">                
                 <div class="preview-container">
                     <asp:Image runat="server" CssClass="jcrop-preview" ID="preview" ClientIDMode="Static" />
                 </div>

@@ -40,16 +40,19 @@ namespace CutterCreekRanch.Admin
                 var url = Request.Form["URL"];
                 var thumbName = String.Format("thumb-{0}", url);
                 var carName = String.Format("carousel-{0}", url);
+                var profileName = String.Format("profile-{0}", url);
 
                 if (url != null && url != myPhoto.URL)
                 {
                     RenameFiles(myPhoto.URL, url);
                     RenameFiles(myPhoto.ThumbURL, thumbName);
                     RenameFiles(myPhoto.CarouselURL, carName);
+                    RenameFiles(myPhoto.ProfileURL, profileName);
                 }
 
                 myPhoto.ThumbURL = thumbName;
                 myPhoto.CarouselURL = carName;
+                myPhoto.ProfileURL = profileName;
 
                 if (TryUpdateModel(myPhoto, new FormValueProvider(ModelBindingExecutionContext)))
                 {
@@ -95,6 +98,8 @@ namespace CutterCreekRanch.Admin
                 DeletePhotoFromFileSystem(myPhoto.URL);
                 DeletePhotoFromFileSystem(myPhoto.CarouselURL);
                 DeletePhotoFromFileSystem(myPhoto.ThumbURL);
+                if (!String.IsNullOrEmpty(myPhoto.ProfileURL))
+                    DeletePhotoFromFileSystem(myPhoto.ProfileURL);
                 //remove from db
                 repo.DeletePhoto(myPhoto);
             }

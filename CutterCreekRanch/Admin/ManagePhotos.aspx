@@ -1,5 +1,14 @@
 ﻿<%@ Page Language="C#" Title="Manage Photos" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" EnableViewState="false" CodeBehind="ManagePhotos.aspx.cs" Inherits="CutterCreekRanch.Admin.ManagePhotos" %>
-
+<asp:Content ContentPlaceHolderID="head" runat="server">
+    <style>
+        #inner-table table{
+            border:none;
+        }
+        .centerTxt{
+            text-align:center;
+        }
+    </style>
+</asp:Content>
 <asp:Content ContentPlaceHolderID="main" runat="server">
     <h1><a href="ManageDogs.aspx">Manage Dogs</a> | Manage Photos | <a href="ManagePeople.aspx">Manage People</a></h1>
     <form id="form1" runat="server" method="post" enctype="multipart/form-data">
@@ -41,11 +50,10 @@
                         <th>Dog</th>
                         <th>URL</th>
                         <th>Caption</th>
-                        <th>
-                            File Size<br />
-                            <span style="font-weight:normal">Full/Carousel/Thumb</span>
-                        </th>
-                        <th>Profile Pic?</th>
+                        <td>Original</td>
+                        <td>Carousel</td>
+                        <td>Thumbnail</td>
+                        <td>Profile Pic</td>
                         <th colspan="2">Actions</th>
                     </tr>
                     <tr runat="server" id="itemPlaceHolder" />
@@ -58,11 +66,14 @@
                     <td><%# DogNamesAndIds.Keys.Contains(Item.DogId) ? DogNamesAndIds[Item.DogId] ?? "None" : "None" %></td>
                     <td><%# Item.URL %></td>
                     <td><%# Item.Caption %></td>
-                    <td style="text-align:center"><a href="/img/photos/<%# Item.URL %>"><%# GetFileSize(Item.URL) %></a>/
-                        <a href="/img/photos/<%# Item.CarouselURL %>"><%# GetFileSize(Item.CarouselURL) %></a> /
-                        <a href="/img/photos/<%# Item.ThumbURL %>"><%# GetFileSize(Item.ThumbURL) %></a>
+                    <td class="centerTxt"><a href="/img/photos/<%# Item.URL %>"><%# GetFileSize(Item.URL) %></a></td>
+                    <td class="centerTxt"><a href="/img/photos/<%# Item.CarouselURL %>"><%# GetFileSize(Item.CarouselURL) %></a></td>
+                    <td class="centerTxt"><a href="/img/photos/<%# Item.ThumbURL %>"><%# GetFileSize(Item.ThumbURL) %></a></td>
+                    <td><%# 
+                        !String.IsNullOrEmpty(Item.ProfileURL) 
+                        ? String.Format("<a href=\"/img/photos/{0}\">{1}</a>",Item.ProfileURL, GetFileSize(Item.ProfileURL)) 
+                        : String.Format("<a href=\"Crop/{0}\">Create</a>", Item.Id) %>
                     </td>
-                    <td><%# IsProfilePic(Item.Id, Item.DogId) ? "Yes" : "No" %></td>
                     <td><asp:Button CommandName="edit" Text="Edit" runat="server" ID="edit"/></td>
                     <td><asp:Button CommandName="delete" Text="Delete" runat="server" ID="delete"/></td>                    
                 </tr>

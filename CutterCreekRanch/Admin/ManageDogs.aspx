@@ -48,7 +48,7 @@
                     <td><%# Item.Color %></td>
                     <td><%# Item.ForSale %></td>
                     <td style="text-align:right;"><%# Item.Price.ToString("c") %></td>
-                    <td><img src="/Image/<%# Item.ProfilePic != null ? Item.ProfilePic : 0 %>/2" style="max-width:75px; max-height:75px;" /></td>
+                    <td><img src="/Image/<%# Item.ProfilePic != null ? Item.ProfilePic : 0 %>/1" style="max-width:75px; max-height:75px;" /></td>
                     <td style="white-space:nowrap; text-align:center;">
                         <asp:Button CommandName="edit" Text="Edit" runat="server" />
                         <asp:Button CommandName="delete" Text="Delete" runat="server"/>
@@ -110,7 +110,7 @@
                         <input name="DogId" type="hidden" value="0" />
                     </td>
                     <td>
-                        <input name="Name" placeholder="Rover" class="name" required="required" />
+                        <input name="Name" placeholder="Rover" class="name"/>
                     </td>
                     <td><input type="date"   name="Birthdate" placeholder="12/25/2014" class="bday"  /></td>
                     <td><input type="number" name="Mother"    placeholder="1" class="parent"  /></td>
