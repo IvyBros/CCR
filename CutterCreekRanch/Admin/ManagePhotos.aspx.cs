@@ -3,6 +3,7 @@ using CutterCreekRanch.Models.Repository;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -150,7 +151,7 @@ namespace CutterCreekRanch.Admin
             }
         }
 
-        private System.Drawing.Image ResizeImage(string fileName, int desiredMaxWidth, int desiredMaxHeight, bool maintainAspectRatio = true)
+        private System.Drawing.Image ResizeImage(string fileName, int desiredMaxWidth, int desiredMaxHeight)
         {
             var original = new Bitmap(fileName, true);
             var width = original.Size.Width;
@@ -162,8 +163,11 @@ namespace CutterCreekRanch.Admin
             var newHeight = (int)(height * aspect);
 
             var carousel = new Bitmap(newWidth, newHeight);
-            Graphics g = Graphics.FromImage((Image)carousel);
-            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            var g = Graphics.FromImage((Image)carousel);
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            //g.CompositingQuality = CompositingQuality.HighQuality;
             g.DrawImage(original, 0, 0, newWidth, newHeight);
             g.Dispose();
             original.Dispose();

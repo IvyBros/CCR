@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Admin\CropProfilePic.aspx" />
     <Content Include="Admin\ManageDogs.aspx" />
     <Content Include="Admin\ManagePeople.aspx" />
     <Content Include="Admin\ManagePhotos.aspx" />
@@ -76,6 +77,8 @@
     <Content Include="controls\SocialMediaBar.ascx" />
     <Content Include="css\admin.css" />
     <Content Include="css\bootstrap.css" />
+    <Content Include="css\jquery.Jcrop.css" />
+    <Content Include="css\jquery.Jcrop.min.css" />
     <Content Include="css\master.css" />
     <Content Include="css\trey.css" />
     <Content Include="Dogs.aspx" />
@@ -85,8 +88,8 @@
     <Content Include="img\image.aspx" />
     <Content Include="img\logo.png" />
     <Content Include="img\paw-print.png" />
+    <Content Include="img\photos\default.png" />
     <Content Include="img\profile-long.jpg" />
-    <Content Include="index.html" />
     <Content Include="js\admin.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
@@ -101,6 +104,10 @@
     <Content Include="js\jquery-2.1.1.min.js" />
     <Content Include="js\jquery-ui-1.10.4.js" />
     <Content Include="js\jquery-ui-1.10.4.min.js" />
+    <Content Include="js\jquery.color.js" />
+    <Content Include="js\jquery.Jcrop.js" />
+    <Content Include="js\jquery.Jcrop.min.js" />
+    <Content Include="js\jquery.min.js" />
     <Content Include="js\jquery.mobile-1.4.2.js" />
     <Content Include="js\jquery.mobile-1.4.2.min.js" />
     <None Include="js\jquery.validate-vsdoc.js" />
@@ -135,6 +142,13 @@
     </Compile>
     <Compile Include="Admin\Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CropProfilePic.aspx.cs">
+      <DependentUpon>CropProfilePic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CropProfilePic.aspx.designer.cs">
+      <DependentUpon>CropProfilePic.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ManageDogs.aspx.cs">
       <DependentUpon>ManageDogs.aspx</DependentUpon>
@@ -273,9 +287,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="img\photos\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

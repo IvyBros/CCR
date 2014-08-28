@@ -106,8 +106,8 @@
                 </li>
                 <li>
                     <label>Does your current residence have a yard?</label>
-                    <input type="radio" name="yard" value="yes" runat="server" />Yes
-                    <input type="radio" name="yard" value="no" runat="server" />No
+                    <input type="radio" name="yard" value="true" runat="server" />Yes
+                    <input type="radio" name="yard" value="false" runat="server" />No
                 </li>
             </ul>
             <div class="applicationButtons">

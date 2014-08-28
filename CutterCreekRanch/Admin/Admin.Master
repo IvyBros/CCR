@@ -9,6 +9,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server"/>
 </head>
 <body>
+    <a href="/">Home</a>
     <asp:ContentPlaceHolder ID="main" runat="server"/>    
     <script src="/js/jquery-2.1.1.min.js"></script>
     <script src="/js/jquery-ui-1.10.4.min.js"></script>

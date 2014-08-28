@@ -29,7 +29,7 @@ namespace CutterCreekRanch
                 }
                 else
                 {//alert user of failure and instruct to try again.
-                    this.validationMessage.InnerText = string.Format( "We were unable to deliver to the e-mail address you provided. ({0}) Please try again", Request.Form["email"]);
+                    this.validationMessage.InnerText = string.Format( "We were unable to deliver to the e-mail address you provided: ({0}) Please try again", Request.Form["email"]);
                     validationMessage.Style.Add("display", "normal");
                 }
             }
@@ -156,6 +156,27 @@ namespace CutterCreekRanch
         protected void AddPersonToDB()
         {
             //add this person our mailing list
+            var person = new Person
+            {
+                DogId = int.Parse(Request.Form["whichDog"] ?? "0"),
+                Email = Request.Form["applicantEmail"],
+                Name = Request.Form["applicantName"],
+                Phone = Request.Form["applicantPhone"],
+                BirthYear = DateTime.Now.AddYears(-(int.Parse(Request.Form["applicantAge"] ?? "0"))),
+                PetOwnershipExperience = Request.Form["petOwnershipExperience"],
+                Reason = Request.Form["whyDoYouWantDog"],
+                HaveYard = bool.Parse(Request.Form["yard"]),
+                HomeOwner = (HomeOwnershipTypes)int.Parse(Request.Form["ownOrRent"] ?? "3"),
+                NumInHousehold = int.Parse(Request.Form["numOfPeopleInHousehold"] ?? "0")
+            };
+            try
+            {
+                repo.SavePerson(person);
+            }
+            catch (Exception ex)
+            {
+                Response.Write(String.Format("An error occured trying to add this person to the database: {0}", ex.Message));
+            }
         }
         public IEnumerable<Dog> GetForSaleDogs()
         {

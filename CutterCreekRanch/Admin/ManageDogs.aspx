@@ -1,58 +1,17 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageDogs.aspx.cs" Inherits="CutterCreekRanch.Admin.Default" %>
-
-<!DOCTYPE html>
+﻿<%@ Page Title="Manage Dogs" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="ManageDogs.aspx.cs" Inherits="CutterCreekRanch.Admin.Default" %>
+<asp:Content ContentPlaceHolderID="main" runat="server">
+    
 <!--
     TODO:
-    style and theme for phone, table, large displays, etc.
-
-    prettify Dogs.aspx, enchance navigation functionality (i.e. back to all dogs, back to for sale dogs, next dog, previous dog)
-    consider allowing additional text or content on Dogs.aspx
+    Assigned to Ryan: style and theme for phone, tablet, larger displays, etc.
 
     add ability to search and sort?
     Add ability to choose a profile picture, crop, resize, zoom, etc.
-    add data validation rules
-    FIX birthdate.  currently broken.  research storing date times of varying lengths in TSQL/MSSQL w/entity framework,
-    maybe using a string for date(not ideal), etc.
-    
+   
     add video link functionality
-    create more complex types for photos?
-    add functions to optimize photos, auto thumbnailing, cropping, etc.
-    additional property of "papers" or certificate?
     consider implementing color as an enum type to allow searching and sorting
-    Add pagination to results? 
+    Add pagination to results
 -->
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Manage Dogs</title>
-    <style>
-        table, td, th{
-            border:solid thin black; 
-            border-collapse:collapse;
-        }
-        td, th{
-            padding:10px;
-        }
-        .bday{
-            width:70px;
-        }
-        .name{
-            width:70px;
-        }
-        .parent{
-            width:20px;
-        }
-        .price{
-            max-width:60px; 
-            text-align:right;
-        }
-        .color{
-            width:60px;
-            max-width:60px;
-        }
-    </style>
-</head>
-<body>
     <form id="form1" runat="server">
         <h1>Manage Dogs | <a href="ManagePhotos.aspx">Manage Photos</a> | <a href="ManagePeople.aspx">Manage People</a></h1>
         <asp:ListView ItemType="CutterCreekRanch.Models.Dog" DataKeyNames="DogId" SelectMethod="GetDogs" 
@@ -99,7 +58,7 @@
             <EditItemTemplate>
                 <tr>
                     <td><%# Item.DogId %><input name="DogId" type="hidden" value="<%# Item.DogId %>" /></td>
-                    <td><input name="Name" value="<%# Item.Name %>" class="name" /></td>
+                    <td><input name="Name" value="<%# Item.Name %>" class="name"  required="required" /></td>
                     <td><input name="BirthDate" type="date" class="bday" value="<%# Item.Birthdate.ToShortDateString() %>" /></td>
                     <td><input type="number" class="parent" value="<%# Item.Mother %>" name="mother" /></td>
                     <td><input type="number" class="parent" value="<%# Item.Father %>" name="father" /></td>
@@ -151,11 +110,11 @@
                         <input name="DogId" type="hidden" value="0" />
                     </td>
                     <td>
-                        <input name="Name" placeholder="Rover" class="name" />
+                        <input name="Name" placeholder="Rover" class="name" required="required" />
                     </td>
                     <td><input type="date"   name="Birthdate" placeholder="12/25/2014" class="bday"  /></td>
-                    <td><input type="number" name="Mother"   placeholder="1" class="parent"  /></td>
-                    <td><input type="number" name="Father"   placeholder="2" class="parent"  /></td>
+                    <td><input type="number" name="Mother"    placeholder="1" class="parent"  /></td>
+                    <td><input type="number" name="Father"    placeholder="2" class="parent"  /></td>
                     <td>
                         <select name="Sex" class="sex">
                             <option value="0">M</option>
@@ -174,7 +133,7 @@
                             <option value="<%= CutterCreekRanch.Models.ForSaleStatusCode.FreeToGoodHome %>">Free</option>
                         </select>
                     </td>
-                    <td><input class="price" name="Price" placeholder="500.00"  type="number" /></td>
+                    <td><input class="price"  name="Price" placeholder="500.00"  type="number" /></td>
                     <td><input class="parent" name="ProfilePic" placeholder="0" type="number" /></td>
                     <td style="text-align:center;">
                         <asp:Button CommandName="Insert" Text="Add Dog" runat="server" />
@@ -183,12 +142,12 @@
             </InsertItemTemplate>
         </asp:ListView>
     </form>
-    <script src="../js/jquery-2.1.1.min.js"></script>
-    <script src="../js/jquery-ui-1.10.4.min.js"></script>
+</asp:Content>
+<asp:Content ContentPlaceHolderID="footer" runat="server">
     <script>
         $(document).ready(function () {
             $('.bday').datepicker();
         });
     </script>
-</body>
-</html>
+</asp:Content>
+    

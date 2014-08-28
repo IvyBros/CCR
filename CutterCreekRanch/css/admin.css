@@ -22,3 +22,21 @@ td, th{
     width:60px;
     max-width:60px;
 }
+.imageThumb{
+    max-height:75px;
+    max-width:75px;
+}
+.addPhoto{
+    padding:20px;
+    border:solid thin black;
+}
+.addPhoto label{
+    font-weight:bold;
+    margin-left:20px;
+}
+.addPhoto label:first-child{
+    margin-left:0;
+}
+.addPhoto button{
+    margin-left:20px;
+}

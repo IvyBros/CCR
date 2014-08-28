@@ -17,9 +17,34 @@ namespace CutterCreekRanch.Models.Repository
             get { return context.Dogs; }
         }
 
+        public IEnumerable<Person> Persons
+        {
+            get { return context.Persons; }
+        }
+
+        public IEnumerable<Owner> Owners
+        {
+            get { return context.Owners; }
+        }
+
+        public Person GetPersonById(int personId)
+        {
+            return context.Persons.Find(personId);
+        }
+
         public Photo GetPhotoById(int Id)
         {
             return context.Photos.Find(Id);
+        }
+
+        public Dog GetDogByID(int DogId)
+        {
+            return context.Dogs.Find(DogId);
+        }
+
+        public Owner GetOwnerById(int ownerId)
+        {
+            return context.Owners.Find(ownerId);
         }
 
         public string GetPhotoUrlById(int Id)
@@ -28,15 +53,57 @@ namespace CutterCreekRanch.Models.Repository
             return photo == null ? "default.png" : photo.URL;
         }
 
-        public Dog GetDogByID(int DogId)
-        {
-            return context.Dogs.Find(DogId);
-        }
-
         public string GetDogNameById(int DogId)
         {
             var dog = GetDogByID(DogId);
             return dog == null ? null : dog.Name;
+        }
+
+        public void SaveOwner(Owner owner)
+        {
+            if (owner.OwnerId == 0)
+                context.Owners.Add(owner);
+            else
+            {
+                var dbOwner = context.Owners.Find(owner.OwnerId);
+                if (dbOwner != null)
+                {
+                    dbOwner.Address1 = owner.Address1;
+                    dbOwner.Address2 = owner.Address2;
+                    dbOwner.City = owner.City;
+                    dbOwner.State = owner.State;
+                    dbOwner.Zip = owner.Zip;
+                    dbOwner.DogId = owner.DogId;
+                    dbOwner.PersonId = owner.PersonId;
+                    dbOwner.Cost = owner.Cost;
+                    dbOwner.DateOfPurchase = owner.DateOfPurchase;
+                }
+            }
+            context.SaveChanges();
+        }
+
+        public void SavePerson(Person person)
+        {
+            if (person.PersonId == 0)
+                context.Persons.Add(person);
+            else
+            {
+                var dbPerson = context.Persons.Find(person.PersonId);
+                if(dbPerson != null)
+                {
+                    dbPerson.BirthYear = person.BirthYear;
+                    dbPerson.DogId = person.DogId;
+                    dbPerson.Email = person.Email;
+                    dbPerson.HaveYard = person.HaveYard;
+                    dbPerson.HomeOwner = person.HomeOwner;
+                    dbPerson.Name = person.Name;
+                    dbPerson.NumInHousehold = person.NumInHousehold;
+                    dbPerson.PetOwnershipExperience = person.PetOwnershipExperience;
+                    dbPerson.Phone = person.Phone;
+                    dbPerson.Reason = person.Reason;
+                }
+            }
+            context.SaveChanges();
         }
 
         public void SavePhoto(Photo photo)
@@ -83,6 +150,18 @@ namespace CutterCreekRanch.Models.Repository
                     dbDog.VideoUrl = dog.VideoUrl;
                 }
             }
+            context.SaveChanges();
+        }
+
+        public void DeleteOwner(Owner owner)
+        {
+            context.Owners.Remove(owner);
+            context.SaveChanges();
+        }
+
+        public void DeletePerson(Person person)
+        {
+            context.Persons.Remove(person);
             context.SaveChanges();
         }
 

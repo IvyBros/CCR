@@ -20,7 +20,15 @@ namespace CutterCreekRanch.img
             var photo = repo.GetPhotoById(photoId);
 
             if (photo == null)
-                photo = repo.GetPhotoById(7);
+                photo = new Photo 
+                { 
+                    DogId = 0,
+                    Caption = "file not found",
+                    URL = "default.png",
+                    ThumbURL = "default.png",
+                    ProfileURL = "default.png",
+                    CarouselURL = "default.png",
+                };
 
             var img = RouteData.Values["img"] != null ? (PhotoType)int.Parse((string)RouteData.Values["img"]) : PhotoType.FullSize;
             string fullPath, fileName;

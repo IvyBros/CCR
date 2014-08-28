@@ -1,51 +1,16 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" EnableViewState="false" CodeBehind="ManagePhotos.aspx.cs" Inherits="CutterCreekRanch.Admin.ManagePhotos" %>
+﻿<%@ Page Language="C#" Title="Manage Photos" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" EnableViewState="false" CodeBehind="ManagePhotos.aspx.cs" Inherits="CutterCreekRanch.Admin.ManagePhotos" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Manage Photos</title>
-    <style>
-        table, td, th{
-            border:solid thin black; 
-            border-collapse:collapse;
-        }
-        td, th{
-            padding:10px;
-        }
-        .imageThumb{
-            max-height:75px;
-            max-width:75px;
-        }
-        .addPhoto{
-            padding:20px;
-            border:solid thin black;
-        }
-        .addPhoto label{
-            font-weight:bold;
-            margin-left:20px;
-        }
-        .addPhoto label:first-child{
-            margin-left:0;
-        }
-        .addPhoto button{
-            margin-left:20px;
-        }
-        table tr td label{
-            font-weight:bold;
-            padding:10px;
-        }
-    </style>
-</head>
-<body>
+<asp:Content ContentPlaceHolderID="main" runat="server">
     <h1><a href="ManageDogs.aspx">Manage Dogs</a> | Manage Photos | <a href="ManagePeople.aspx">Manage People</a></h1>
     <form id="form1" runat="server" method="post" enctype="multipart/form-data">
         <h3>Add Photo:</h3>
+        <!--TODO: add a slider feature that will allow slipping to extra dogs if the number of dogs exceeds one row in length-->
         <table>
             <tr>
                 <td>
                     <label>Select Dog:</label>
                     <select name="uploadDogId">
+                        <option></option>
                         <%foreach (var item in DogNamesAndIds)
                           { %>
                             <option value="<%= item.Key %>"><%= item.Value %></option>
@@ -135,7 +100,5 @@
                 </tr>
             </EditItemTemplate>
         </asp:ListView>
-    
     </form>
-</body>
-</html>
+</asp:Content>
