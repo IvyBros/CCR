@@ -10,7 +10,6 @@
     </style>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="main" runat="server">
-    <h1><a href="ManageDogs.aspx">Manage Dogs</a> | Manage Photos | <a href="ManagePeople.aspx">Manage People</a></h1>
     <form id="form1" runat="server" method="post" enctype="multipart/form-data">
         <h3>Add Photo:</h3>
         <!--TODO: add a slider feature that will allow slipping to extra dogs if the number of dogs exceeds one row in length-->

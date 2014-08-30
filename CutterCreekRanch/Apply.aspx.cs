@@ -11,9 +11,9 @@ namespace CutterCreekRanch
     public partial class Apply : System.Web.UI.Page
     {
         protected string adminEmail = "contact@ranch.cc";
-        protected string applicantEmail;
+        protected string applicantEmail, _applicantName;
         protected bool debug = true;
-        protected int id;
+        protected int id, dogId;
         protected SmtpClient mail = new SmtpClient();
         private Repository repo = new Repository();
 
@@ -21,7 +21,11 @@ namespace CutterCreekRanch
         {
             if (IsPostBack && Request.Form["apply"] != null)
             {//client side validation should insure i have a name and an email address
-                applicantEmail = Request.Form[Request.Form.AllKeys.First(x => x.EndsWith("applicantEmail"))];
+                //read form values
+                applicantEmail = GetFormValue("applicantEmail");
+                if (String.IsNullOrEmpty(applicantEmail)) throw new Exception("How'd you manage that then?");
+                _applicantName = GetFormValue("applicantName");
+                dogId = String.IsNullOrEmpty(GetFormValue("whichDog")) ? 0 : int.Parse(GetFormValue("whichDog"));
                 if (EmailApplicant())
                 {//if we were able to deliver email to the applicant
                     AddPersonToDB();
@@ -29,25 +33,25 @@ namespace CutterCreekRanch
                 }
                 else
                 {//alert user of failure and instruct to try again.
-                    this.validationMessage.InnerText = string.Format( "We were unable to deliver to the e-mail address you provided: ({0}) Please try again", Request.Form["email"]);
+                    this.validationMessage.InnerText = 
+                        string.Format( "We were unable to deliver to the e-mail address you provided: ({0}) Please try again", 
+                        applicantEmail);
                     validationMessage.Style.Add("display", "normal");
                 }
             }
-            if (RouteData.Values["id"] != null)
-            {
-                //Response.Write(RouteData.Values["id"]);
+            if (RouteData.Values["id"] != null)            
                 id = int.Parse(RouteData.Values["id"].ToString());
-            }
         }
 
         private bool EmailApplicant()
         {
             var msg = new MailMessage(from:adminEmail, to:applicantEmail);
-            var body = new StringBuilder();
-            var dogName = Request.Form[Request.Form.AllKeys.FirstOrDefault(x=>x.EndsWith("whichDog"))] ?? String.Empty;
+            var body = new StringBuilder();            
+            var dogName = dogId != 0 ? repo.GetDogByID(dogId).Name : null;
+
             msg.Subject = "Your application with Cutter Creek Ranch";
             body.AppendLine(String.Format("Hello {0},", 
-                Request.Form[Request.Form.AllKeys.FirstOrDefault(x=>x.EndsWith("applicantName"))] ?? String.Empty));
+                _applicantName ?? String.Empty));
             body.AppendLine();
             body.AppendLine(String.Format("Thank you for your interest in {0}.  We will review your application shortly and get back to you soon.  Usually we reply within 24 hours.  Your patience is appreciated.  We look forward to speaking with you further regarding this opportunity.", 
                 String.IsNullOrEmpty(dogName) ? "Cutter Creek" : dogName));
@@ -59,11 +63,10 @@ namespace CutterCreekRanch
 
             try
             {
-                //mail.Send(msg);
                 if (debug == true)
-                {//for debugging
                     WriteMailToConsole(msg);
-                }
+                else mail.Send(msg);
+                
             }
 
             catch(SmtpFailedRecipientsException)
@@ -111,13 +114,16 @@ namespace CutterCreekRanch
         {
             var msg = new MailMessage(from:adminEmail, to:adminEmail);
             var body = new System.Text.StringBuilder();
-            msg.Subject = String.Format("New Applicant - {0}", Request.Form[Request.Form.AllKeys.First(x=> x.EndsWith("applicantName"))] ?? String.Empty);
+            msg.Subject = String.Format("New Applicant - {0}", _applicantName ?? String.Empty);
             body.AppendLine("Someone submitted an application online.  Please see the details below.");
             foreach(var item in Request.Form)
-            {
+            {//filter out empties, print key/value pairs
                 string key = (string)item;
-                if(!key.StartsWith("__") && !key.EndsWith("apply"))
-                {//filter out viewstate
+                if(!key.StartsWith("__") &&         //skip view state stuff
+                   !key.EndsWith("apply") &&        //skip apply button
+                   !key.EndsWith("whichDog") &&     //skip which dog (handled below)
+                   !String.IsNullOrEmpty(Request.Form[key]))
+                {//splitz
                     var split = key.Split('$');
                     body.Append(split[split.Length - 1]);
                     body.Append(" = ");
@@ -125,16 +131,18 @@ namespace CutterCreekRanch
                     body.Append(Environment.NewLine);
                 }
             }
+            body.AppendLine(dogId != 0 ? String.Format("Dog Name = {0}", repo.GetDogByID(dogId).Name) : String.Empty);
             msg.Body = body.ToString();
             try
             {
-                //mail.Send(msg);
-                if(debug == true)
+                if (debug == true)
                     WriteMailToConsole(msg);
+                else 
+                    mail.Send(msg);
             }
             catch
             {//log failure
-                
+                throw;
             }
         }
 
@@ -155,20 +163,48 @@ namespace CutterCreekRanch
 
         protected void AddPersonToDB()
         {
+            //get form values
+            var home   = GetFormValue("ownOrRent");
+            var phone  = GetFormValue("applicantPhone");
+            var petXp  = GetFormValue("petOwnershipExperience");
+            var reason = GetFormValue("whyDoYouWantDog");            
+            var age    = !String.IsNullOrEmpty(GetFormValue("applicantAge")) 
+                ? int.Parse(GetFormValue("applicantAge")) : 0;
+            var family = !String.IsNullOrEmpty(GetFormValue("numOfPeopleInHousehold")) 
+                ? int.Parse(GetFormValue("numOfPeopleInHousehold")) : 0;
+            var yard   = !String.IsNullOrEmpty(GetFormValue("yard")) 
+                ? bool.Parse(GetFormValue("yard")) : false;
+
+            HomeOwnershipTypes homeOwner;
+
+            switch (home)
+            {
+                case "Own"  : homeOwner = HomeOwnershipTypes.Own;     break;
+                case "Rent" : homeOwner = HomeOwnershipTypes.Rent;    break;
+                case "Other": homeOwner = HomeOwnershipTypes.Other;   break;
+                default     : homeOwner = HomeOwnershipTypes.Unknown; break;
+            }
+
             //add this person our mailing list
             var person = new Person
             {
-                DogId = int.Parse(Request.Form["whichDog"] ?? "0"),
-                Email = Request.Form["applicantEmail"],
-                Name = Request.Form["applicantName"],
-                Phone = Request.Form["applicantPhone"],
-                BirthYear = DateTime.Now.AddYears(-(int.Parse(Request.Form["applicantAge"] ?? "0"))),
-                PetOwnershipExperience = Request.Form["petOwnershipExperience"],
-                Reason = Request.Form["whyDoYouWantDog"],
-                HaveYard = bool.Parse(Request.Form["yard"]),
-                HomeOwner = (HomeOwnershipTypes)int.Parse(Request.Form["ownOrRent"] ?? "3"),
-                NumInHousehold = int.Parse(Request.Form["numOfPeopleInHousehold"] ?? "0")
+                Email = applicantEmail,
+                Name = _applicantName,
+                Phone = phone,
+                HaveYard = yard,
+                HomeOwner = homeOwner,
+                PetOwnershipExperience = petXp,
+                Reason = reason                
             };
+
+            //add additional optional info
+            if (dogId != 0)
+                person.DogId = dogId;
+            if (family != 0)
+                person.NumInHousehold = family;
+            if (age != 0)
+                person.BirthYear = DateTime.Now.AddYears(-age);
+
             try
             {
                 repo.SavePerson(person);
@@ -181,6 +217,11 @@ namespace CutterCreekRanch
         public IEnumerable<Dog> GetForSaleDogs()
         {
             return repo.Dogs.Where(x => x.ForSale != ForSaleStatusCode.Sold && x.ForSale != ForSaleStatusCode.NotForSale);
+        }
+
+        private string GetFormValue(string key)
+        {
+            return Request.Form[Request.Form.AllKeys.FirstOrDefault(x => x.EndsWith(key))];
         }
     }
 }

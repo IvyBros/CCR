@@ -33,7 +33,6 @@
 <asp:Content ContentPlaceHolderID="main" runat="server">
     
     <form runat="server" id="form1">
-    <h1><a href="/Admin/ManageDogs.aspx">Manage Dogs</a> | <a href="/Admin/ManagePhotos.aspx">Manage Photos</a> | <a href="/Admin/ManagePeople.aspx">Manage People</a></h1>
     <div>
         <asp:Panel ID="pnlCrop" runat="server"> 
             <h2>Choose Crop Region</h2>

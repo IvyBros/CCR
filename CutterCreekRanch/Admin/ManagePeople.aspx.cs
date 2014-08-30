@@ -51,12 +51,12 @@ namespace CutterCreekRanch.Admin
                 return;
             }
             
-            myPerson.BirthYear = null;
-            myPerson.DogId = null;
+            myPerson.BirthYear = DateTime.MinValue;
+            myPerson.DogId = 0;
             myPerson.Email = null;
-            myPerson.HaveYard = null;
-            myPerson.HomeOwner = null;
-            myPerson.NumInHousehold = null;
+            myPerson.HaveYard = false;
+            myPerson.HomeOwner = HomeOwnershipTypes.Unknown;
+            myPerson.NumInHousehold = 0;
             myPerson.PetOwnershipExperience = null;
             myPerson.Reason = null;
 

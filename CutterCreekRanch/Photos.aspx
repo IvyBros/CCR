@@ -28,16 +28,22 @@
             border:none;
             padding:0;
             margin:auto;
-            opacity:.7;
+            opacity:.5;
+            max-width:60px;
+            min-width:60px;
         }
         .profile-btn:hover{
             opacity:1;
+            background-color:transparent;
         }
         .profile-btn image{
             max-height:50px;
             max-width:50px;
             height:50px;
             width:50px;
+        }
+        .selected-btn{
+            opacity:1;
         }
         .center-txt{
             text-align:center;
@@ -51,13 +57,14 @@
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <h1>Photos</h1>
-    <p>A picture is worth a thousand words.</p>
-    <h1><% if (id != 0) Response.Write(dogs.First().Name); else Response.Write("Select A Dog"); %></h1>
+    <p>Please select a dog.</p>
     <hr />
     <asp:Repeater runat="server" SelectMethod="GetDogs" ItemType="CutterCreekRanch.Models.Dog">
         <ItemTemplate>
-            <button class="btn btn-default profile-btn">
-                <img src="Image/<%#Item.ProfilePic %>/1" class="roundBorder" title="<%#Item.Name %>" />
+            <button class="btn btn-default profile-btn<%#Item.DogId == id 
+                 ? " selected-btn" : String.Empty %>" name="<%#Item.DogId %>" title="<%#Item.Name %>" >
+                <img src="/Image/<%#Item.ProfilePic %>/1" class="roundBorder" title="<%#Item.Name %>" />
+                <div class="btn-name"><%#Item.Name %></div>
             </button>
         </ItemTemplate>
     </asp:Repeater>
@@ -72,9 +79,19 @@
                             <figcaption class="center-txt"><%# Item.Caption %></figcaption>
                         </figure>
                     </td>
-                    <% count++; if (count % 3 == 0) { Response.Write("</tr><tr>"); }%>
+                    <% count++; if (count % 3 == 0) { Response.Write("</tr></table><hr/><table><tr>"); }%>
                 </ItemTemplate>
             </asp:Repeater>
         </tr>
     </table>
+</asp:Content>
+<asp:Content runat="server" ContentPlaceHolderID="footerScripts">
+    <script>
+        $(document).ready(function(){
+            $('button').click(function () {
+                var path = '/Photos/' + this.name;
+                window.location.href = path;
+            });
+        });
+    </script>
 </asp:Content>

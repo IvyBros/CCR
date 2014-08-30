@@ -18,14 +18,14 @@ namespace CutterCreekRanch
         protected void Page_Load(object sender, EventArgs e)
         {//get photos for all dogs or just 1 specific dog
             id = RouteData.Values["id"] == null ? 0 : int.Parse(RouteData.Values["id"].ToString());
+            dogs = repo.Dogs;
             if (id == 0)
             {//ignore this case for now
-                dogs = repo.Dogs;
                 photos = repo.Photos;
             }
             else
             {
-                dogs = repo.Dogs.Where(x => x.DogId == id);
+                //dogs = repo.Dogs.Where(x => x.DogId == id);
                 photos = repo.Photos.Where(x => x.DogId == id);
             }
         }

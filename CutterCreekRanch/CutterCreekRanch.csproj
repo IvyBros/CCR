@@ -65,9 +65,11 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Admin\CropProfilePic.aspx" />
+    <Content Include="Admin\Logout.aspx" />
     <Content Include="Admin\ManageDogs.aspx" />
     <Content Include="Admin\ManagePeople.aspx" />
     <Content Include="Admin\ManagePhotos.aspx" />
+    <Content Include="Admin\ViewPersonDetails.aspx" />
     <Content Include="AllDogs.aspx" />
     <Content Include="Apply.aspx" />
     <Content Include="Contact.aspx" />
@@ -123,6 +125,7 @@
     </Content>
     <None Include="js\_references.js" />
     <Content Include="js\trey.js" />
+    <Content Include="Login.aspx" />
     <Content Include="logs\log.xml" />
     <Content Include="Photos.aspx" />
     <Content Include="Offerings.aspx" />
@@ -150,6 +153,13 @@
     <Compile Include="Admin\CropProfilePic.aspx.designer.cs">
       <DependentUpon>CropProfilePic.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ManageDogs.aspx.cs">
       <DependentUpon>ManageDogs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -170,6 +180,13 @@
     </Compile>
     <Compile Include="Admin\ManagePhotos.aspx.designer.cs">
       <DependentUpon>ManagePhotos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ViewPersonDetails.aspx.cs">
+      <DependentUpon>ViewPersonDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ViewPersonDetails.aspx.designer.cs">
+      <DependentUpon>ViewPersonDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="AllDogs.aspx.cs">
       <DependentUpon>AllDogs.aspx</DependentUpon>
@@ -244,6 +261,13 @@
     </Compile>
     <Compile Include="img\image.aspx.designer.cs">
       <DependentUpon>image.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\Dog.cs" />
     <Compile Include="Models\Owner.cs" />

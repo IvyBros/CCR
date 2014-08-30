@@ -13,7 +13,6 @@
     Add pagination to results
 -->
     <form id="form1" runat="server">
-        <h1>Manage Dogs | <a href="ManagePhotos.aspx">Manage Photos</a> | <a href="ManagePeople.aspx">Manage People</a></h1>
         <asp:ListView ItemType="CutterCreekRanch.Models.Dog" DataKeyNames="DogId" SelectMethod="GetDogs" 
             UpdateMethod="UpdateDog" DeleteMethod="DeleteDog" InsertMethod="InsertDog" 
             InsertItemPosition="LastItem" EnableViewState="false" runat="server" >

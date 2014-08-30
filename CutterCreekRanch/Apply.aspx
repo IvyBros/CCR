@@ -19,6 +19,9 @@
         input[placeholder], textarea[placeholder]{
             color:#888;
         }
+        input[type=number]{
+            width:100px;
+        }
         #MainContent_applicantAge, #MainContent_numOfPeopleInHousehold{
             max-width:30px;
         }
@@ -83,10 +86,12 @@
                 <li>
                     <label>Are you interested in a particular dog?</label>
                     <select name="whichDog">
-                        <option />
+                        <option value="0" />
                         <asp:Repeater SelectMethod="GetForSaleDogs" runat="server" ItemType="CutterCreekRanch.Models.Dog">
                             <ItemTemplate>
-                                <option <%# Item.DogId == id ? "selected=\"selected\"" : String.Empty %>><%# Item.Name %></option>
+                                <option value="<%#Item.DogId %>" <%# Item.DogId == id 
+                                    ? "selected=\"selected\"" 
+                                    : String.Empty %>><%# Item.Name %></option>
                             </ItemTemplate>
                         </asp:Repeater>
                     </select>                
@@ -94,9 +99,9 @@
                 <li>
                     <label>Do you own or rent your current residence?</label>
                     <select runat="server" name="ownOrRent" id="ownOrRent">
-                        <option/>
-                        <option>Rent</option>
+                        <option value="Unknown"/>
                         <option>Own</option>
+                        <option>Rent</option>
                         <option>Other</option>
                     </select>
                 </li>
