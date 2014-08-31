@@ -15,24 +15,28 @@
     <form id="form1" runat="server">
         <asp:ListView ItemType="CutterCreekRanch.Models.Dog" DataKeyNames="DogId" SelectMethod="GetDogs" 
             UpdateMethod="UpdateDog" DeleteMethod="DeleteDog" InsertMethod="InsertDog" 
-            InsertItemPosition="LastItem" EnableViewState="false" runat="server" >
+            InsertItemPosition="LastItem" EnableViewState="false" runat="server" ClientIDMode="Static" >
             <LayoutTemplate>
-                <table>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Birthday</th>
-                        <th>Mom</th>
-                        <th>Dad</th>
-                        <th>Sex</th>
-                        <th>Description</th>
-                        <th>Coloring</th>
-                        <th>Sale Status</th>
-                        <th>Price</th>
-                        <th>Profile Pic</th>
-                        <th>Actions</th>
-                    </tr>        
-                    <tr runat="server" id="itemPlaceHolder" />
+                <table id="dogsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Birthday</th>
+                            <th>Mom</th>
+                            <th>Dad</th>
+                            <th>Sex</th>
+                            <th>Description</th>
+                            <th>Coloring</th>
+                            <th>Sale Status</th>
+                            <th>Price</th>
+                            <th>Profile Pic</th>
+                            <th>Actions</th>
+                        </tr>        
+                    </thead>
+                    <tbody>
+                        <tr runat="server" id="itemPlaceHolder" />
+                    </tbody>
                 </table>
             </LayoutTemplate>
             <ItemTemplate>
@@ -145,6 +149,7 @@
 <asp:Content ContentPlaceHolderID="footer" runat="server">
     <script>
         $(document).ready(function () {
+            $('#dogsTable').DataTable();
             $('.bday').datepicker();
         });
     </script>

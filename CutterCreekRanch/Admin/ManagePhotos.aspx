@@ -40,22 +40,26 @@
         </table>
         <br />
         <asp:ListView ItemType="CutterCreekRanch.Models.Photo" DataKeyNames="Id" SelectMethod="GetPhotos" 
-                UpdateMethod="UpdatePhoto" DeleteMethod="DeletePhoto" EnableViewState="false" runat="server">
+                UpdateMethod="UpdatePhoto" DeleteMethod="DeletePhoto" EnableViewState="false" runat="server" ClientIDMode="Static">
             <LayoutTemplate>
-                <table>
-                    <tr>
-                        <th>Image</th>
-                        <th>Id</th>
-                        <th>Dog</th>
-                        <th>URL</th>
-                        <th>Caption</th>
-                        <td>Original</td>
-                        <td>Carousel</td>
-                        <td>Thumbnail</td>
-                        <td>Profile Pic</td>
-                        <th colspan="2">Actions</th>
-                    </tr>
-                    <tr runat="server" id="itemPlaceHolder" />
+                <table id="photosTable">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Id</th>
+                            <th>Dog</th>
+                            <th>URL</th>
+                            <th>Caption</th>
+                            <td>Original</td>
+                            <td>Carousel</td>
+                            <td>Thumbnail</td>
+                            <td>Profile Pic</td>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr runat="server" id="itemPlaceHolder" />
+                    </tbody>
                 </table>
             </LayoutTemplate>
             <ItemTemplate>
@@ -73,8 +77,10 @@
                         ? String.Format("<a href=\"/img/photos/{0}\">{1}</a>",Item.ProfileURL, GetFileSize(Item.ProfileURL)) 
                         : String.Format("<a href=\"Crop/{0}\">Create</a>", Item.Id) %>
                     </td>
-                    <td><asp:Button CommandName="edit" Text="Edit" runat="server" ID="edit"/></td>
-                    <td><asp:Button CommandName="delete" Text="Delete" runat="server" ID="delete"/></td>                    
+                    <td>
+                        <asp:Button CommandName="edit" Text="Edit" runat="server" ID="edit"/>
+                        <asp:Button CommandName="delete" Text="Delete" runat="server" ID="delete"/>
+                    </td>
                 </tr>
             </ItemTemplate>
             <EditItemTemplate>
@@ -103,12 +109,17 @@
                     <td><%# IsProfilePic(Item.Id, Item.DogId) ? "Yes" : "No" %></td>
                     <td>
                         <asp:Button ID="update" CommandName="update" Text="Update" runat="server" /> 
-                    </td>
-                    <td>
                         <asp:Button ID="cancel" CommandName="cancel" Text="Cancel" runat="server" />
                     </td>
                 </tr>
             </EditItemTemplate>
         </asp:ListView>
     </form>
+</asp:Content>
+<asp:Content ContentPlaceHolderID="footer" runat="server">
+    <script>
+        $(document).ready(function () {
+            $('#photosTable').DataTable();
+        });
+    </script>
 </asp:Content>

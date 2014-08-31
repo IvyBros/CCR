@@ -4,18 +4,22 @@
     <form id="form1" runat="server">
         <asp:ListView ItemType="CutterCreekRanch.Models.Person" DataKeyNames="PersonId" SelectMethod="GetPersons" 
             UpdateMethod="UpdatePerson" DeleteMethod="DeletePerson" InsertMethod="InsertPerson" 
-            InsertItemPosition="LastItem" EnableViewState="false" runat="server" >
+            InsertItemPosition="LastItem" EnableViewState="false" runat="server" ClientIDMode="Static">
             <LayoutTemplate>
-                <table>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Actions</th>
-                        <th>Additional</th>
-                    </tr>        
-                    <tr runat="server" id="itemPlaceHolder" />
+                <table id="personsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                            <th>Additional</th>
+                        </tr>        
+                    </thead>
+                    <tbody>
+                        <tr runat="server" id="itemPlaceHolder" />
+                    </tbody>
                 </table>
             </LayoutTemplate>
             <ItemTemplate>
@@ -54,9 +58,16 @@
                     <td style="text-align:center;">
                         <asp:Button CommandName="Insert" Text="Add Person" runat="server" />
                     </td>
-                    
+                    <td></td>
                 </tr>
             </InsertItemTemplate>
         </asp:ListView>
     </form>    
+</asp:Content>
+<asp:Content ContentPlaceHolderID="footer" runat="server">
+    <script>
+        $(document).ready(function () {
+            $('#personsTable').DataTable();            
+        });
+    </script>
 </asp:Content>
