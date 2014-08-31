@@ -9,7 +9,6 @@ namespace CutterCreekRanch
         {
             if (IsPostBack)
             {
-                Response.Write("made it this far...");
                 var user = Request["user"];
                 var pass = Request["pass"];
                 var acts = Request["action"];
@@ -19,10 +18,7 @@ namespace CutterCreekRanch
                     FormsAuthentication.SetAuthCookie(user, true);
                     Response.Redirect(FormsAuthentication.GetRedirectUrl("admin", true));
                 }
-                else
-                {
-                    FormsAuthentication.SignOut();
-                }
+                else FormsAuthentication.SignOut();                
 
                 Response.Redirect(Request.Path);
             }

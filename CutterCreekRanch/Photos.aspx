@@ -6,10 +6,6 @@
             padding:20px;
             margin:20px;
         }
-        /*table, td, th{
-            border-collapse:collapse;
-            border: solid thin black;
-        }*/
         th, td{
             padding:5px;
         }
@@ -59,39 +55,31 @@
     <h1>Photos</h1>
     <p>Please select a dog.</p>
     <hr />
-    <asp:Repeater runat="server" SelectMethod="GetDogs" ItemType="CutterCreekRanch.Models.Dog">
-        <ItemTemplate>
-            <button class="btn btn-default profile-btn<%#Item.DogId == id 
-                 ? " selected-btn" : String.Empty %>" name="<%#Item.DogId %>" title="<%#Item.Name %>" >
-                <img src="/Image/<%#Item.ProfilePic %>/1" class="roundBorder" title="<%#Item.Name %>" />
-                <div class="btn-name"><%#Item.Name %></div>
-            </button>
-        </ItemTemplate>
-    </asp:Repeater>
-    <hr />
-    <table>
-        <tr>
-            <asp:Repeater runat="server" SelectMethod="GetPhotos" ItemType="CutterCreekRanch.Models.Photo">
-                <ItemTemplate>
-                    <td>
-                        <figure>
-                            <a href="/img/photos/<%# Item.URL %>"><img src="/img/photos/<%# Item.ThumbURL%>" class="roundBorder" /></a>
-                            <figcaption class="center-txt"><%# Item.Caption %></figcaption>
-                        </figure>
-                    </td>
-                    <% count++; if (count % 3 == 0) { Response.Write("</tr></table><hr/><table><tr>"); }%>
-                </ItemTemplate>
-            </asp:Repeater>
-        </tr>
-    </table>
-</asp:Content>
-<asp:Content runat="server" ContentPlaceHolderID="footerScripts">
-    <script>
-        $(document).ready(function(){
-            $('button').click(function () {
-                var path = '/Photos/' + this.name;
-                window.location.href = path;
-            });
-        });
-    </script>
+    <form id="form1" runat="server">
+        <asp:Repeater runat="server" SelectMethod="GetDogs" ItemType="CutterCreekRanch.Models.Dog">
+            <ItemTemplate>
+                <button type="submit" class="btn btn-default profile-btn<%# Item.DogId == GetCurrentDogId() 
+                     ? " selected-btn" : String.Empty %>" name="dogId" title="<%# Item.Name %>" value="<%# Item.DogId %>" >
+                    <img src="/Image/<%# Item.ProfilePic %>/1" class="roundBorder" title="<%# Item.Name %>" />
+                    <div class="btn-name"><%# Item.Name %></div>
+                </button>
+            </ItemTemplate>
+        </asp:Repeater>
+        <hr />
+        <table>
+            <tr>
+                <asp:Repeater runat="server" SelectMethod="GetPhotos" ItemType="CutterCreekRanch.Models.Photo">
+                    <ItemTemplate>
+                        <td>
+                            <figure>
+                                <a href="/img/photos/<%# Item.URL %>"><img src="/img/photos/<%# Item.ThumbURL%>" class="roundBorder" /></a>
+                                <figcaption class="center-txt"><%# Item.Caption %></figcaption>
+                            </figure>
+                        </td>
+                        <% count++; if (count % 3 == 0) { Response.Write("</tr></table><hr/><table><tr>"); }%>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </tr>
+        </table>
+    </form>
 </asp:Content>

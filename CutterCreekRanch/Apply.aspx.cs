@@ -20,12 +20,16 @@ namespace CutterCreekRanch
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack && Request.Form["apply"] != null)
-            {//client side validation should insure i have a name and an email address
-                //read form values
+            {//read form values
+                
                 applicantEmail = GetFormValue("applicantEmail");
-                if (String.IsNullOrEmpty(applicantEmail)) throw new Exception("How'd you manage that then?");
+
+                if (String.IsNullOrEmpty(applicantEmail)) 
+                    throw new Exception("How'd you manage that then?");
+
                 _applicantName = GetFormValue("applicantName");
                 dogId = String.IsNullOrEmpty(GetFormValue("whichDog")) ? 0 : int.Parse(GetFormValue("whichDog"));
+
                 if (EmailApplicant())
                 {//if we were able to deliver email to the applicant
                     AddPersonToDB();
@@ -114,8 +118,10 @@ namespace CutterCreekRanch
         {
             var msg = new MailMessage(from:adminEmail, to:adminEmail);
             var body = new System.Text.StringBuilder();
+
             msg.Subject = String.Format("New Applicant - {0}", _applicantName ?? String.Empty);
             body.AppendLine("Someone submitted an application online.  Please see the details below.");
+
             foreach(var item in Request.Form)
             {//filter out empties, print key/value pairs
                 string key = (string)item;
@@ -131,8 +137,10 @@ namespace CutterCreekRanch
                     body.Append(Environment.NewLine);
                 }
             }
+
             body.AppendLine(dogId != 0 ? String.Format("Dog Name = {0}", repo.GetDogByID(dogId).Name) : String.Empty);
             msg.Body = body.ToString();
+
             try
             {
                 if (debug == true)
@@ -140,6 +148,7 @@ namespace CutterCreekRanch
                 else 
                     mail.Send(msg);
             }
+
             catch
             {//log failure
                 throw;
@@ -200,8 +209,10 @@ namespace CutterCreekRanch
             //add additional optional info
             if (dogId != 0)
                 person.DogId = dogId;
+
             if (family != 0)
                 person.NumInHousehold = family;
+
             if (age != 0)
                 person.BirthYear = DateTime.Now.AddYears(-age);
 

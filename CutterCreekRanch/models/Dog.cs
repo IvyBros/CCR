@@ -11,6 +11,7 @@ namespace CutterCreekRanch.Models
         public string Description { get; set; }
         public string Color { get; set; }
         public string VideoUrl { get; set; }
+        public string CertificateURL { get; set; }
         public int? ProfilePic { get; set; }
         public decimal Price { get; set; }
         public Gender? Sex { get; set; }

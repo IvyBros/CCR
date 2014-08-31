@@ -8,35 +8,42 @@ namespace CutterCreekRanch
 {
     public partial class Photos : System.Web.UI.Page
     {
-        protected int id;
         private Repository repo = new Repository();
+        private int dogId;
+        public int count = 0;
         public IEnumerable<Dog> dogs;
         public IEnumerable<Photo> photos;
-        public int count = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {//get photos for all dogs or just 1 specific dog
-            id = RouteData.Values["id"] == null ? 0 : int.Parse(RouteData.Values["id"].ToString());
-            dogs = repo.Dogs;
-            if (id == 0)
-            {//ignore this case for now
-                photos = repo.Photos;
+
+            MaintainScrollPositionOnPostBack = true;
+
+            if (IsPostBack)
+            {
+                dogId = int.Parse(Request.Form["dogId"]);
+                Response.Redirect(System.IO.Path.Combine("~/Photos/",dogId.ToString()));
             }
+
             else
             {
-                //dogs = repo.Dogs.Where(x => x.DogId == id);
-                photos = repo.Photos.Where(x => x.DogId == id);
+                dogId = RouteData.Values["id"] == null ? 0 : int.Parse(RouteData.Values["id"].ToString());
             }
+        }
+
+        public int GetCurrentDogId()
+        {
+            return dogId;
         }
 
         public IEnumerable<Dog> GetDogs()
         {
-            return dogs;
+            return repo.Dogs;
         }
 
         public IEnumerable<Photo> GetPhotos()
         {
-            return photos;
+            return dogId == 0 ? repo.Photos : repo.Photos.Where(x => x.DogId == dogId);
         }
     }
 }

@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CutterCreekRanch {
+namespace CutterCreekRanch.Admin {
     
     
-    public partial class Photos {
+    public partial class ManageOwners {
         
         /// <summary>
         /// form1 control.

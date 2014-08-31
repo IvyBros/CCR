@@ -3,15 +3,20 @@
     
 <!--
     TODO:
+
     Assigned to Ryan: style and theme for tablet
     Assigned to Nathan: style and theme for phone
+
     consider implementing color as an enum type to allow searching and sorting
     fix buggy behaviour that comes with datatables...
+
         1.  update and add doesn't work anymore.
         2.  remove sort on things that shouldn't sort
         3.  make insert row static
+
     add video link functionality
 -->
+
     <form id="form1" runat="server">
         <asp:ListView ItemType="CutterCreekRanch.Models.Dog" DataKeyNames="DogId" SelectMethod="GetDogs" 
             UpdateMethod="UpdateDog" DeleteMethod="DeleteDog" InsertMethod="InsertDog" 
@@ -69,7 +74,7 @@
                         <select name="Sex" class="sex">
                             <option <%# Item.Sex == CutterCreekRanch.Models.Gender.Male 
                                             ? "selected=\"selected\"" 
-                                            : String.Empty %>" value="<%# Item.Sex %>">M</option>
+                                            : String.Empty %> value="<%# Item.Sex %>">M</option>
                             <option <%# Item.Sex == CutterCreekRanch.Models.Gender.Female 
                                             ? "selected=\"selected\"" 
                                             : String.Empty %> value="<%# Item.Sex %>">F</option>
@@ -99,8 +104,8 @@
                                         : String.Empty %> value="<%= CutterCreekRanch.Models.ForSaleStatusCode.FreeToGoodHome %>">Free</option>
                         </select>
                     </td>
-                    <td><input name="Price" type="number" value="<%# Item.Price %>"  class="price" /></td>
-                    <td><input name="ProfilePic" type="number" value="<%#Item.ProfilePic %>" class="parent" /></td>
+                    <td><input type="number" name="Price" value="<%# Item.Price %>" class="price" /></td>
+                    <td><input type="number" name="ProfilePic" value="<%#Item.ProfilePic %>" class="parent" /></td>
                     <td style="white-space:nowrap;">
                         <asp:Button CommandName="update" Text="Update" runat="server" />
                         <asp:Button CommandName="cancel" Text="Cancel" runat="server" />
@@ -148,7 +153,7 @@
 <asp:Content ContentPlaceHolderID="footer" runat="server">
     <script>
         $(document).ready(function () {
-            $('#dogsTable').DataTable();
+            //$('#dogsTable').DataTable();
             $('.bday').datepicker();
         });
     </script>

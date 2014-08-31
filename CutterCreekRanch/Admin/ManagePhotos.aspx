@@ -1,8 +1,8 @@
 ﻿<%@ Page Language="C#" Title="Manage Photos" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" EnableViewState="false" CodeBehind="ManagePhotos.aspx.cs" Inherits="CutterCreekRanch.Admin.ManagePhotos" %>
 <asp:Content ContentPlaceHolderID="head" runat="server">
     <style>
-        #inner-table table{
-            border:none;
+        #add-item{
+            border:solid medium black;
         }
         .centerTxt{
             text-align:center;
@@ -12,8 +12,7 @@
 <asp:Content ContentPlaceHolderID="main" runat="server">
     <form id="form1" runat="server" method="post" enctype="multipart/form-data">
         <h3>Add Photo:</h3>
-        <!--TODO: add a slider feature that will allow slipping to extra dogs if the number of dogs exceeds one row in length-->
-        <table>
+        <table id="add-item">
             <tr>
                 <td>
                     <label>Select Dog:</label>
@@ -28,8 +27,6 @@
                 <td>
                     <label>Choose File(s):</label>
                     <asp:FileUpload ID="file1" runat="server" AllowMultiple="true" />
-                    <br />
-                    <br />
                     <label>Add Caption(s):</label>
                     <input style="width:220px;" name="uploadCaption" placeholder="caption 1; caption 2; caption 3;..." id="caption" title="When uploading multiple files, you can add the same caption to each picture by simply supplying one caption, however if you wish to supply a unique caption for each one, simply seperate each caption  by adding a semicolon(;) at the end of each.  Take care to place captions in the proper order as corresponds to the picture upload order.  If you don't get them right you can always edit them later." />
                 </td>
@@ -50,10 +47,10 @@
                             <th>Dog</th>
                             <th>URL</th>
                             <th>Caption</th>
-                            <td>Original</td>
-                            <td>Carousel</td>
-                            <td>Thumbnail</td>
-                            <td>Profile Pic</td>
+                            <th>Original</th>
+                            <th>Carousel</th>
+                            <th>Thumbnail</th>
+                            <th>Profile Pic</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -101,12 +98,10 @@
                     </td>
                     <td><input name="URL"     value="<%# Item.URL %>" title="Change at your own risk!" /></td>
                     <td><input name="caption" value="<%# Item.Caption %>" /></td>
-                    <td style="text-align:center"><a href="/img/photos/<%# Item.URL %>"><%# GetFileSize(Item.URL) %></a>/
-                        <a href="/img/photos/<%# Item.CarouselURL %>"><%# GetFileSize(Item.CarouselURL) %></a> /
-                        <a href="/img/photos/<%# Item.ThumbURL %>"><%# GetFileSize(Item.ThumbURL) %></a>
-                    </td>
-                    </td>
-                    <td><%# IsProfilePic(Item.Id, Item.DogId) ? "Yes" : "No" %></td>
+                    <td style="text-align:center"><a href="/img/photos/<%# Item.URL %>"><%# GetFileSize(Item.URL) %></a></td>
+                    <td><a href="/img/photos/<%# Item.CarouselURL %>"><%# GetFileSize(Item.CarouselURL) %></a></td>
+                    <td><a href="/img/photos/<%# Item.ThumbURL %>"><%# GetFileSize(Item.ThumbURL) %></a></td>
+                    <td><%# Item.ProfileURL != null ? GetFileSize(Item.ProfileURL) : "?" %></td>
                     <td>
                         <asp:Button ID="update" CommandName="update" Text="Update" runat="server" /> 
                         <asp:Button ID="cancel" CommandName="cancel" Text="Cancel" runat="server" />

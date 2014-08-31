@@ -1,11 +1,6 @@
 ﻿<%@ Page Title="Dog Details" MasterPageFile="~/Site.Master" Language="C#" AutoEventWireup="true" CodeBehind="Dogs.aspx.cs" Inherits="CutterCreekRanch.Dogs" %>
 <asp:Content ContentPlaceHolderID="head" runat="server">
-    <style>
-        table{
-            /*margin:auto;*/
-            /*margin-top:20px;
-            margin-bottom:50px;*/
-        }
+    <style>       
         table, td {
             border: solid thin #ddd;
             border-collapse: collapse;
@@ -18,7 +13,6 @@
             height:350px;
             float:right;
             margin-left:20px;
-            /*margin-top:30px;*/
         }
         .carousel-pics{    
             max-height:345px;
@@ -31,8 +25,6 @@
             border-radius:10px;
         }
         .desc-p{
-            /*padding-bottom:30px;
-            padding-top:10px;*/
             max-width:300px;
         }
         .small-pics{
@@ -44,7 +36,6 @@
         }
         #dog-demo-wrapper{
             display:block;
-            /*margin:auto;*/
             min-height:350px;
             max-height:350px;
             height:350px;
@@ -169,7 +160,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="video-modal-content">
-
+                        <%= Dog.VideoUrl %>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -187,7 +178,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="documents-modal-content">
-
+                        <%=Dog.CertificateURL %>
                     </div>
                 </div>
                 <div class="modal-footer">
