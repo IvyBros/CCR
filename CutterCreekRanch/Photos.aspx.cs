@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using CutterCreekRanch.Models;
+﻿using CutterCreekRanch.Models;
 using CutterCreekRanch.Models.Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CutterCreekRanch
 {

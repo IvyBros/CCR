@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Net.Mail;
+﻿using CutterCreekRanch.Models;
 using CutterCreekRanch.Models.Repository;
-using CutterCreekRanch.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Mail;
 using System.Text;
 
 namespace CutterCreekRanch

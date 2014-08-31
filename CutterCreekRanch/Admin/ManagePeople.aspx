@@ -26,10 +26,8 @@
                 <tr>
                     <td><%# Item.PersonId %></td>
                     <td><%# Item.Name %></td>
-                    <td><%# Item.Email %></td>
+                    <td><a href="mailto:<%#Item.Email %>"><%# Item.Email %></a></td>
                     <td><%# Item.Phone %></td>
-                    <%--<td><%# Item.DogId %></td>
-                    <td><%# Item.BirthYear == null ? "Unknown" : (DateTime.Now - Item.BirthYear).ToString() %></td>--%>
                     <td style="white-space:nowrap; text-align:center;">
                         <asp:Button CommandName="edit" Text="Edit" runat="server" />
                         <asp:Button CommandName="delete" Text="Delete" runat="server"/>
@@ -51,8 +49,11 @@
             </EditItemTemplate>
             <InsertItemTemplate>
                 <tr>
-                    <td>+<input name="PersonId" type="hidden" value="0" /></td>
-                    <td> <input name="Name" placeholder="John Doe" class="name" /></td>
+                    <td>0</td>
+                    <td>
+                        <input name="PersonId" type="hidden" value="0" /> 
+                        <input name="Name" placeholder="John Doe" class="name" />
+                    </td>
                     <td> <input name="Email" placeholder="your@email.com" class="email" type="email" /></td>
                     <td> <input name="Phone" placeholder="(555) 555 - 5555" class="phone" type="number" /></td>
                     <td style="text-align:center;">

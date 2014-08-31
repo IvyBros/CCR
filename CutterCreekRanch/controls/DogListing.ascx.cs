@@ -1,6 +1,6 @@
-﻿using System;
-using CutterCreekRanch.Models;
+﻿using CutterCreekRanch.Models;
 using CutterCreekRanch.Models.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 

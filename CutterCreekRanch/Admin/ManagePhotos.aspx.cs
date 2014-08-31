@@ -172,7 +172,6 @@ namespace CutterCreekRanch.Admin
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-            //g.CompositingQuality = CompositingQuality.HighQuality;
             g.DrawImage(original, 0, 0, newWidth, newHeight);
             g.Dispose();
             original.Dispose();
@@ -213,9 +212,8 @@ namespace CutterCreekRanch.Admin
             if(File.Exists(fullName))
             {
                 var fAttr = new FileInfo(fullName);
-                return String.Format("{0}k",(fAttr.Length / 1000).ToString());
+                return (fAttr.Length / 1000).ToString();
             }
-            //Response.Write(String.Format("File Not Found: {0}<br>", fullName));
             return "?";
         }
 

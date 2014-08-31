@@ -3,21 +3,21 @@
     
 <!--
     TODO:
-    Assigned to Ryan: style and theme for phone, tablet, larger displays, etc.
-
-    add ability to search and sort?
-    Add ability to choose a profile picture, crop, resize, zoom, etc.
-   
-    add video link functionality
+    Assigned to Ryan: style and theme for tablet
+    Assigned to Nathan: style and theme for phone
     consider implementing color as an enum type to allow searching and sorting
-    Add pagination to results
+    fix buggy behaviour that comes with datatables...
+        1.  update and add doesn't work anymore.
+        2.  remove sort on things that shouldn't sort
+        3.  make insert row static
+    add video link functionality
 -->
     <form id="form1" runat="server">
         <asp:ListView ItemType="CutterCreekRanch.Models.Dog" DataKeyNames="DogId" SelectMethod="GetDogs" 
             UpdateMethod="UpdateDog" DeleteMethod="DeleteDog" InsertMethod="InsertDog" 
-            InsertItemPosition="LastItem" EnableViewState="false" runat="server" ClientIDMode="Static" >
+            InsertItemPosition="LastItem" EnableViewState="false" runat="server" >
             <LayoutTemplate>
-                <table id="dogsTable">
+                <table id="dogsTable" class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -43,15 +43,15 @@
                 <tr>
                     <td><%# Item.DogId %></td>
                     <td><%# Item.Name %></td>
-                    <td><%# Item.Birthdate.ToShortDateString() %></td>
-                    <td><%# Item.Mother %></td>
-                    <td><%# Item.Father %></td>
+                    <td data-sort="<%#Item.Birthdate %>"><%# Item.Birthdate.ToShortDateString() %></td>
+                    <td><%# GetName(Item.Mother) %></td>
+                    <td><%# GetName(Item.Father) %></td>
                     <td><%# Item.Sex %></td>
                     <td><%# Item.Description %></td>
                     <td><%# Item.Color %></td>
                     <td><%# Item.ForSale %></td>
                     <td style="text-align:right;"><%# Item.Price.ToString("c") %></td>
-                    <td><img src="/Image/<%# Item.ProfilePic != null ? Item.ProfilePic : 0 %>/1" style="max-width:75px; max-height:75px;" /></td>
+                    <td data-sort="<%#Item.ProfilePic %>"><img src="/Image/<%# Item.ProfilePic != null ? Item.ProfilePic : 0 %>/1" style="max-width:75px; max-height:75px;" /></td>
                     <td style="white-space:nowrap; text-align:center;">
                         <asp:Button CommandName="edit" Text="Edit" runat="server" />
                         <asp:Button CommandName="delete" Text="Delete" runat="server"/>
@@ -75,7 +75,7 @@
                                             : String.Empty %> value="<%# Item.Sex %>">F</option>
                         </select>
                     </td>
-                    <td><textarea name="Description" class="description" rows="3" cols="40"><%# Item.Description %></textarea></td>
+                    <td><textarea name="Description" class="description" rows="3" cols="30"><%# Item.Description %></textarea></td>
                     <td><input name="Color" class="color" value="<%# Item.Color %>" /></td>
                     <td>
                         <select name="ForSale" class="forSale">
@@ -109,10 +109,9 @@
             </EditItemTemplate>
             <InsertItemTemplate>
                 <tr>
-                    <td>+
-                        <input name="DogId" type="hidden" value="0" />
-                    </td>
+                    <td>0</td>
                     <td>
+                        <input name="DogId" type="hidden" value="0" />
                         <input name="Name" placeholder="Rover" class="name"/>
                     </td>
                     <td><input type="date"   name="Birthdate" placeholder="12/25/2014" class="bday"  /></td>
@@ -124,20 +123,20 @@
                             <option value="1">F</option>
                         </select>
                     </td>
-                    <td><textarea class="description" name="description" rows="3" cols="40" placeholder="Write Description Here"></textarea></td>
+                    <td><textarea class="description" name="description" rows="3" cols="30" placeholder="Write Description Here"></textarea></td>
                     <td><input class="color" name="color" placeholder="Standard Black and White" /></td>
                     <td>
                         <select class="forSale" name="ForSale">
-                            <option value="<%= CutterCreekRanch.Models.ForSaleStatusCode.ForSale %>">ForSale</option>
-                            <option value="<%= CutterCreekRanch.Models.ForSaleStatusCode.NotForSale %>">NotForSale</option>
-                            <option value="<%= CutterCreekRanch.Models.ForSaleStatusCode.Sold %>">Sold</option>
-                            <option value="<%= CutterCreekRanch.Models.ForSaleStatusCode.Discounted %>">Discounted</option>
-                            <option value="<%= CutterCreekRanch.Models.ForSaleStatusCode.Adoption %>">Adoption</option>
+                            <option value="<%= CutterCreekRanch.Models.ForSaleStatusCode.ForSale        %>">ForSale</option>
+                            <option value="<%= CutterCreekRanch.Models.ForSaleStatusCode.NotForSale     %>">NotForSale</option>
+                            <option value="<%= CutterCreekRanch.Models.ForSaleStatusCode.Sold           %>">Sold</option>
+                            <option value="<%= CutterCreekRanch.Models.ForSaleStatusCode.Discounted     %>">Discounted</option>
+                            <option value="<%= CutterCreekRanch.Models.ForSaleStatusCode.Adoption       %>">Adoption</option>
                             <option value="<%= CutterCreekRanch.Models.ForSaleStatusCode.FreeToGoodHome %>">Free</option>
                         </select>
                     </td>
-                    <td><input class="price"  name="Price" placeholder="500.00"  type="number" /></td>
-                    <td><input class="parent" name="ProfilePic" placeholder="0" type="number" /></td>
+                    <td><input type="number" class="price"  name="Price"      placeholder="500.00" /></td>
+                    <td><input type="number" class="parent" name="ProfilePic" placeholder="0" /></td>
                     <td style="text-align:center;">
                         <asp:Button CommandName="Insert" Text="Add Dog" runat="server" />
                     </td>

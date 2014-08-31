@@ -1,8 +1,8 @@
 ﻿using CutterCreekRanch.Models;
 using CutterCreekRanch.Models.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
 using System.Web.ModelBinding;
 
 namespace CutterCreekRanch.Admin
@@ -10,10 +10,20 @@ namespace CutterCreekRanch.Admin
     public partial class Default : System.Web.UI.Page
     {
         private Repository repo = new Repository();
+        protected Dictionary<int, string> dogNamesToIds = new Dictionary<int,string>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.MaintainScrollPositionOnPostBack = true;
+            foreach (var item in repo.Dogs)
+                dogNamesToIds.Add(item.DogId, item.Name);
+        }
+
+        public string GetName(int dogId)
+        {
+            if (dogNamesToIds == null || dogId == 0) 
+                return "Unknown";
+            return dogNamesToIds.ContainsKey(dogId) ? dogNamesToIds[dogId] : "Unknown";
         }
 
         public IEnumerable<Dog> GetDogs()

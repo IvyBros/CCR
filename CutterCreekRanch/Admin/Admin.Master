@@ -5,8 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Admin:</title>
-    <link rel="stylesheet" href="../css/admin.css" />
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+    <%--<link rel="stylesheet" href="/css/bootstrap.css" />--%>
     <asp:ContentPlaceHolder ID="head" runat="server"/>
 </head>
 <body>
@@ -19,6 +20,7 @@
     </form>
     <asp:ContentPlaceHolder ID="main" runat="server"/>    
     <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery-ui-1.10.4.min.js"></script>
     <script src="/js/admin.js"></script>
     <script src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
