@@ -7,7 +7,6 @@
     <title>Admin:</title>
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="/css/admin.css" />
-    <%--<link rel="stylesheet" href="/css/bootstrap.css" />--%>
     <asp:ContentPlaceHolder ID="head" runat="server"/>
 </head>
 <body>

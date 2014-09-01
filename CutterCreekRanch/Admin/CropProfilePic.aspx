@@ -2,7 +2,6 @@
 <asp:Content ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="/css/jquery.Jcrop.min.css" type="text/css" />
     <style>
-
         .jcrop-holder #preview-pane {
           display: block;
           position: absolute;
@@ -15,10 +14,6 @@
           border-radius: 6px;
           box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
         }
-
-        /* The Javascript code will set the aspect ratio of the crop
-           area based on the size of the thumbnail preview,
-           specified here */
         #preview-pane .preview-container {
           width: 250px;
           height: 250px;
@@ -30,8 +25,7 @@
         }
     </style>
 </asp:Content>
-<asp:Content ContentPlaceHolderID="main" runat="server">
-    
+<asp:Content ContentPlaceHolderID="main" runat="server">    
     <form runat="server" id="form1">
     <div>
         <asp:Panel ID="pnlCrop" runat="server"> 
@@ -64,33 +58,28 @@
     <script src="/js/jquery.Jcrop.min.js"></script>
     <script>
         jQuery(function ($) {
-            // Create variables (in this scope) to hold the API and image size
+
             var jcrop_api,
                 boundx,
                 boundy,
 
-                // Grab some information about the preview pane
                 $preview = $('#preview-pane'),
                 $pcnt = $('#preview-pane .preview-container'),
                 $pimg = $('#preview-pane .preview-container img'),
-
                 xsize = $pcnt.width(),
                 ysize = $pcnt.height();
-
-            //console.log('init', [xsize, ysize]);
+            
             $('#target').Jcrop({
                 onChange: updatePreview,
                 onSelect: storeCoords,
                 aspectRatio: xsize / ysize
-            }, function () {
-                // Use the API to get the real image size
+            },
+
+            function () {
                 var bounds = this.getBounds();
                 boundx = bounds[0];
                 boundy = bounds[1];
-                // Store the API in the jcrop_api variable
                 jcrop_api = this;
-
-                // Move the preview into the jcrop container for css positioning
                 $preview.appendTo(jcrop_api.ui.holder);
             });
 
@@ -107,8 +96,8 @@
                     });
                 }
             };
-
         });
+
         function storeCoords(c) {
             $('#X').val(c.x);
             $('#Y').val(c.y);

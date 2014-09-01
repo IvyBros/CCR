@@ -12,7 +12,6 @@ namespace CutterCreekRanch
         private int dogId;
         public int count = 0;
         public IEnumerable<Dog> dogs;
-        public IEnumerable<Photo> photos;
 
         protected void Page_Load(object sender, EventArgs e)
         {//get photos for all dogs or just 1 specific dog

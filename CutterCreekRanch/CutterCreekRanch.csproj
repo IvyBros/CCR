@@ -127,7 +127,6 @@
     <None Include="js\_references.js" />
     <Content Include="js\trey.js" />
     <Content Include="Login.aspx" />
-    <Content Include="logs\log.xml" />
     <Content Include="Photos.aspx" />
     <Content Include="Offerings.aspx" />
     <Content Include="Web.config" />

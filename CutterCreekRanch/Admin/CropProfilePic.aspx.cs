@@ -37,7 +37,6 @@ namespace CutterCreekRanch.Admin
                 return;
             }
 
-            //get values from hidden fields
             int w = Convert.ToInt32(W.Value); 
             int h = Convert.ToInt32(H.Value); 
             int x = Convert.ToInt32(X.Value); 
@@ -54,12 +53,9 @@ namespace CutterCreekRanch.Admin
                 ms.Write(CropImage, 0, CropImage.Length); 
                 using (var CroppedImage = System.Drawing.Image.FromStream(ms, true)) 
                 {
-                    //save to file system
                     CroppedImage.Save(fullProfilePath, CroppedImage.RawFormat); 
-                    //update image obj in database
                     currentPhoto.ProfileURL = profilePictureFileName;
                     repo.SavePhoto(currentPhoto);
-                    //display result screen to user
                     pnlCrop.Visible = false; 
                     pnlCropped.Visible = true;
                     imgCropped.ImageUrl = relativePath;
