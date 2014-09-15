@@ -91,8 +91,7 @@ namespace CutterCreekRanch.Admin
                 {//TODO:Add additional error handling here
                     return false;
                 }
-            }
-            
+            }            
             return true;
         }
 
@@ -142,7 +141,6 @@ namespace CutterCreekRanch.Admin
 
         protected bool MakePost(string serviceName, object token)
         {//post to service using authentication token
-
             switch (serviceName)
             { 
                 case "facebook":
