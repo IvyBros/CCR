@@ -10,13 +10,17 @@
     <asp:ContentPlaceHolder ID="head" runat="server"/>
 </head>
 <body>
-    <a href="/">Home</a> : <a href="/Admin/ManageDogs.aspx">Dogs</a> : 
-    <a href="/Admin/ManagePhotos.aspx">Photos</a> : 
-    <a href="/Admin/ManagePeople.aspx">People</a> : 
-    <a href="/Admin/ManageOwners.aspx">Owners</a>
-    <form id="logout" method="post" action="/Admin/Logout.aspx">
-        <button class="btn-logout" name="logout" type="submit">Logout</button>
-    </form>
+    <nav>
+        <a href="/">Home</a> : <a href="/Admin/ManageDogs.aspx">Dogs</a> : 
+        <a href="/Admin/ManagePhotos.aspx">Photos</a> : 
+        <a href="/Admin/ManagePeople.aspx">People</a> : 
+        <a href="/Admin/ManageOwners.aspx">Owners</a> :
+        <a href="/Admin/ManageTasks.aspx" >Tasks</a>
+        <form id="logout" method="post" action="/Admin/Logout.aspx">
+            <button class="btn-logout" name="logout" type="submit">Logout</button>
+        </form>
+    </nav>
+    <br />
     <asp:ContentPlaceHolder ID="main" runat="server"/>    
     <script src="/js/jquery-2.1.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>

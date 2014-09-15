@@ -113,8 +113,8 @@
 </asp:Content>
 <asp:Content ContentPlaceHolderID="footer" runat="server">
     <script>
-        $(document).ready(function () {
-            $('#photosTable').DataTable();
-        });
+        //$(document).ready(function () {
+        //    $('#photosTable').DataTable();
+        //});
     </script>
 </asp:Content>

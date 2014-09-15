@@ -59,5 +59,15 @@ namespace CutterCreekRanch.Admin
                 repo.DeleteOwner(owner);
             }
         }
+
+        public void InsertOwner()
+        {
+            var myOwner = new Owner();
+            if(TryUpdateModel(myOwner, new FormValueProvider(ModelBindingExecutionContext)))
+            {
+                repo.SaveOwner(myOwner);
+                return;
+            }
+        }
     }
 }

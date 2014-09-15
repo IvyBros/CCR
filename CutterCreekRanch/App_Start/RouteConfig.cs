@@ -8,7 +8,7 @@ namespace CutterCreekRanch.Routes
         public static void RegisterRoutes(RouteCollection routes)
         {
             var constraints = new RouteValueDictionary{ {"id",  "[0-9]*" } };
-            var photoTypes = new RouteValueDictionary { {"img", "[0-9]*" } };
+            var photoTypes  = new RouteValueDictionary{ {"img", "[0-9]*" } };
             var defaults    = new RouteValueDictionary{ {"id",  "1"      } };
 
             routes.MapPageRoute("default",          String.Empty,       "~/Home.aspx");

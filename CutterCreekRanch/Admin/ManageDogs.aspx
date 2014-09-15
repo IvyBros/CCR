@@ -36,6 +36,8 @@
                             <th>Sale Status</th>
                             <th>Price</th>
                             <th>Profile Pic</th>
+                            <th>VideoURL/<br />
+                                CertificateURL</th>
                             <th>Actions</th>
                         </tr>        
                     </thead>
@@ -51,12 +53,16 @@
                     <td data-sort="<%#Item.Birthdate %>"><%# Item.Birthdate.ToShortDateString() %></td>
                     <td><%# GetName(Item.Mother) %></td>
                     <td><%# GetName(Item.Father) %></td>
-                    <td><%# Item.Sex %></td>
-                    <td><%# Item.Description %></td>
+                    <td><%# Item.Sex == CutterCreekRanch.Models.Gender.Male 
+                            ? "M" : Item.Sex == CutterCreekRanch.Models.Gender.Female 
+                            ? "F" : String.Empty %></td>
+                    <td><div class="description"><%# Item.Description %></div></td>
                     <td><%# Item.Color %></td>
                     <td><%# Item.ForSale %></td>
                     <td style="text-align:right;"><%# Item.Price.ToString("c") %></td>
                     <td data-sort="<%#Item.ProfilePic %>"><img src="/Image/<%# Item.ProfilePic != null ? Item.ProfilePic : 0 %>/1" style="max-width:75px; max-height:75px;" /></td>
+                    <td style="text-align:center;"><a href="<%#Item.VideoUrl %>"><%# Item.VideoUrl == null ? String.Empty : "Watch Video" %></a> <br />
+                        <a href="<%#Item.CertificateURL %>"><%#Item.CertificateURL == null ? String.Empty : "View Certificate" %></a></td>
                     <td style="white-space:nowrap; text-align:center;">
                         <asp:Button CommandName="edit" Text="Edit" runat="server" />
                         <asp:Button CommandName="delete" Text="Delete" runat="server"/>
@@ -106,6 +112,10 @@
                     </td>
                     <td><input type="number" name="Price" value="<%# Item.Price %>" class="price" /></td>
                     <td><input type="number" name="ProfilePic" value="<%#Item.ProfilePic %>" class="parent" /></td>
+                    <td>
+                        <input type="url" name="VideoURL" value="<%# Item.VideoUrl %>" class="videoURL" /><br />
+                        <input name="CertificateURL" value="<%#Item.CertificateURL %>" class="certficateURL" />
+                    </td>
                     <td style="white-space:nowrap;">
                         <asp:Button CommandName="update" Text="Update" runat="server" />
                         <asp:Button CommandName="cancel" Text="Cancel" runat="server" />
@@ -142,6 +152,10 @@
                     </td>
                     <td><input type="number" class="price"  name="Price"      placeholder="500.00" /></td>
                     <td><input type="number" class="parent" name="ProfilePic" placeholder="0" /></td>
+                    <td>
+                        <input type="url"    class="videoURL" name="VideoURL" placeholder="video" /><br />
+                        <input class="certificateURL" name="CertificateURL" placeholder="certifcate" />
+                    </td>
                     <td style="text-align:center;">
                         <asp:Button CommandName="Insert" Text="Add Dog" runat="server" />
                     </td>

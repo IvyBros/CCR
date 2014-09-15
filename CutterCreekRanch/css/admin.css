@@ -45,3 +45,41 @@ td, th{
     margin-bottom:10px;
     margin-top:-20px;
 }
+
+.groupEmail label{
+    min-width:100px;
+    display:inline-block;
+    padding:5px;
+    font-weight:bold;
+}
+.groupEmail button{
+    padding:10px;
+    margin:10px;
+}
+
+.address{
+    display:inline-block;
+    min-width:100px;
+}
+
+.socialMedia label{
+    color:aliceblue;
+}
+.socialMedia button{
+    padding:10px;
+    margin:10px;
+}
+
+/*the following styles are for the dark theme, which is easier on trey's eyes...*/
+body {
+    background-color:#333;
+    color:#DDD;
+}
+a{
+    color:#1b7aff;
+}
+.description{
+    max-height:100px;
+    height:100px;
+    overflow-y:scroll;
+}

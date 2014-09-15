@@ -57,6 +57,7 @@
 <asp:Content ContentPlaceHolderID="footer" runat="server">
     <script src="/js/jquery.Jcrop.min.js"></script>
     <script>
+
         jQuery(function ($) {
 
             var jcrop_api,
@@ -104,5 +105,6 @@
             $('#W').val(c.w);
             $('#H').val(c.h);
         };
+
     </script>
 </asp:Content>

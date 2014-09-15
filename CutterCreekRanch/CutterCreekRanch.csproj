@@ -70,6 +70,7 @@
     <Content Include="Admin\ManageOwners.aspx" />
     <Content Include="Admin\ManagePeople.aspx" />
     <Content Include="Admin\ManagePhotos.aspx" />
+    <Content Include="Admin\ManageTasks.aspx" />
     <Content Include="Admin\ViewPersonDetails.aspx" />
     <Content Include="AllDogs.aspx" />
     <Content Include="Apply.aspx" />
@@ -187,6 +188,13 @@
     </Compile>
     <Compile Include="Admin\ManagePhotos.aspx.designer.cs">
       <DependentUpon>ManagePhotos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageTasks.aspx.cs">
+      <DependentUpon>ManageTasks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageTasks.aspx.designer.cs">
+      <DependentUpon>ManageTasks.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ViewPersonDetails.aspx.cs">
       <DependentUpon>ViewPersonDetails.aspx</DependentUpon>

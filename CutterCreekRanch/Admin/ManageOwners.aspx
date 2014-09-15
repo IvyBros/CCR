@@ -8,15 +8,12 @@
             font-weight:bold;
             margin:10px;
         }
-        .address{
-            width:300px;
-        }
     </style>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="main" runat="server">
     <form runat="server" id="form1">
         <asp:ListView runat="server" ItemType="CutterCreekRanch.Models.Owner" DataKeyNames="OwnerId" SelectMethod="GetOwners"
-            UpdateMethod="UpdateOwners" DeleteMethod="DeleteOwners" ClientIDMode="Static">
+            UpdateMethod="UpdateOwners" DeleteMethod="DeleteOwners" InsertMethod="InsertOwner" ClientIDMode="Static" InsertItemPosition="LastItem">
             <LayoutTemplate>
                 <table id="ownersTable">
                     <thead>
@@ -59,7 +56,7 @@
                 <tr>
                     <td><%# Item.OwnerId %></td>
                     <td>
-                        <select name="persons">
+                        <select name="PersonId">
                             <% foreach(var person in personsById)
                                { %>
                                     <option value="<%= person.Key %>"><%= person.Value %></option>
@@ -67,7 +64,7 @@
                         </select>
                     </td>
                     <td>
-                        <select name="dogs">
+                        <select name="DogId">
                             <% foreach(var dog in dogsById)
                                { %>
                                     <option value="<%= dog.Key %>"><%= dog.Value %></option>
@@ -89,6 +86,39 @@
                     </td>
                 </tr>
             </EditItemTemplate>
+            <InsertItemTemplate>
+                <tr>
+                    <td>#<input type="hidden" name="OwnerId" value="0" /></td>
+                    <td>
+                        <select name="PersonId">
+                            <% foreach(var person in personsById)
+                               { %>
+                                    <option value="<%= person.Key %>"><%= person.Value %></option>
+                            <% } %>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="DogId">
+                            <% foreach(var dog in dogsById)
+                               { %>
+                                    <option value="<%= dog.Key %>"><%= dog.Value %></option>
+                            <% } %>
+                        </select>
+                    </td>
+                    <td>
+                        <label class="address">Address 1:</label><input name="address1" placeholder="123 Main St." /><br />
+                        <label class="address">Address 2:</label><input name="address2" placeholder="Apartment A" /><br />
+                        <label class="address">City:</label><input name="city" placeholder="Dallas" /><br />
+                        <label class="address">State:</label><input name="state" placeholder="TX" /><br />
+                        <label class="address">Zip:</label><input name="zip" placeholder="75142" /><br />
+                    </td>
+                    <td><input name="datefPurchase" type="date" /></td>
+                    <td><input name="cost" type="number" /></td>
+                    <td>
+                        <asp:Button runat="server" CommandName="Insert" Text="Insert" />
+                    </td>
+                </tr>
+            </InsertItemTemplate>
         </asp:ListView>
     </form>
 </asp:Content>

@@ -18,6 +18,7 @@ namespace CutterCreekRanch
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            MaintainScrollPositionOnPostBack = true;
             if (IsPostBack)
             {
                 if(Request.Form["apply"] != null)
