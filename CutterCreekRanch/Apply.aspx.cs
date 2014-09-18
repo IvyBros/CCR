@@ -28,7 +28,8 @@ namespace CutterCreekRanch
                     throw new Exception("How'd you manage that then?");
 
                 _applicantName = GetFormValue("applicantName");
-                dogId = String.IsNullOrEmpty(GetFormValue("whichDog")) ? 0 : int.Parse(GetFormValue("whichDog"));
+                dogId = String.IsNullOrEmpty(GetFormValue("whichDog")) 
+                    ? 0 : int.Parse(GetFormValue("whichDog"));
 
                 if (EmailApplicant())
                 {//if we were able to deliver email to the applicant

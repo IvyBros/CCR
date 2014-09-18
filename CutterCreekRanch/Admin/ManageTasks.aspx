@@ -27,7 +27,8 @@
             <input name="emailSubject" placeholder="Cutter Creek Ranch Newsletter" style="width:390px;" id="sub" />
             <br />
             <label>Body:</label><br />
-            <textarea name="emailBody" placeholder="Type or paste email message here." style="width:500px;" rows="20" id="bdy"></textarea>
+            <textarea name="emailBody" placeholder="Type or paste email message here." style="width:500px;" rows="20" id="bdy">
+            </textarea>
             <br />
             <label>Attachments:</label>
             <asp:FileUpload ID="emailAttachments" AllowMultiple="true" runat="server" />

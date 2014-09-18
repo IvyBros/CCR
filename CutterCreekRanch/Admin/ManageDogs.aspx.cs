@@ -11,6 +11,7 @@ namespace CutterCreekRanch.Admin
     {
         private Repository repo = new Repository();
         protected Dictionary<int, string> dogNamesToIds = new Dictionary<int,string>();
+        public int currentIndex, currentFather, currentMother;        
 
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -146,21 +146,27 @@ namespace CutterCreekRanch.Admin
                 case "facebook":
                     Response.Write("processing facebook...<br>");
                     break;
+
                 case "twitter":
                     Response.Write("processing twitter...<br>");
                     break;
+
                 case "googlePlus" :
                     Response.Write("processing googlePlus...<br>");
                     break;
+
                 case "instagram":
                     Response.Write("processing instagram...<br>");
                     break;
+
                 case "flickr":
                     Response.Write("processing flickr...<br>");
                     break;
+
                 case "blogSpot":
                     Response.Write("processing blogSpot...<br>");
                     break;
+
                 case "tapiture":
                     Response.Write("processing tapiture...<br>");
                     break;

@@ -72,10 +72,36 @@
             <EditItemTemplate>
                 <tr>
                     <td><%# Item.DogId %><input name="DogId" type="hidden" value="<%# Item.DogId %>" /></td>
-                    <td><input name="Name" value="<%# Item.Name %>" class="name"  required="required" /></td>
-                    <td><input name="BirthDate" type="date" class="bday" value="<%# Item.Birthdate.ToShortDateString() %>" /></td>
-                    <td><input type="number" class="parent" value="<%# Item.Mother %>" name="mother" /></td>
-                    <td><input type="number" class="parent" value="<%# Item.Father %>" name="father" /></td>
+                    <td><input name="Name" value="<%# Item.Name %>" class="name" title="Dog Name" /></td>
+                    <td><input name="BirthDate" type="date" title="Birthdate" class="bday" value="<%# Item.Birthdate.ToShortDateString() %>" /></td>
+                    <td>                        
+                        <select name="Mother" title="Mother">
+                            <%# currentMother = Item.Mother %>
+                            <option <%= currentMother == 0 ? "selected=\"selected\"" : String.Empty %> value="0">Unknown</option>
+                            <%foreach(var index in dogNamesToIds)
+                              {
+                                  currentIndex = index.Key;                                  
+                                  %>
+                                <option <%= currentMother == currentIndex 
+                                    ? "selected=\"selected\"" 
+                                    : String.Empty %> value="<%=index.Key %>"><%=index.Value %></option>
+                            <%} %>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="Father" title="Father">
+                            <%# currentFather = Item.Father %>
+                            <option <%= currentFather == 0 ? "selected=\"selected\"" : String.Empty %> value="0">Unknown</option>
+                            <% foreach(var index in dogNamesToIds)
+                              {
+                                  currentIndex = index.Key;                                  
+                                  %>
+                                <option <%= currentFather == currentIndex 
+                                    ? "selected=\"selected\"" 
+                                    : String.Empty %> value="<%=index.Key %>"><%=index.Value %></option>
+                            <%} %>
+                        </select>
+                    </td>
                     <td>
                         <select name="Sex" class="sex">
                             <option <%# Item.Sex == CutterCreekRanch.Models.Gender.Male 
@@ -86,10 +112,10 @@
                                             : String.Empty %> value="<%# Item.Sex %>">F</option>
                         </select>
                     </td>
-                    <td><textarea name="Description" class="description" rows="3" cols="30"><%# Item.Description %></textarea></td>
-                    <td><input name="Color" class="color" value="<%# Item.Color %>" /></td>
+                    <td><textarea name="Description" class="description" rows="3" title="Write Description Here" cols="30"><%# Item.Description %></textarea></td>
+                    <td><input name="Color" class="color" value="<%# Item.Color %>" title="Color Information" /></td>
                     <td>
-                        <select name="ForSale" class="forSale">
+                        <select name="ForSale" class="forSale" title="Sale Status">
                             <option <%# Item.ForSale == CutterCreekRanch.Models.ForSaleStatusCode.ForSale
                                         ? "selected=\"selected\""
                                         : String.Empty %> value="<%= CutterCreekRanch.Models.ForSaleStatusCode.ForSale %>">ForSale</option>
@@ -110,11 +136,11 @@
                                         : String.Empty %> value="<%= CutterCreekRanch.Models.ForSaleStatusCode.FreeToGoodHome %>">Free</option>
                         </select>
                     </td>
-                    <td><input type="number" name="Price" value="<%# Item.Price %>" class="price" /></td>
-                    <td><input type="number" name="ProfilePic" value="<%#Item.ProfilePic %>" class="parent" /></td>
+                    <td><input type="number" name="Price" title="Price in U.S. Dollars" value="<%# Item.Price %>" class="price" /></td>
+                    <td><input type="number" name="ProfilePic" title="ID# of Profile Picture" value="<%#Item.ProfilePic %>" class="parent" /></td>
                     <td>
-                        <input type="url" name="VideoURL" value="<%# Item.VideoUrl %>" class="videoURL" /><br />
-                        <input name="CertificateURL" value="<%#Item.CertificateURL %>" class="certficateURL" />
+                        <input type="url" name="VideoURL" title="URL of video" value="<%# Item.VideoUrl %>" class="videoURL" /><br />
+                        <input name="CertificateURL" title="Path to Certificate" value="<%#Item.CertificateURL %>" class="videoURL" />
                     </td>
                     <td style="white-space:nowrap;">
                         <asp:Button CommandName="update" Text="Update" runat="server" />
@@ -127,19 +153,37 @@
                     <td>0</td>
                     <td>
                         <input name="DogId" type="hidden" value="0" />
-                        <input name="Name" placeholder="Rover" class="name"/>
+                        <input name="Name" placeholder="Rover" class="name" title="Name of Dog"/>
                     </td>
-                    <td><input type="date"   name="Birthdate" placeholder="12/25/2014" class="bday"  /></td>
-                    <td><input type="number" name="Mother"    placeholder="1" class="parent"  /></td>
-                    <td><input type="number" name="Father"    placeholder="2" class="parent"  /></td>
+                    <td><input type="date"   name="Birthdate" placeholder="12/25/2014" class="bday" title="Birthdate" /></td>
+                    <td>
+                        <%--<input type="number" name="Mother"    placeholder="1" class="parent" title="ID# of mother" />--%>
+                        <select name="Mother" title="Mother">                            
+                            <option value="0">Unknown</option>
+                            <%foreach(var index in dogNamesToIds)
+                              { %>
+                                <option value="<%=index.Key %>"><%=index.Value %></option>
+                            <%} %>
+                        </select>
+                    </td>
+                    <td>
+                        <%--<input type="number" name="Father"    placeholder="2" class="parent" title="ID# of father" />--%>
+                        <select name="Father" title="Father">
+                            <option value="0">Unknown</option>
+                            <%foreach(var index in dogNamesToIds)
+                              { %>
+                                <option value="<%=index.Key %>"><%=index.Value %></option>
+                            <%} %>
+                        </select>
+                    </td>
                     <td>
                         <select name="Sex" class="sex">
                             <option value="0">M</option>
                             <option value="1">F</option>
                         </select>
                     </td>
-                    <td><textarea class="description" name="description" rows="3" cols="30" placeholder="Write Description Here"></textarea></td>
-                    <td><input class="color" name="color" placeholder="Standard Black and White" /></td>
+                    <td><textarea class="description" name="description" title="Write Description Here" rows="3" cols="30" placeholder="Write Description Here"></textarea></td>
+                    <td><input class="color" name="color" placeholder="Standard Black and White" title="Color information here" /></td>
                     <td>
                         <select class="forSale" name="ForSale">
                             <option value="<%= CutterCreekRanch.Models.ForSaleStatusCode.ForSale        %>">ForSale</option>
@@ -150,11 +194,11 @@
                             <option value="<%= CutterCreekRanch.Models.ForSaleStatusCode.FreeToGoodHome %>">Free</option>
                         </select>
                     </td>
-                    <td><input type="number" class="price"  name="Price"      placeholder="500.00" /></td>
-                    <td><input type="number" class="parent" name="ProfilePic" placeholder="0" /></td>
+                    <td><input type="number" class="price"  name="Price"      placeholder="500.00" title="Price in U.S. Dollars" /></td>
+                    <td><input type="number" class="parent" name="ProfilePic" placeholder="0" title="ID# of profile picture" /></td>
                     <td>
-                        <input type="url"    class="videoURL" name="VideoURL" placeholder="video" /><br />
-                        <input class="certificateURL" name="CertificateURL" placeholder="certifcate" />
+                        <input type="url" class="videoURL" name="VideoURL" placeholder="video url" title="URL of video" /><br />
+                        <input class="videoURL" name="CertificateURL" placeholder="certifcate" title="path to certificate" />
                     </td>
                     <td style="text-align:center;">
                         <asp:Button CommandName="Insert" Text="Add Dog" runat="server" />
