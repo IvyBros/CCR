@@ -78,7 +78,7 @@
                         <label class="address">State:</label><input name="state" value="<%# Item.State %>" /><br />
                         <label class="address">Zip:</label><input name="zip" value="<%# Item.Zip %>" /><br />
                     </td>
-                    <td><input name="dateOfPurchase" value="<%# Item.DateOfPurchase %>" type="date" /></td>
+                    <td><input name="dateOfPurchase" value="<%# Item.DateOfPurchase %>" type="date" class="date" /></td>
                     <td><input name="cost" value="<%# Item.Cost.ToString("c") %>" type="number" /></td>
                     <td>
                         <asp:Button runat="server" CommandName="update" Text="Update" />
@@ -112,8 +112,8 @@
                         <label class="address">State:</label><input name="state" placeholder="TX" /><br />
                         <label class="address">Zip:</label><input name="zip" placeholder="75142" /><br />
                     </td>
-                    <td><input name="datefPurchase" type="date" /></td>
-                    <td><input name="cost" type="number" /></td>
+                    <td><input name="datefPurchase" type="date" placeholder="5/15/1997" class="date"/></td>
+                    <td><input name="cost" type="number" placeholder="$500.00" /></td>
                     <td>
                         <asp:Button runat="server" CommandName="Insert" Text="Insert" />
                     </td>

@@ -27,12 +27,14 @@
             opacity:.5;
             max-width:60px;
             min-width:60px;
+            max-height:70px;
+            min-height:60px;
         }
         .profile-btn:hover{
             opacity:1;
             background-color:transparent;
         }
-        .profile-btn image{
+        .profile-btn image, .profile-btn-img{
             max-height:50px;
             max-width:50px;
             height:50px;
@@ -60,7 +62,7 @@
             <ItemTemplate>
                 <button type="submit" class="btn btn-default profile-btn<%# Item.DogId == GetCurrentDogId() 
                      ? " selected-btn" : String.Empty %>" name="dogId" title="<%# Item.Name %>" value="<%# Item.DogId %>" >
-                    <img src="/Image/<%# Item.ProfilePic %>/1" class="roundBorder" title="<%# Item.Name %>" />
+                    <img src="/Image/<%# Item.ProfilePic %>/1" class="roundBorder profile-btn-img" title="<%# Item.Name %>" />
                     <div class="btn-name"><%# Item.Name %></div>
                 </button>
             </ItemTemplate>

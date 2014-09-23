@@ -3,5 +3,5 @@
 /// <reference path="modernizr-2.6.2.js" />
 
 $(document).ready(function () {
-    $('.bday').datepicker();
+    $('.date').datepicker();
 });

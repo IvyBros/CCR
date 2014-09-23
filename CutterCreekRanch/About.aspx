@@ -11,7 +11,7 @@
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <h2>About Us</h2>
     
-    <img src="img/about1.jpg" title="Cutter Creek Ranch" class="floatRight roundBorder" style="width:30%;" />
+    <img src="img/about1.jpg" title="Cutter Creek Ranch" class="floatRight roundBorder" style="width:30%; height:250px;" />
     <p>
         At Cutter Creek Ranch, every dog here is a family member and gets treated
         with love and respect.  Our dogs are happy and healthy and enjoy the fresh country air.  They get plenty

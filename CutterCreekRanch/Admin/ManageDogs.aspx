@@ -7,6 +7,8 @@
     Assigned to Ryan: style and theme for tablet
     Assigned to Nathan: style and theme for phone
 
+    Add data validation to admin forms
+
     consider implementing color as an enum type to allow searching and sorting
     fix buggy behaviour that comes with datatables...
 
@@ -14,7 +16,7 @@
         2.  remove sort on things that shouldn't sort
         3.  make insert row static
 
-    add video link functionality
+    Add upload certificate functionality
 -->
 
     <form id="form1" runat="server">
@@ -60,9 +62,12 @@
                     <td><%# Item.Color %></td>
                     <td><%# Item.ForSale %></td>
                     <td style="text-align:right;"><%# Item.Price.ToString("c") %></td>
-                    <td data-sort="<%#Item.ProfilePic %>"><img src="/Image/<%# Item.ProfilePic != null ? Item.ProfilePic : 0 %>/1" style="max-width:75px; max-height:75px;" /></td>
-                    <td style="text-align:center;"><a href="<%#Item.VideoUrl %>"><%# Item.VideoUrl == null ? String.Empty : "Watch Video" %></a> <br />
-                        <a href="<%#Item.CertificateURL %>"><%#Item.CertificateURL == null ? String.Empty : "View Certificate" %></a></td>
+                    <td data-sort="<%#Item.ProfilePic %>"><img src="/Image/<%# Item.ProfilePic != null 
+                        ? Item.ProfilePic : 0 %>/1" style="max-width:75px; max-height:75px;" /></td>
+                    <td style="text-align:center;"><a href="<%#Item.VideoUrl %>"><%# Item.VideoUrl == null 
+                        ? String.Empty : "Watch Video" %></a> <br />
+                        <a href="<%#Item.CertificateURL %>"><%#Item.CertificateURL == null 
+                        ? String.Empty : "View Certificate" %></a></td>
                     <td style="white-space:nowrap; text-align:center;">
                         <asp:Button CommandName="edit" Text="Edit" runat="server" />
                         <asp:Button CommandName="delete" Text="Delete" runat="server"/>
@@ -73,7 +78,7 @@
                 <tr>
                     <td><%# Item.DogId %><input name="DogId" type="hidden" value="<%# Item.DogId %>" /></td>
                     <td><input name="Name" value="<%# Item.Name %>" class="name" title="Dog Name" /></td>
-                    <td><input name="BirthDate" type="date" title="Birthdate" class="bday" value="<%# Item.Birthdate.ToShortDateString() %>" /></td>
+                    <td><input name="BirthDate" type="date" title="Birthdate" class="date" value="<%# Item.Birthdate.ToShortDateString() %>" /></td>
                     <td>                        
                         <select name="Mother" title="Mother">
                             <%# currentMother = Item.Mother %>
@@ -155,9 +160,8 @@
                         <input name="DogId" type="hidden" value="0" />
                         <input name="Name" placeholder="Rover" class="name" title="Name of Dog"/>
                     </td>
-                    <td><input type="date"   name="Birthdate" placeholder="12/25/2014" class="bday" title="Birthdate" /></td>
+                    <td><input type="date" placeholder="05/25/1995" class="date" name="Birthdate" title="Birthdate" /></td>
                     <td>
-                        <%--<input type="number" name="Mother"    placeholder="1" class="parent" title="ID# of mother" />--%>
                         <select name="Mother" title="Mother">                            
                             <option value="0">Unknown</option>
                             <%foreach(var index in dogNamesToIds)
@@ -166,8 +170,7 @@
                             <%} %>
                         </select>
                     </td>
-                    <td>
-                        <%--<input type="number" name="Father"    placeholder="2" class="parent" title="ID# of father" />--%>
+                    <td>                        
                         <select name="Father" title="Father">
                             <option value="0">Unknown</option>
                             <%foreach(var index in dogNamesToIds)
@@ -208,12 +211,3 @@
         </asp:ListView>
     </form>
 </asp:Content>
-<asp:Content ContentPlaceHolderID="footer" runat="server">
-    <script>
-        $(document).ready(function () {
-            //$('#dogsTable').DataTable();
-            $('.bday').datepicker();
-        });
-    </script>
-</asp:Content>
-    
