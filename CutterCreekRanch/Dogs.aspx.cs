@@ -45,5 +45,14 @@ namespace CutterCreekRanch
             var photos = repo.Photos.Where(x => x.DogId == id);
             return photos.Count() > 0 ? photos : repo.Photos.Where(x=>x.Id == 105);
         }
+
+        public IEnumerable<Dog> GetRelationships()
+        {
+            var children = Dog.Sex == CutterCreekRanch.Models.Gender.Male
+                ? repo.Dogs.Where(x => x.Father == Dog.DogId)
+                : repo.Dogs.Where(x => x.Mother == Dog.DogId);
+
+            return children;
+        }
     }
 }

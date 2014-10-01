@@ -12,10 +12,12 @@
     </style>
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    K so the plan is to build an "<a href="Admin/ManageDogs.aspx" >admin</a>" section of the site.  The content of this page will be dynamically generated
-    from input managed and created by the admin. (i'm thinking dad)  I'd like to see a list of pups for sale here
-    with as much information about them as we can capture, for instance, date of birth, coloring/classification, sex,
-    parents, profile picture, additional picture(s), a short description of their personality, etc. See an example below:
+    <p>
+        Here you can find a list of pups currently or recently for sale.  You can also view additional information about 
+        each dog such as date of birth, coloring, sex, parents, additional pictures, a short description of their personality, etc. 
+        by clicking on their picture or one of the provided buttons.  To view a history of all our dogs, click 
+        <a style="font-weight:bold;" href="AllDogs.aspx">here</a>
+    </p>
     <hr />
     <h1>Future Best Friends</h1>
     <form id="form1" runat="server">

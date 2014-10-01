@@ -11,7 +11,7 @@
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <h2>About Us</h2>
     
-    <img src="img/about1.jpg" title="Cutter Creek Ranch" class="floatRight roundBorder" style="width:30%; height:250px;" />
+    <img src="img/sadie-frisbee.jpg" title="Cutter Creek Ranch" class="floatRight roundBorder" style="height:250px;" />
     <p>
         At Cutter Creek Ranch, every dog here is a family member and gets treated
         with love and respect.  Our dogs are happy and healthy and enjoy the fresh country air.  They get plenty
@@ -29,9 +29,9 @@
         <h4>Happy, healthy, well-adjusted canine companions</h4>
     </div>
     <div>
-        <img src="img/photos/pic.jpg" class="roundBorder img-responsive about-photo" />
-        <img src="img/photos/pic.jpg" class="roundBorder img-responsive about-photo" />
-        <img src="img/photos/pic.jpg" class="roundBorder img-responsive about-photo" />
+        <img src="img/merlin-tongue.jpg" class="roundBorder img-responsive about-photo" />
+        <img src="img/bella-tongue.jpg" class="roundBorder img-responsive about-photo" />
+        <img src="img/bella-merlin-tongues.jpg" class="roundBorder img-responsive about-photo" />
     </div>
     <p style="padding:20px 0 0 0;">
         The early developmental stages of a puppy's life can have a dramatic and lasting impact on their personality.
@@ -39,5 +39,5 @@
         Creek Ranch.  You can rest assured that we've given them the best start possible in life.     
     </p>
     <hr />
-    <img src="img/pic1.jpg" class="roundBorder img-responsive" style="margin:40px 40px 20px 40px; width:90%; height:250px;" />
+    <img src="img/frisbee-tug.jpg" class="roundBorder img-responsive" style="margin:40px 40px 20px 40px;" />
 </asp:Content>

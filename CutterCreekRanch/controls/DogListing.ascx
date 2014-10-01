@@ -1,9 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DogListing.ascx.cs" Inherits="CutterCreekRanch.controls.DogListing" ViewStateMode="Disabled" EnableViewState="false" %>
-<!--TODO: Implement Photos-->
 <asp:Repeater runat="server" SelectMethod="GetDogs" ItemType="CutterCreekRanch.Models.Dog">
     <ItemTemplate>
         <div class="dog">
-            <img src="/Image/<%#Item.ProfilePic %>/1" class="profilePic roundBorder" title="<%# Item.Name %>" />
+            <a href="/Dogs/<%# Item.DogId %>"><img src="/Image/<%#Item.ProfilePic %>/1" class="profilePic roundBorder" title="<%# Item.Name %>" /></a>
             <div class="profileInfo">
                 <h3><a href="/Dogs/<%# Item.DogId %>"><%#Item.Name %></a></h3>
                 <p><%# Item.Description %></p>

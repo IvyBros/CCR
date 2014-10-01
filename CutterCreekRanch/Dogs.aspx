@@ -13,16 +13,21 @@
             height:350px;
             float:right;
             margin-left:20px;
+            vertical-align:middle;            
         }
         .carousel-pics{    
             max-height:345px;
-            max-width:576px;
+            max-width:573px;
             height:345px;
-            display:block;
-            margin-top:2px;
-            margin-left:auto;
-            margin-right:auto;
-            border-radius:10px;
+            display:block;            
+            margin:auto;            
+            /*border-radius:10px;
+            border:solid thin black;*/
+        }
+        .pic-wrapper{
+            vertical-align:middle;
+            /*padding:25px;*/
+            margin:auto;
         }
         .desc-p{
             max-width:300px;
@@ -57,7 +62,7 @@
             border:solid thin black;
             max-height:300px;
             min-height:300px;
-        }
+        }        
     </style>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
@@ -65,7 +70,7 @@
     <CCR:DogNav runat="server" />
     <hr />
     <!--carousel-->
-    <div id="carousel-dog-details" class="carousel slide roundBorder" data-ride="carousel">
+    <div id="carousel-dog-details" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <%  for (int i = 0; i < numberOfPhotos; ++i )
                 { %>
@@ -75,10 +80,10 @@
         </ol>
         <div class="carousel-inner">
             <asp:Repeater runat="server" SelectMethod="GetPicturesByDogId" ItemType="CutterCreekRanch.Models.Photo">
-                <ItemTemplate>
-                    <div class="item <%if(count == 0){ count++; %>active<%}%>">
+                <ItemTemplate>                    
+                    <div class="item <%if(count == 0){ count++; %>active<%}%> pic-wrapper">
                         <a href="/img/photos/<%#Item.URL %>"><img src="/img/photos/<%#Item.CarouselURL ?? "default.png" %>" class="img-responsive carousel-pics" title="<%# Item.Caption %>" /></a>
-                    </div>
+                    </div>                    
                 </ItemTemplate>
             </asp:Repeater>            
         </div>
@@ -196,7 +201,14 @@
                 </div>
                 <div class="modal-body">
                     <div class="tree-modal-content">
-                        this feature coming soon!
+                        <h4>Offspring</h4>
+                        <ul>
+                            <asp:Repeater ID="Relationships" SelectMethod="GetRelationships" ItemType="CutterCreekRanch.Models.Dog" runat="server">
+                                <ItemTemplate>
+                                    <li><a href="/Dogs/<%# Item.DogId %>"><%# Item.Name %></a></li>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </ul>
                     </div>
                 </div>
                 <div class="modal-footer">

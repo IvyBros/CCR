@@ -17,34 +17,34 @@
         </ol>
         <div class="carousel-inner">
             <div class="item active">
-                <img src="img/c1.jpg" class="img-responsive caroselPics" title="Curious Kittens" />
+                <img src="img/c1.jpg" class="img-responsive caroselPics" title="Puppies!" alt="Puppies!" />
             </div>
             <div class="item">
-                <img src="img/c2.jpg" class="img-responsive caroselPics" title="Happy Dog" />
+                <img src="img/c2.jpg" class="img-responsive caroselPics" title="Happy Dogs" alt="Happy Dogs" />
             </div>
             <div class="item">
-                <img src="img/c3.jpg" class="img-responsive caroselPics" title="Flowing Stream" />
+                <img src="img/c3.jpg" class="img-responsive caroselPics" title="Cuteness" alt="Cuteness" />
             </div>
             <div class="item">
-                <img src="img/c4.jpg" class="img-responsive caroselPics" title="Flags in Philadelphia" />
+                <img src="img/c4.jpg" class="img-responsive caroselPics" title="Border Collie <3" alt="Border Collie <3" />
             </div>
             <div class="item">
-                <img src="img/c5.jpg" class="img-responsive caroselPics" title="Water Whip" />
+                <img src="img/c5.jpg" class="img-responsive caroselPics" title="" alt="" />
             </div>
             <div class="item">
-                <img src="img/c6.jpg" class="img-responsive caroselPics" title="Over Fences" />
+                <img src="img/c6.jpg" class="img-responsive caroselPics" title="" alt="" />
             </div>
             <div class="item">
-                <img src="img/c7.jpg" class="img-responsive caroselPics" title="Butterfly" />
+                <img src="img/c7.jpg" class="img-responsive caroselPics" title="" alt="" />
             </div>
             <div class="item">
-                <img src="img/c8.jpg" class="img-responsive caroselPics" title="Rose" />
+                <img src="img/c8.jpg" class="img-responsive caroselPics" title="" alt="" />
             </div>
             <div class="item">
-                <img src="img/c9.jpg" class="img-responsive caroselPics" title="Guns Up" />
+                <img src="img/c9.jpg" class="img-responsive caroselPics" title="" alt="" />
             </div>
             <div class="item">
-                <img src="img/c10.jpg" class="img-responsive caroselPics" title="Pumpkin Patch" />
+                <img src="img/c10.jpg" class="img-responsive caroselPics" title="" alt="" />
             </div>
         </div>
         <a class="left carousel-control" href="#carousel-photography" data-slide="prev">
@@ -69,9 +69,9 @@
         
     </p>
     <h2 style="margin-top:30px;">Learn More</h2>
-    <img src="img/square1.jpg" class="main-menu-pics roundBorder" title="Champion Dogs" />
-    <img src="img/square2.jpg" class="main-menu-pics roundBorder" title="Ancient Bloodlines" />
-    <img src="img/square3.jpg" class="main-menu-pics roundBorder" title="Knowledgable Breeders"/>
+    <img src="img/merlin-frisbee.jpg" class="main-menu-pics roundBorder" title="Champion Dogs" />
+    <img src="img/sadie1.jpg" class="main-menu-pics roundBorder" title="Ancient Bloodlines" />
+    <img src="img/bella-merlin-frisbee.jpg" class="main-menu-pics roundBorder" title="Knowledgable Breeders"/>
     <nav id="main-menu" style="margin-top:10px;">
         <ul>
             <li><a href="About">About</a></li>
