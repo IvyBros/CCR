@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Dog Details" MasterPageFile="~/Site.Master" Language="C#" AutoEventWireup="true" CodeBehind="Dogs.aspx.cs" Inherits="CutterCreekRanch.Dogs" %>
 <asp:Content ContentPlaceHolderID="head" runat="server">
     <style>       
-        table, td {
+        table, td { 
             border: solid thin #ddd;
             border-collapse: collapse;
         }
