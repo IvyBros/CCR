@@ -55,7 +55,7 @@
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <h1>Photos</h1>
-    <p>Please select a dog.</p>
+    <p>Please select a dog or <strong><a href="/Photos/">View All</a></strong>.</p>
     <hr />
     <form id="form1" runat="server">
         <asp:Repeater runat="server" SelectMethod="GetDogs" ItemType="CutterCreekRanch.Models.Dog">

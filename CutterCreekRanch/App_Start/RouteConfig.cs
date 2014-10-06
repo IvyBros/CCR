@@ -9,6 +9,7 @@ namespace CutterCreekRanch.Routes
         {
             var constraints = new RouteValueDictionary{ {"id",  "[0-9]*" } };
             var photoTypes  = new RouteValueDictionary{ {"img", "[0-9]*" } };
+            var pageNum     = new RouteValueDictionary{ {"page","[0-9]*" } };
             var defaults    = new RouteValueDictionary{ {"id",  "1"      } };
 
             routes.MapPageRoute("default",          String.Empty,       "~/Home.aspx");
@@ -17,6 +18,7 @@ namespace CutterCreekRanch.Routes
             routes.MapPageRoute("Offerings",        "Offerings",        "~/Offerings.aspx");
             routes.MapPageRoute("Contact",          "Contact",          "~/Contact.aspx");
             routes.MapPageRoute("Photos",           "Photos/{id}",      "~/Photos.aspx",    false, null, constraints);
+            //routes.MapPageRoute("Photo")
             routes.MapPageRoute("emptyPhotos",      "Photos",           "~/Photos.aspx");
             routes.MapPageRoute("Apply",            "Apply/{id}",       "~/Apply.aspx",     false, null, constraints);
             routes.MapPageRoute("emptyApply",       "Apply",            "~/Apply.aspx");

@@ -12,6 +12,8 @@ namespace CutterCreekRanch
         private int dogId;
         public int count = 0;
         public IEnumerable<Dog> dogs;
+        public int pageNumber = 1;
+        public int numPicsToDisplay = 12;
 
         protected void Page_Load(object sender, EventArgs e)
         {//get photos for all dogs or just 1 specific dog
@@ -42,7 +44,7 @@ namespace CutterCreekRanch
 
         public IEnumerable<Photo> GetPhotos()
         {
-            return dogId == 0 ? repo.Photos : repo.Photos.Where(x => x.DogId == dogId);
+            return dogId == 0 ? repo.Photos.Skip(pageNumber * numPicsToDisplay).Take(numPicsToDisplay) : repo.Photos.Where(x => x.DogId == dogId);
         }
     }
 }

@@ -13,21 +13,24 @@
             height:350px;
             float:right;
             margin-left:20px;
-            vertical-align:middle;            
+            vertical-align:middle;
+            border:solid thin black;            
         }
         .carousel-pics{    
             max-height:345px;
             max-width:573px;
             height:345px;
-            display:block;            
-            margin:auto;            
+            /*display:block;            */
+            margin:auto;
+            padding-left:2px;
             /*border-radius:10px;
             border:solid thin black;*/
         }
         .pic-wrapper{
-            vertical-align:middle;
-            /*padding:25px;*/
-            margin:auto;
+            /*vertical-align:middle;
+            padding:25px;
+
+            margin:auto;*/
         }
         .desc-p{
             max-width:300px;
@@ -62,7 +65,10 @@
             border:solid thin black;
             max-height:300px;
             min-height:300px;
-        }        
+        }
+        #dogNav{
+            margin-top:-12px;
+        }
     </style>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
@@ -82,7 +88,8 @@
             <asp:Repeater runat="server" SelectMethod="GetPicturesByDogId" ItemType="CutterCreekRanch.Models.Photo">
                 <ItemTemplate>                    
                     <div class="item <%if(count == 0){ count++; %>active<%}%> pic-wrapper">
-                        <a href="/img/photos/<%#Item.URL %>"><img src="/img/photos/<%#Item.CarouselURL ?? "default.png" %>" class="img-responsive carousel-pics" title="<%# Item.Caption %>" /></a>
+                        <a href="/img/photos/<%#Item.URL %>"><img src="/img/photos/<%#Item.CarouselURL 
+                           ?? "default.png" %>" class="img-responsive carousel-pics" title="<%# Item.Caption %>" /></a>
                     </div>                    
                 </ItemTemplate>
             </asp:Repeater>            
@@ -221,8 +228,8 @@
 </asp:Content>
 <asp:Content ContentPlaceHolderID="footerScripts" runat="server">
     <script>
-        $(document).ready(function () {
-            $('#dogNav').css('margin-top', '-12px');
-        });
+        $(document).ready(function () {            
+            
+        });        
     </script>
 </asp:Content>
